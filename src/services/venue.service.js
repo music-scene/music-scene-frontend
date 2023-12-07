@@ -7,22 +7,25 @@ class VenueService {
     });
   }
 
-  venues = () => {
-    return this.api.get('/venues');
+  allVenues = () => {
+    return this.api.get('/api/venues');
   }
 
-  venuesByName = () => {
-    return this.api.get('/venues/by-name');
+  addVenue = (venueData) => {
+    return this.api.post('/api/venues', venueData);
   }
 
-  venuesByLocation = (location) => {
-    return this.api.get(`/venues/by-location/${location}`);
+  venueById = (venueId) => {
+    return this.api.get(`/api/venues/${venueId}`);
   }
 
-  venuesByCapacityRange = (minCapacity, maxCapacity) => {
-    return this.api.get(`/venues/by-capacity/${minCapacity}/${maxCapacity}`);
+  editVenue = (venueId, updatedVenueData) => {
+    return this.api.put(`/api/venues/${venueId}`, updatedVenueData);
   }
 
+  deleteVenue = (venueId) => {
+    return this.api.delete(`/api/venues/${venueId}`);
+  }
 
 }
 

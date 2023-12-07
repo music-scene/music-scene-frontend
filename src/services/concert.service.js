@@ -7,16 +7,24 @@ class ConcertService {
     });
   }
 
-  upcomingConcerts = () => {
-    return this.api.get('/concerts/upcoming');
+  allConcerts = () => {
+    return this.api.get('/api/concerts');
   }
 
-  concertsByVenue = (venueId) => {
-    return this.api.get(`/concerts/by-venue/${venueId}`);
+  addConcert = (concertData) => {
+    return this.api.post('/api/concerts', concertData);
   }
 
-  concertsByPriceRange = (minPrice, maxPrice) => {
-    return this.api.get(`/concerts/by-price/${minPrice}/${maxPrice}`);
+  concertById = (concertId) => {
+    return this.api.get(`/api/concerts/${concertId}`);
+  }
+
+  editConcert = (concertId, updatedConcertData) => {
+    return this.api.put(`/api/concerts/${concertId}`, updatedConcertData);
+  }
+
+  deleteConcert = (concertId) => {
+    return this.api.delete(`/api/concerts/${concertId}`);
   }
 
 }
