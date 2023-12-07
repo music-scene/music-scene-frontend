@@ -12,21 +12,22 @@ function Navbar() {
       <Link to="/">
         <button>Home</button>
       </Link>
+      <Link to="/concerts">
+        <button>Concerts</button>
+      </Link>
 
       {isLoggedIn && (
         <>
-        <Link to="/concerts">
-          <button>Concerts</button>
-        </Link>
-        <button onClick={logOutUser}>Logout</button>
-        <span>{user && user.name}</span>
-        </>   
+
+          <button onClick={logOutUser}>Logout</button>
+          <span>{user && user.name}</span>
+        </>
       )}
 
       {!isLoggedIn && (
         <>
-        <Link to="/signup"><button>Sign Up</button></Link>
-        <Link to="/login"><button>Login</button></Link>
+          <Link to="/signup"><button>Sign Up</button></Link>
+          <Link to="/login"><button>Login</button></Link>
         </>
       )}
     </nav>

@@ -43,6 +43,7 @@ function SignupPage(props) {
                 <input
                     type="email"
                     name="email"
+                    required={true}
                     value={email}
                     onChange={handleEmail}
                 />
@@ -51,6 +52,7 @@ function SignupPage(props) {
                 <input
                     type="password"
                     name="password"
+                    required={true}
                     value={password}
                     onChange={handlePassword}
                 />
@@ -59,6 +61,7 @@ function SignupPage(props) {
                 <input
                     type="text"
                     name="name"
+                    required={true}
                     value={name}
                     onChange={handleName}
                 />

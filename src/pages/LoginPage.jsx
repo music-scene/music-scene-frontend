@@ -1,11 +1,7 @@
 import { useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../context/auth.context"
-import axios from "axios"
 import authService from "../services/auth.service"
-
-
-const API_URL = "http://localhost:5005"
 
 function LoginPage(props) {
     const [email, setEmail] = useState("")
@@ -28,7 +24,7 @@ function LoginPage(props) {
 
         authService.login(requestBody)
         .then((response) => {
-            console.log('JWT token', response.data.authToken)
+            //console.log('JWT token', response.data.authToken)
 
             storeToken(response.data.authToken)
 

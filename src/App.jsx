@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar"
 import HomePage from "./pages/HomePage"
-/* import ConcertListPage from "./pages/ConcertListPage"
+import ConcertListPage from "./pages/ConcertListPage"
 import ConcertDetailsPage from "./pages/ConcertDetailsPage"
-import EditConcertPage from "./pages/EditConcertPage"
+/*import EditConcertPage from "./pages/EditConcertPage"
 import AddConcertPage from "./pages/AddConcertPage"
 import VenueListPage from "./pages/VenueListPage"
 import VenuetDetailsPage from "./pages/VenueDetailsPage"
@@ -25,13 +25,13 @@ function App() {
         <Route path="/"
           element={<HomePage />}
         />
-        {/* <Route exact path="/concerts"
-          element={<IsAnon> <ConcertListPage /> </IsAnon>}
+        <Route exact path="/concerts"
+          element={<ConcertListPage />}
         />
         <Route exact path="/concerts/:concertId"
-          element={<IsAnon> <ConcertDetailsPage /> </IsAnon>}
+          element={<ConcertDetailsPage />}
         />
-        <Route exact path="/concerts/edit/:concertId"
+        {/*<Route exact path="/concerts/edit/:concertId"
           element={<IsPrivate> <EditConcertPage /> </IsPrivate>}
         />
         <Route exact path="/concerts/add"

@@ -1,42 +1,109 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body {
+    text-align: center;
+    background-color: #242424;
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*
+
+    CONCERT LIST PAGE
+
+*/
+
+.ConcertListPageContainer {
+    display: flex;
+    justify-content: center;
+    margin: 100px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.ConcertImageContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 110px;
 }
 
-.card {
-  padding: 2em;
+.VenueDetailsImageDiv img,
+.ConcertDetailsImageDiv img,
+.ConcertImageDiv img {
+    display: flex;
+    width: 500px;
+    height: 250px;
+    border: 3px solid white;
+    object-fit: cover;
+    border-radius: 30px;
+    margin: 10px
 }
 
-.read-the-docs {
-  color: #888;
+/*
+
+    CONCERT DETAILS PAGE
+
+*/
+
+.ConcertPageContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.ConcertPageTitle {
+    margin: 100px;
+}
+
+/*
+
+    CONCERT/VENUE DETAILS
+
+*/
+
+.ConcertDetailsContainer,
+.VenueDetailsContainer {
+    display: flex;
+    justify-content: center;
+}
+
+/* .VenueDetailsImageDiv img,
+.ConcertDetailsImageDiv img {
+    width: 460px;
+} */
+
+/*
+
+    CONCERT DETAILS
+
+*/
+
+.ConcertDetailsInfoDiv {
+}
+
+/*
+
+    VENUE DETAILS
+
+*/
+
+.VenueDetailsButtonDiv {
+    text-align: center;
+}
+
+.VenueDetailsButton {
+    width: 100px;
+}
+
+.VenueDetailsContainer.show {
+    display: flex;
+}
+
+.VenueDetailsContainer.hide {
+    display: none;
 }
