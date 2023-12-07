@@ -1,14 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar"
 import HomePage from "./pages/HomePage"
-import ConcertListPage from "./pages/ConcertListPage"
+/* import ConcertListPage from "./pages/ConcertListPage"
 import ConcertDetailsPage from "./pages/ConcertDetailsPage"
 import EditConcertPage from "./pages/EditConcertPage"
 import AddConcertPage from "./pages/AddConcertPage"
 import VenueListPage from "./pages/VenueListPage"
 import VenuetDetailsPage from "./pages/VenueDetailsPage"
 import EditVenuePage from "./pages/EditVenuePage"
-import AddVenuePage from "./pages/AddVenuePage"
+import AddVenuePage from "./pages/AddVenuePage" */
+import SignupPage from "./pages/SignupPage"
+import LoginPage from "./pages/LoginPage";
 import IsAnon from "./components/IsAnon"
 import IsPrivate from "./components/IsPrivate"
 import './App.css'
@@ -23,7 +25,7 @@ function App() {
         <Route path="/"
           element={<HomePage />}
         />
-        <Route exact path="/concerts"
+        {/* <Route exact path="/concerts"
           element={<IsAnon> <ConcertListPage /> </IsAnon>}
         />
         <Route exact path="/concerts/:concertId"
@@ -46,7 +48,7 @@ function App() {
         />
         <Route exact path="/venues/add"
           element={<IsPrivate> <AddVenuePage /> </IsPrivate>}
-        />
+        /> */}
         <Route path="/signup"
           element={<IsAnon> <SignupPage /> </IsAnon>}
         />
