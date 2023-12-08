@@ -24,7 +24,7 @@ function ConcertDetailsContainer(props) {
               <p>{props.concert.description}</p>
               <div className="">
                 <h3 className="">DATE</h3>
-                <p className="">{props.concert.date.substring(0, 10)}</p>
+                <p className="">{`${props.concert.date.substring(0, 10)} at ${props.concert.date.substring(11, 16)}`}</p>
                 <h3 className="">PRICE</h3>
                 {props.concert.price <= 0
                   ? (<p className="">FREE</p>)

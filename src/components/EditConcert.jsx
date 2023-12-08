@@ -1,32 +1,58 @@
 import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Dropdown } from "semantic-ui-react";
 import venueService from '../services/venue.service'
 import concertService from '../services/concert.service'
 import { AuthContext } from "../context/auth.context";
 import { getVenuesNames, setDefaultImageUrl } from "../helperFunctions/helperFunction"
 
-function AddConcertPage() {
+function EditConcert(props) {
 
     const [title, setTitle] = useState("");
     const [artist, setArtist] = useState("");
     const [description, setDescription] = useState("");
     const [imageUrl, setImageUrl] = useState("");
-    const [date, setDate] = useState(null)
+    const [date, setDate] = useState("")
     const [price, setPrice] = useState(0);
     const [venueId, setVenueId] = useState(null)
     const [venuesList, setVenuesList] = useState(null)
     const [venuesNameList, setVenuesNameList] = useState(null)
     const [errorMessage, setErrorMessage] = useState(undefined)
 
-    let currentDate = new Date().toISOString()
-    currentDate = `${currentDate.substring(0, 10)} ${currentDate.substring(11, 16)}`
-
+    const { concertId } = useParams()
     const { user } = useContext(AuthContext)
 
     const navigate = useNavigate();
 
+    const populateFields = () => {
+        setTitle(props.concert.title)
+        setArtist(props.concert.artist)
+        setDescription(props.concert.description)
+        setImageUrl(props.concert.imageUrl)
+        setDate(`${props.concert.date.substring(0, 10)} ${props.concert.date.substring(11, 16)}`)
+        setPrice(props.concert.price)
+        setVenueId(props.concert.venue._id)
+    }
+
+    // is it better to make another request or do as above with props?
+    /* const getConcertById = () => {
+
+        concertService.getConcertById(concertId)
+            .then((response) => {
+                setTitle(response.data.title)
+                setArtist(response.data.artist)
+                setDescription(response.data.description)
+                setImageUrl(response.data.imageUrl)
+                setDate(response.data.date)
+                setPrice(response.data.price)
+                setVenueId(response.data.venue._id)
+            })
+            .catch((error) => console.log(error))
+
+    } */
+
     const getAllVenues = () => {
+
         venueService.getAllVenues()
             .then((response) => {
                 setVenuesNameList(getVenuesNames(response.data))
@@ -36,6 +62,8 @@ function AddConcertPage() {
     }
 
     useEffect(() => {
+        //getConcertById()
+        populateFields()
         getAllVenues()
     }, []);
 
@@ -53,9 +81,9 @@ function AddConcertPage() {
             author: user,
         };
 
-        concertService.addConcert(requestBody)
+        concertService.editConcert(concertId, requestBody)
             .then(() => {
-                navigate("/concerts");
+                navigate(0)
             })
             .catch((error) => {
                 console.log("An error occurred: ");
@@ -77,7 +105,7 @@ function AddConcertPage() {
         <div>
             <div className="">
                 <div className="">
-                    <h1>ADD CONCERT</h1>
+                    <h1>EDIT CONCERT</h1>
                     <form onSubmit={handleSubmit}>
                         <label className="">
                             <p>Title</p>
@@ -144,8 +172,7 @@ function AddConcertPage() {
                                 type="datetime-local"
                                 name="date"
                                 required={true}
-                                value={currentDate}
-                                
+                                value={date}
                                 onChange={(e) => {
                                     setDate(e.target.value);
                                 }}
@@ -177,9 +204,9 @@ function AddConcertPage() {
                                 }}
                             />
                         </label>
-                        <button className="">Add Concert</button>
+                        <button className="">Submit changes</button>
                     </form>
-                    { errorMessage && <p className="error-message">{errorMessage}</p> }
+                    {errorMessage && <p className="error-message">{errorMessage}</p>}
                 </div>
                 {/* <div>
                     <GameDetailsContainer title={title} imageUrl={imageUrl} description={description} rating={rating} price={price} genre={genre} platform={platform} />
@@ -189,4 +216,4 @@ function AddConcertPage() {
     );
 }
 
-export default AddConcertPage;
+export default EditConcert

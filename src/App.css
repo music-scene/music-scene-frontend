@@ -101,10 +101,14 @@ body {
     width: 100px;
 }
 
+.EditContainer.show,
 .VenueDetailsContainer.show {
     display: flex;
 }
 
+.EditContainer.hide,
 .VenueDetailsContainer.hide {
     display: none;
 }
+
+

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { sortConcertsByDate } from "../helperFunctions/sortConcerts"
+import { sortConcertsByDate } from "../helperFunctions/helperFunction"
 import concertService from '../services/concert.service'
 
 function HomePage() {
