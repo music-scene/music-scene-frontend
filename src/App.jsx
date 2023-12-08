@@ -3,8 +3,8 @@ import Navbar from "./components/Navbar"
 import HomePage from "./pages/HomePage"
 import ConcertListPage from "./pages/ConcertListPage"
 import ConcertDetailsPage from "./pages/ConcertDetailsPage"
-/*import EditConcertPage from "./pages/EditConcertPage"
 import AddConcertPage from "./pages/AddConcertPage"
+/*import EditConcertPage from "./pages/EditConcertPage"
 import VenueListPage from "./pages/VenueListPage"
 import VenuetDetailsPage from "./pages/VenueDetailsPage"
 import EditVenuePage from "./pages/EditVenuePage"
@@ -13,6 +13,8 @@ import SignupPage from "./pages/SignupPage"
 import LoginPage from "./pages/LoginPage";
 import IsAnon from "./components/IsAnon"
 import IsPrivate from "./components/IsPrivate"
+
+import "semantic-ui-css/semantic.min.css";
 import './App.css'
 
 function App() {
@@ -31,11 +33,11 @@ function App() {
         <Route exact path="/concerts/:concertId"
           element={<ConcertDetailsPage />}
         />
-        {/*<Route exact path="/concerts/edit/:concertId"
-          element={<IsPrivate> <EditConcertPage /> </IsPrivate>}
-        />
         <Route exact path="/concerts/add"
           element={<IsPrivate> <AddConcertPage /> </IsPrivate>}
+        />
+        {/*<Route exact path="/concerts/edit/:concertId"
+          element={<IsPrivate> <EditConcertPage /> </IsPrivate>}
         />
         <Route exact path="/venues"
           element={<IsAnon> <VenueListPage /> </IsAnon>}

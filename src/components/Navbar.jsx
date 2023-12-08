@@ -18,7 +18,9 @@ function Navbar() {
 
       {isLoggedIn && (
         <>
-
+          <Link to="/concerts/add">
+            <button>Add concert</button>
+          </Link>
           <button onClick={logOutUser}>Logout</button>
           <span>{user && user.name}</span>
         </>

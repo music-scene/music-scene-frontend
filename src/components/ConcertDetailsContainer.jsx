@@ -24,9 +24,12 @@ function ConcertDetailsContainer(props) {
               <p>{props.concert.description}</p>
               <div className="">
                 <h3 className="">DATE</h3>
-                <p className="">{props.concert.date}</p>
+                <p className="">{props.concert.date.substring(0, 10)}</p>
                 <h3 className="">PRICE</h3>
-                <p className="">{props.concert.price}€</p>
+                {props.concert.price <= 0
+                  ? (<p className="">FREE</p>)
+                  : (<p className="">{props.concert.price}€</p>
+                  )}
               </div>
             </div>
           </div>
@@ -39,6 +42,8 @@ function ConcertDetailsContainer(props) {
                 <img src={props.concert.venue.imageUrl} />
               </div>
               <div>
+                <h3 className="">NAME</h3>
+                <p className="">{props.concert.venue.name}</p>
                 <h3 className="">DESCRIPTION</h3>
                 <p className="">{props.concert.venue.description}</p>
                 <h3 className="">LOCATION</h3>
