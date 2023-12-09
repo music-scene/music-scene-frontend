@@ -4,11 +4,11 @@ import HomePage from "./pages/HomePage"
 import ConcertListPage from "./pages/ConcertListPage"
 import ConcertDetailsPage from "./pages/ConcertDetailsPage"
 import AddConcertPage from "./pages/AddConcertPage"
-/*import EditConcertPage from "./pages/EditConcertPage"
+/*import EditConcertPage from "./pages/EditConcertPage" */
 import VenueListPage from "./pages/VenueListPage"
 import VenuetDetailsPage from "./pages/VenueDetailsPage"
-import EditVenuePage from "./pages/EditVenuePage"
-import AddVenuePage from "./pages/AddVenuePage" */
+/*import EditVenuePage from "./pages/EditVenuePage"*/
+import AddVenuePage from "./pages/AddVenuePage"
 import SignupPage from "./pages/SignupPage"
 import LoginPage from "./pages/LoginPage";
 import IsAnon from "./components/IsAnon"
@@ -38,19 +38,19 @@ function App() {
         />
         {/*<Route exact path="/concerts/edit/:concertId"
           element={<IsPrivate> <EditConcertPage /> </IsPrivate>}
-        />
+        />*/}
         <Route exact path="/venues"
-          element={<IsAnon> <VenueListPage /> </IsAnon>}
+          element={<VenueListPage />}
         />
         <Route exact path="/venues/:venueId"
-          element={<IsAnon> <VenuetDetailsPage /> </IsAnon>}
+          element={<VenuetDetailsPage />}
         />
-        <Route exact path="/venues/edit/:venueId"
-          element={<IsPrivate> <EditVenuePage /> </IsPrivate>}
-        />
+        {/* <Route exact path="/venues / edit /:venueId"
+        element={<IsPrivate> <EditVenuePage /> </IsPrivate>}
+        />*/}
         <Route exact path="/venues/add"
           element={<IsPrivate> <AddVenuePage /> </IsPrivate>}
-        /> */}
+        />
         <Route path="/signup"
           element={<IsAnon> <SignupPage /> </IsAnon>}
         />

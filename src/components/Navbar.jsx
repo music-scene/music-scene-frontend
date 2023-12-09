@@ -15,17 +15,21 @@ function Navbar() {
       <Link to="/concerts">
         <button>Concerts</button>
       </Link>
-
+      <Link to="/venues">
+        <button>Venues</button>
+      </Link>
       {isLoggedIn && (
         <>
           <Link to="/concerts/add">
             <button>Add concert</button>
           </Link>
+          <Link to="/venues/add">
+            <button>Add Venue</button>
+          </Link>
           <button onClick={logOutUser}>Logout</button>
           <span>{user && user.name}</span>
         </>
       )}
-
       {!isLoggedIn && (
         <>
           <Link to="/signup"><button>Sign Up</button></Link>
