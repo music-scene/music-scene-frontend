@@ -4,6 +4,8 @@ const defaultImageUrl = "https://developers.elementor.com/docs/assets/img/elemen
 function sortConcertsByDate(concertList) {
     // Deep copy of array in order to avoid modifying the original array
     let tempObj = structuredClone(concertList);
+    
+    if (tempObj.length === 1) return tempObj
 
     // Sort by date, ascending
     tempObj.sort((a, b) => {
