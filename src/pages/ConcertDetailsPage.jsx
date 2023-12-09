@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import concertService from '../services/concert.service'
 import ConcertDetailsContainer from "../components/ConcertDetailsContainer"
@@ -13,6 +13,8 @@ function ConcertDetailsPage() {
 
     const { user, isLoggedIn } = useContext(AuthContext)
 
+    const navigate = useNavigate();
+
     const showHideEditContainer = () => setshowEditContainer(!showEditContainer)
 
     const getConcertById = () => {
@@ -23,6 +25,15 @@ function ConcertDetailsPage() {
             })
             .catch((error) => console.log(error));
     };
+
+    const deleteConcert = () => {
+
+        concertService.deleteConcert(concertId)
+            .then((response) => {
+                navigate('/concerts')
+            })
+            .catch((error) => console.log(error));
+    }   
 
     useEffect(() => {
         getConcertById();
@@ -42,6 +53,7 @@ function ConcertDetailsPage() {
                     <div className={`EditContainer ${showEditContainer ? "show" : "hide"}`}>
                         {<EditConcert concert={concertDetails}/>}
                     </div>
+                    <button onClick={deleteConcert}>DELETE</button>
                 </>
 
                 : null}

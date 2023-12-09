@@ -72,4 +72,4 @@ function setDefaultImageUrl(imageUrl) {
     return imageUrl;
 }
 
-export { sortConcertsByDate, getVenuesNames, setDefaultImageUrl };
+export { sortConcertsByDate, getVenuesNames, setDefaultImageUrl, defaultImageUrl };

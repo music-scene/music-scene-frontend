@@ -149,6 +149,7 @@ function EditConcert(props) {
                                 <Dropdown
                                     placeholder="Venue"
                                     fluid={false}
+                                    selection
                                     onChange={handleVenueSelection}
                                     options={venuesNameList}
                                 />
