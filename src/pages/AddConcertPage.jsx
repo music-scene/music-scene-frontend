@@ -4,8 +4,7 @@ import { Dropdown } from "semantic-ui-react";
 import venueService from '../services/venue.service'
 import concertService from '../services/concert.service'
 import { AuthContext } from "../context/auth.context";
-import { getVenuesNames, setDefaultImageUrl } from "../helperFunctions/helperFunction"
-import { defaultImageUrl } from "../helperFunctions/helperFunction"
+import { getVenuesNames, defaultImageUrl, setDefaultImageUrl } from "../helperFunctions/helperFunction"
 
 function AddConcertPage() {
 
