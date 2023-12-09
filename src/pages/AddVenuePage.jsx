@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import venueService from '../services/venue.service';
+import { defaultImageUrl } from "../helperFunctions/helperFunction";
+import { AuthContext } from "../context/auth.context";
 
 function AddVenuePage() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
     const [capacity, setCapacity] = useState(0);
+    const [imageUrl, setImageUrl] = useState(`${defaultImageUrl}`);
 
+    const { user } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -19,7 +23,8 @@ function AddVenuePage() {
             description,
             location,
             capacity,
-
+            imageUrl,
+            author: user._id,
         };
 
         venueService.addVenue(venueData)
@@ -29,7 +34,6 @@ function AddVenuePage() {
             .catch((error) => {
                 console.log("An error occurred: ");
                 console.log(error);
-
             });
     };
 
@@ -76,6 +80,15 @@ function AddVenuePage() {
                             min={0}
                             value={capacity}
                             onChange={(e) => setCapacity(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        <p>Image URL</p>
+                        <input
+                            type="text"
+                            name="imageUrl"
+                            value={imageUrl}
+                            onChange={(e) => setImageUrl(e.target.value)}
                         />
                     </label>
 
