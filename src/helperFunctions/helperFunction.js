@@ -1,5 +1,11 @@
 const defaultImageUrl = "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png";
 
+const allOptions = {
+    label: "All",
+    value: "All",
+    key: "All"
+  };
+
 // sorts concerts by ascending date
 function sortConcertsByDate(concertList) {
     // Deep copy of array in order to avoid modifying the original array
@@ -24,13 +30,15 @@ function sortConcertsByDate(concertList) {
 }
 
 // function that returns an array of venues name alphabetically sorted for the dropdown menu
-function getVenuesNames(data) {
+function getVenuesNames(data, isAll) {
     const allVenues = data.map((elm) => elm.name);
     const temp = looper(allVenues);
 
     if (data.length === 1) return temp;
 
     const venues = sortObject(temp);
+
+    if(isAll) venues.unshift(allOptions)
 
     return venues;
 }

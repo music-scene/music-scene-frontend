@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { sortConcertsByDate } from "../helperFunctions/helperFunction"
+import { Dropdown } from "semantic-ui-react";
+import { getVenuesNames, sortConcertsByDate } from "../helperFunctions/helperFunction"
 import concertService from '../services/concert.service'
+import venueService from '../services/venue.service'
 
 function ConcertListPage() {
 
     const [concerts, setConcerts] = useState(null);
+    const [venuesNamesList, setVenuesNameList] = useState(null)
     const [displayConcerts, setDisplayConcerts] = useState(null)
-    const [searchConcerts, setSearchConcerts] = useState("");
+    const [searchValue, setSearchValue] = useState("");
+    const [venueFilter, setVenueFilter] = useState("All")
+
     let sortedConcerts = null;
 
     const getAllConcerts = () => {
@@ -19,28 +24,38 @@ function ConcertListPage() {
             .catch((error) => console.log(error));
     };
 
-    // Search related functions
+    const getAllVenuesNames = () => {
+        venueService.getAllVenues()
+            .then((response) => {
+                setVenuesNameList(getVenuesNames(response.data, true))
+            })
+            .catch((error) => console.log(error))
+    }
+
     const handleSearch = (e) => {
         e.preventDefault();
-
-        setSearchConcerts(e.target.value);
+        setSearchValue(e.target.value);
     };
+
+    const handleFilter = (event, data) => {
+        setVenueFilter(data.value);
+    }
 
     useEffect(() => {
         getAllConcerts()
+        getAllVenuesNames()
     }, [])
 
     useEffect(() => {
+        if (concerts !== null) {
+            const result = concerts.filter(({ title, venue }) => {
+                return title.toLowerCase().includes(searchValue.toLowerCase()) && ( venue.name === venueFilter || venueFilter === "All")
+            })
+            setDisplayConcerts(result)
+        }
 
-        const concertSearch = searchConcerts === ""
-            ? concerts
-            : concerts.filter((elm) => {
-                return elm.title.toLowerCase().includes(searchConcerts.toLowerCase());
-            });
 
-        setDisplayConcerts(concertSearch);
-
-    }, [searchConcerts]);
+    }, [searchValue, venueFilter])
 
     return (
         <div>
@@ -51,11 +66,23 @@ function ConcertListPage() {
                         <input
                             className="inpt_search"
                             type="text"
-                            value={searchConcerts}
+                            value={searchValue}
                             onChange={handleSearch}
                         />
                     </label>
                 </div>
+            </div>
+            <div>
+                <label className="">
+                    <p>Venues</p>
+                    <Dropdown
+                        placeholder="Venue"
+                        fluid={false}
+                        selection
+                        onChange={handleFilter}
+                        options={venuesNamesList}
+                    />
+                </label>
             </div>
             <div className="ConcertListPageContainer" >
                 {!displayConcerts && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}

@@ -30,7 +30,7 @@ function AddConcertPage() {
     const getAllVenues = () => {
         venueService.getAllVenues()
             .then((response) => {
-                setVenuesNameList(getVenuesNames(response.data))
+                setVenuesNameList(getVenuesNames(response.data, false))
                 setVenuesList(response.data)
             })
             .catch((error) => console.log(error))
