@@ -53,8 +53,6 @@ function ConcertListPage() {
             })
             setDisplayConcerts(result)
         }
-
-
     }, [searchValue, venueFilter])
 
     return (

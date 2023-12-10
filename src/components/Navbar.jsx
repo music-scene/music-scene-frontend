@@ -27,7 +27,9 @@ function Navbar() {
             <button>Add Venue</button>
           </Link>
           <button onClick={logOutUser}>Logout</button>
-          <span>{user && user.name}</span>
+          <Link to={`/users/${user._id}`}>
+            <button>Profile</button>
+          </Link>
         </>
       )}
       {!isLoggedIn && (

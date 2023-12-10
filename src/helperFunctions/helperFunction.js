@@ -1,4 +1,5 @@
 const defaultImageUrl = "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png";
+const defaultProfileImageUrl = "https://upload.wikimedia.org/wikipedia/en/archive/b/b1/20210811082249%21Portrait_placeholder.png"
 
 const allOptions = {
     label: "All",
@@ -82,4 +83,11 @@ function setDefaultImageUrl(imageUrl) {
     return imageUrl;
 }
 
-export { sortConcertsByDate, getVenuesNames, setDefaultImageUrl, defaultImageUrl };
+function setDefaultProfileImageUrl(imageUrl) {
+    if (imageUrl.length === 0) return defaultProfileImageUrl;
+
+    return imageUrl;
+}
+
+
+export { sortConcertsByDate, getVenuesNames, setDefaultImageUrl, setDefaultProfileImageUrl, defaultImageUrl, defaultProfileImageUrl };

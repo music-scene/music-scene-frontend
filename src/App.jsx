@@ -11,6 +11,7 @@ import VenuetDetailsPage from "./pages/VenueDetailsPage"
 import AddVenuePage from "./pages/AddVenuePage"
 import SignupPage from "./pages/SignupPage"
 import LoginPage from "./pages/LoginPage";
+import ProfilePage from "./pages/ProfilePage";
 import IsAnon from "./components/IsAnon"
 import IsPrivate from "./components/IsPrivate"
 
@@ -50,6 +51,9 @@ function App() {
         />*/}
         <Route exact path="/venues/add"
           element={<IsPrivate> <AddVenuePage /> </IsPrivate>}
+        />
+        <Route path="/users/:userId"
+          element={<IsPrivate> <ProfilePage /> </IsPrivate>}
         />
         <Route path="/signup"
           element={<IsAnon> <SignupPage /> </IsAnon>}
