@@ -184,8 +184,8 @@ function AddConcertPage() {
                             />
                         </label>
                         <button className="">Add Concert</button>
-                    </form>
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
+                    </form>
                 </div>
                 <div>
                     <div className="ConcertDetailsContainer">

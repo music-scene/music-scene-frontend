@@ -10,6 +10,7 @@ function AddVenuePage() {
     const [location, setLocation] = useState("");
     const [capacity, setCapacity] = useState(0);
     const [imageUrl, setImageUrl] = useState(`${defaultImageUrl}`);
+    const [errorMessage, setErrorMessage] = useState(undefined)
 
     const { user } = useContext(AuthContext);
 
@@ -34,6 +35,8 @@ function AddVenuePage() {
             .catch((error) => {
                 console.log("An error occurred: ");
                 console.log(error);
+                const errorDescription = error.response.data.message
+                setErrorMessage(errorDescription)
             });
     };
 
@@ -68,6 +71,7 @@ function AddVenuePage() {
                             type="text"
                             name="location"
                             value={location}
+                            required={true}
                             onChange={(e) => setLocation(e.target.value)}
                         />
                     </label>
@@ -94,6 +98,7 @@ function AddVenuePage() {
 
                     <button>Add Venue</button>
                 </form>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
             </div>
         </div>
     );
