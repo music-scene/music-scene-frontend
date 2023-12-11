@@ -41,7 +41,7 @@ function EditVenue() {
 
         venueService.editVenue(venueId, requestBody)
             .then(() => {
-                navigate(`/venues/${venueId}`);
+                navigate(0);
             })
             .catch((error) => {
                 console.log("An error occurred: ");

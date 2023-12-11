@@ -18,6 +18,9 @@ function Navbar() {
       <Link to="/venues">
         <button>Venues</button>
       </Link>
+      <Link to="/artists">
+        <button>Artists</button>
+      </Link>
       {isLoggedIn && (
         <>
           <Link to="/concerts/add">

@@ -30,6 +30,19 @@ function sortConcertsByDate(concertList) {
     return tempObj;
 }
 
+function sortArtistsAlphabetically(artistsList) {
+
+    let tempObj = structuredClone(artistsList);
+    
+    if (tempObj.length === 1) return tempObj
+
+    tempObj.sort((a, b) => {
+        return a.name.localeCompare(b.name);
+    });
+
+    return tempObj
+}
+
 // function that returns an array of names alphabetically sorted for the dropdown menu
 function getNamesForLists(data, isAll) {
     const allNames = data.map((elm) => elm.name);
@@ -90,4 +103,4 @@ function setDefaultProfileImageUrl(imageUrl) {
 }
 
 
-export { sortConcertsByDate, getNamesForLists, setDefaultImageUrl, setDefaultProfileImageUrl, defaultImageUrl, defaultProfileImageUrl };
+export { sortArtistsAlphabetically, sortConcertsByDate, getNamesForLists, setDefaultImageUrl, setDefaultProfileImageUrl, defaultImageUrl, defaultProfileImageUrl };

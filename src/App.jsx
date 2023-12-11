@@ -9,6 +9,8 @@ import VenueListPage from "./pages/VenueListPage"
 import VenuetDetailsPage from "./pages/VenueDetailsPage"
 /*import EditVenuePage from "./pages/EditVenuePage"*/
 import AddVenuePage from "./pages/AddVenuePage"
+import ArtistListPage from "./pages/ArtistListPage"
+import ArtistDetailsPage from "./pages/ArtistDetailsPage"
 import SignupPage from "./pages/SignupPage"
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -51,6 +53,12 @@ function App() {
         />*/}
         <Route exact path="/venues/add"
           element={<IsPrivate> <AddVenuePage /> </IsPrivate>}
+        />
+        <Route exact path="/artists"
+          element={ <ArtistListPage /> }
+        />
+        <Route exact path="/artists/:artistId"
+          element={ <ArtistDetailsPage /> }
         />
         <Route path="/users/:userId"
           element={<IsPrivate> <ProfilePage /> </IsPrivate>}

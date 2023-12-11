@@ -45,7 +45,8 @@ function VenueDetailsPage() {
                             <p><strong>Description:</strong> {venueDetails.description}</p>
                             <p><strong>Capacity:</strong> {venueDetails.capacity}</p>
                             <img src={venueDetails.imageUrl} alt={venueDetails.name} />
-                            {isLoggedIn && (
+                            {isLoggedIn && venueDetails !== null && venueDetails.author !== null && user._id === venueDetails.author._id
+                            ?
                                 <div>
                                     <button onClick={showHideEditContainer}>EDIT</button>
                                     <div className={`EditContainer ${showEditContainer ? "show" : "hide"}`}>
@@ -53,7 +54,7 @@ function VenueDetailsPage() {
                                     </div>
                                     <button onClick={handleDelete}>DELETE</button>
                                 </div>
-                            )}
+                            : null }
                         </div>
                     )}
             </div>

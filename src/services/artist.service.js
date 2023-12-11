@@ -26,6 +26,18 @@ class ArtistService {
   addArtist = (artistData) => {
     return this.api.post('/api/artists', artistData);
   }
+
+  getArtistById = (artistId) => {
+    return this.api.get(`/api/artists/${artistId}`);
+  }
+
+  editArtist = (artistId, requestBody) => {
+    return this.api.get(`/api/artists/${artistId}`, requestBody)
+  }
+
+  deleteArtist = (artistId) => {
+    return this.api.delete(`/api/artists/${artistId}`)
+  }
 }
 
   const artistService = new ArtistService();

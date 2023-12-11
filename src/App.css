@@ -41,6 +41,18 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 110px;
+    position: relative;
+}
+
+.ConcertImageDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 450px;
+    border-radius: 30px;
+    margin: 30px 30px;
+    position: relative;
 }
 
 .VenueDetailsImageDiv img,
@@ -52,7 +64,14 @@ body {
     border: 3px solid white;
     object-fit: cover;
     border-radius: 30px;
-    margin: 10px
+    margin: 10px;
+    transition: 0.2s;
+}
+
+.ConcertImageDiv img:hover {
+    width: 360px;
+    height: 460px;
+    transition: 0.2s;
 }
 
 /*
@@ -119,5 +138,46 @@ body {
 .VenueDetailsContainer.hide {
     display: none;
 }
+
+/*
+
+    ARTIST PAGE
+
+*/
+.TitleSpan,
+.BgDiv {
+    position: absolute;
+    z-index: 1;
+}
+
+.TitleSpan {
+    display: none;
+    pointer-events: none;
+    color: white;
+    font-size: 2rem;
+}
+
+.BgDiv:hover {
+    opacity: 0.7;
+}
+
+.BgDiv:hover + .TitleSpan {
+    display: block;
+}
+
+.BgDiv {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #351a79;
+    opacity: 0;
+    border-radius: 30px;
+}
+
+
+
+
+
 
 

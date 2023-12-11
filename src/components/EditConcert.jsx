@@ -23,7 +23,6 @@ function EditConcert(props) {
     const [errorMessage, setErrorMessage] = useState(undefined)
 
     const { concertId } = useParams()
-    const { user } = useContext(AuthContext)
 
     const navigate = useNavigate();
 
@@ -72,8 +71,7 @@ function EditConcert(props) {
             description: description,
             date: date,
             price: parseFloat(price),
-            imageUrl: setDefaultImageUrl(imageUrl),
-            author: user,
+            imageUrl: setDefaultImageUrl(imageUrl)
         };
 
         concertService.editConcert(concertId, requestBody)
