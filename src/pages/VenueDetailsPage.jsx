@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import venueService from '../services/venue.service';
+import { AuthContext } from "../context/auth.context";
+import EditVenue from "../components/EditVenue";
 
 function VenueDetailsPage() {
     const [venueDetails, setVenueDetails] = useState(null);
+    const [showEditContainer, setShowEditContainer] = useState(false);
     const { venueId } = useParams();
+    const { user, isLoggedIn } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const getVenueById = () => {
         venueService.getVenueById(venueId)
@@ -14,13 +19,23 @@ function VenueDetailsPage() {
             .catch((error) => console.log(error));
     };
 
+    const showHideEditContainer = () => setShowEditContainer(!showEditContainer);
+
+    const handleDelete = () => {
+        venueService.deleteVenue(venueId)
+            .then(() => {
+                navigate('/venues');
+            })
+            .catch((error) => console.log(error));
+    };
+
     useEffect(() => {
         getVenueById();
     }, [venueId]);
 
     return (
-        <div>
-            <div>
+        <div className="">
+            <div className="">
                 {venueDetails === null
                     ? (<h1>Loading venue details...</h1>)
                     : (
@@ -30,7 +45,15 @@ function VenueDetailsPage() {
                             <p><strong>Description:</strong> {venueDetails.description}</p>
                             <p><strong>Capacity:</strong> {venueDetails.capacity}</p>
                             <img src={venueDetails.imageUrl} alt={venueDetails.name} />
-
+                            {isLoggedIn && (
+                                <div>
+                                    <button onClick={showHideEditContainer}>EDIT</button>
+                                    <div className={`EditContainer ${showEditContainer ? "show" : "hide"}`}>
+                                        {<EditVenue venueId={venueId} />}
+                                    </div>
+                                    <button onClick={handleDelete}>DELETE</button>
+                                </div>
+                            )}
                         </div>
                     )}
             </div>
