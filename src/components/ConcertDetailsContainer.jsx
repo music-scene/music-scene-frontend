@@ -19,7 +19,7 @@ function ConcertDetailsContainer(props) {
             </div>
             <div className="ConcertDetailsInfoDiv">
               <h3 className="">ARTIST</h3>
-              <p>{props.concert.artist}</p>
+              <p>{props.concert.artist.name}</p>
               <h3 className="">DESCRIPTION</h3>
               <p>{props.concert.description}</p>
               <div className="">

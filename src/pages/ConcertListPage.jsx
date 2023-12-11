@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Dropdown } from "semantic-ui-react";
-import { getVenuesNames, sortConcertsByDate } from "../helperFunctions/helperFunction"
+import { getNamesForLists, sortConcertsByDate } from "../helperFunctions/helperFunction"
 import concertService from '../services/concert.service'
 import venueService from '../services/venue.service'
 
@@ -27,7 +27,7 @@ function ConcertListPage() {
     const getAllVenuesNames = () => {
         venueService.getAllVenues()
             .then((response) => {
-                setVenuesNameList(getVenuesNames(response.data, true))
+                setVenuesNameList(getNamesForLists(response.data, true))
             })
             .catch((error) => console.log(error))
     }

@@ -3,13 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { Dropdown } from "semantic-ui-react";
 import venueService from '../services/venue.service'
 import concertService from '../services/concert.service'
+import artistService from '../services/artist.service'
 import { AuthContext } from "../context/auth.context";
-import { getVenuesNames, defaultImageUrl, setDefaultImageUrl } from "../helperFunctions/helperFunction"
+import { getNamesForLists, defaultImageUrl, setDefaultImageUrl } from "../helperFunctions/helperFunction"
 
 function AddConcertPage() {
 
     const [title, setTitle] = useState("");
-    const [artist, setArtist] = useState("");
+    const [artistId, setArtistId] = useState(null);
+    const [artistName, setArtistsName] = useState("")
+    const [artistsList, setArtistsList] = useState(null)
+    const [artistsNameList, setArtistsNameList] = useState(null)
     const [description, setDescription] = useState("");
     const [imageUrl, setImageUrl] = useState(`${defaultImageUrl}`);
     const [date, setDate] = useState(null)
@@ -30,15 +34,25 @@ function AddConcertPage() {
     const getAllVenues = () => {
         venueService.getAllVenues()
             .then((response) => {
-                setVenuesNameList(getVenuesNames(response.data, false))
+                setVenuesNameList(getNamesForLists(response.data, false))
                 setVenuesList(response.data)
+            })
+            .catch((error) => console.log(error))
+    }
+    
+    const getAllArtists = () => {
+        artistService.getAllArtists()
+            .then((response) => {
+                setArtistsNameList(getNamesForLists(response.data, false))
+                setArtistsList(response.data)
             })
             .catch((error) => console.log(error))
     }
 
     useEffect(() => {
         getAllVenues()
-        setDate(currentDate)
+        getAllArtists()
+        //setDate(currentDate)
     }, []);
 
     const handleSubmit = (e) => {
@@ -46,7 +60,7 @@ function AddConcertPage() {
 
         const requestBody = {
             title: title,
-            artist: artist,
+            artist: artistId,
             venue: venueId,
             description: description,
             date: date,
@@ -76,6 +90,15 @@ function AddConcertPage() {
         setVenueId(selectedVenueArray._id.toString());
     };
 
+    const handleArtistSelection = (event, data) => {
+
+        const selectedArtistArray = artistsList.find((artist) => {
+            setArtistsName(data.value)
+            return artist.name === data.value
+        })
+        setArtistId(selectedArtistArray._id.toString());
+    };
+
     return (
         <div>
             <div className="AddConcertPage">
@@ -97,31 +120,14 @@ function AddConcertPage() {
                         </label>
                         <label className="">
                             <p>Artist</p>
-                            <input
-                                type="text"
-                                name="artist"
-                                required={true}
-                                value={artist}
-                                onChange={(e) => {
-                                    setArtist(e.target.value);
-                                }}
+                            <Dropdown
+                                placeholder="Venue"
+                                fluid={false}
+                                selection
+                                onChange={handleArtistSelection}
+                                options={artistsNameList}
                             />
                         </label>
-                        <div className="">
-                            {/* <label className="">
-                                <p>Artist</p>
-                                <Dropdown
-                                    placeholder="Artist"
-                                    fluid={false}
-                                    multiple
-                                    selection
-                                    required={true}
-                                    onChange={handleGenreSelection}
-                                    options={genresList}
-                                />
-                            </label> */}
-
-                        </div>
                         <label className="">
                             <p>Description</p>
                             <textarea
@@ -150,7 +156,7 @@ function AddConcertPage() {
                                 type="datetime-local"
                                 name="date"
                                 required={true}
-                                value={currentDate}
+                                value={date}
 
                                 onChange={(e) => {
                                     setDate(e.target.value);
@@ -196,7 +202,7 @@ function AddConcertPage() {
                             <h3 className="">TITLE</h3>
                             <p className="ConcertPageTitle">{title}</p>
                             <h3 className="">ARTIST</h3>
-                            <p>{artist}</p>
+                            <p>{artistName}</p>
                             <h3 className="">DESCRIPTION</h3>
                             <p>{description}</p>
                             <h3 className="">VENUE NAME</h3>

@@ -3,13 +3,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Dropdown } from "semantic-ui-react";
 import venueService from '../services/venue.service'
 import concertService from '../services/concert.service'
+import artistService from '../services/artist.service'
 import { AuthContext } from "../context/auth.context";
-import { getVenuesNames, setDefaultImageUrl } from "../helperFunctions/helperFunction"
+import { getNamesForLists, setDefaultImageUrl } from "../helperFunctions/helperFunction"
 
 function EditConcert(props) {
 
     const [title, setTitle] = useState("");
-    const [artist, setArtist] = useState("");
+    const [artistId, setArtistId] = useState(null);
+    const [artistsList, setArtistsList] = useState(null)
+    const [artistsNameList, setArtistsNameList] = useState(null)
     const [description, setDescription] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [date, setDate] = useState("")
@@ -26,45 +29,37 @@ function EditConcert(props) {
 
     const populateFields = () => {
         setTitle(props.concert.title)
-        setArtist(props.concert.artist)
+        setArtistId(props.concert.artist._id)
         setDescription(props.concert.description)
         setImageUrl(props.concert.imageUrl)
-        setDate(`${props.concert.date.substring(0, 10)} ${props.concert.date.substring(11, 16)}`)
+        setDate()
         setPrice(props.concert.price)
         setVenueId(props.concert.venue._id)
     }
-
-    // is it better to make another request or do as above with props?
-    /* const getConcertById = () => {
-
-        concertService.getConcertById(concertId)
-            .then((response) => {
-                setTitle(response.data.title)
-                setArtist(response.data.artist)
-                setDescription(response.data.description)
-                setImageUrl(response.data.imageUrl)
-                setDate(response.data.date)
-                setPrice(response.data.price)
-                setVenueId(response.data.venue._id)
-            })
-            .catch((error) => console.log(error))
-
-    } */
 
     const getAllVenues = () => {
 
         venueService.getAllVenues()
             .then((response) => {
-                setVenuesNameList(getVenuesNames(response.data))
+                setVenuesNameList(getNamesForLists(response.data))
                 setVenuesList(response.data)
             })
             .catch((error) => console.log(error))
     }
 
+    const getAllArtists = () => {
+        artistService.getAllArtists()
+            .then((response) => {
+                setArtistsNameList(getNamesForLists(response.data, false))
+                setArtistsList(response.data)
+            })
+            .catch((error) => console.log(error))
+    }
+
     useEffect(() => {
-        //getConcertById()
         populateFields()
         getAllVenues()
+        getAllArtists()
     }, []);
 
     const handleSubmit = (e) => {
@@ -72,7 +67,7 @@ function EditConcert(props) {
 
         const requestBody = {
             title: title,
-            artist: artist,
+            artist: artistId,
             venue: venueId,
             description: description,
             date: date,
@@ -101,6 +96,14 @@ function EditConcert(props) {
         setVenueId(selectedVenueArray._id.toString());
     };
 
+    const handleArtistSelection = (event, data) => {
+
+        const selectedArtistArray = artistsList.find((artist) => {
+            return artist.name === data.value
+        })
+        setArtistId(selectedArtistArray._id.toString());
+    };
+
     return (
         <div>
             <div className="">
@@ -121,40 +124,24 @@ function EditConcert(props) {
                         </label>
                         <label className="">
                             <p>Artist</p>
-                            <input
-                                type="text"
-                                name="artist"
-                                required={true}
-                                value={artist}
-                                onChange={(e) => {
-                                    setArtist(e.target.value);
-                                }}
+                            <Dropdown
+                                placeholder="Venue"
+                                fluid={false}
+                                selection
+                                onChange={handleArtistSelection}
+                                options={artistsNameList}
                             />
                         </label>
-                        <div className="">
-                            {/* <label className="">
-                                <p>Artist</p>
-                                <Dropdown
-                                    placeholder="Artist"
-                                    fluid={false}
-                                    multiple
-                                    selection
-                                    required={true}
-                                    onChange={handleGenreSelection}
-                                    options={genresList}
-                                />
-                            </label> */}
-                            <label className="">
-                                <p>Venue</p>
-                                <Dropdown
-                                    placeholder="Venue"
-                                    fluid={false}
-                                    selection
-                                    onChange={handleVenueSelection}
-                                    options={venuesNameList}
-                                />
-                            </label>
-                        </div>
+                        <label className="">
+                            <p>Venue</p>
+                            <Dropdown
+                                placeholder="Venue"
+                                fluid={false}
+                                selection
+                                onChange={handleVenueSelection}
+                                options={venuesNameList}
+                            />
+                        </label>
                         <label className="">
                             <p>Description</p>
                             <textarea
@@ -193,7 +180,6 @@ function EditConcert(props) {
                                 }}
                             />
                         </label>
-
                         <label className="ImageLabel">
                             <p>Image URL</p>
                             <input

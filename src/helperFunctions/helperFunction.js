@@ -30,28 +30,28 @@ function sortConcertsByDate(concertList) {
     return tempObj;
 }
 
-// function that returns an array of venues name alphabetically sorted for the dropdown menu
-function getVenuesNames(data, isAll) {
-    const allVenues = data.map((elm) => elm.name);
-    const temp = looper(allVenues);
+// function that returns an array of names alphabetically sorted for the dropdown menu
+function getNamesForLists(data, isAll) {
+    const allNames = data.map((elm) => elm.name);
+    const temp = looper(allNames);
 
     if (data.length === 1) return temp;
 
-    const venues = sortObject(temp);
+    const names = sortObject(temp);
 
-    if(isAll) venues.unshift(allOptions)
+    if(isAll) names.unshift(allOptions)
 
-    return venues;
+    return names;
 }
 
-// function to sort venues alphabetically
+// function to sort names alphabetically
 function sortObject(data) {
     return data.sort((a, b) => {
         return a.value.localeCompare(b.value);
     });
 }
 
-// function to create an array of venues names 
+// function to create an array of names 
 function looper(type) {
     const newArray = [];
 
@@ -90,4 +90,4 @@ function setDefaultProfileImageUrl(imageUrl) {
 }
 
 
-export { sortConcertsByDate, getVenuesNames, setDefaultImageUrl, setDefaultProfileImageUrl, defaultImageUrl, defaultProfileImageUrl };
+export { sortConcertsByDate, getNamesForLists, setDefaultImageUrl, setDefaultProfileImageUrl, defaultImageUrl, defaultProfileImageUrl };
