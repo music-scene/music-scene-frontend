@@ -11,6 +11,7 @@ import VenuetDetailsPage from "./pages/VenueDetailsPage"
 import AddVenuePage from "./pages/AddVenuePage"
 import ArtistListPage from "./pages/ArtistListPage"
 import ArtistDetailsPage from "./pages/ArtistDetailsPage"
+import AddArtistPage from "./pages/AddArtistPage"
 import SignupPage from "./pages/SignupPage"
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -59,6 +60,9 @@ function App() {
         />
         <Route exact path="/artists/:artistId"
           element={ <ArtistDetailsPage /> }
+        />
+        <Route exact path="/artists/add"
+          element={ <AddArtistPage /> }
         />
         <Route path="/users/:userId"
           element={<IsPrivate> <ProfilePage /> </IsPrivate>}

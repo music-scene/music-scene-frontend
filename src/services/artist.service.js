@@ -32,7 +32,7 @@ class ArtistService {
   }
 
   editArtist = (artistId, requestBody) => {
-    return this.api.get(`/api/artists/${artistId}`, requestBody)
+    return this.api.put(`/api/artists/${artistId}`, requestBody)
   }
 
   deleteArtist = (artistId) => {

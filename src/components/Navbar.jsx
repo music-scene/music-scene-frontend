@@ -29,6 +29,9 @@ function Navbar() {
           <Link to="/venues/add">
             <button>Add Venue</button>
           </Link>
+          <Link to="/artists/add">
+            <button>Add Artist</button>
+          </Link>
           <button onClick={logOutUser}>Logout</button>
           <Link to={`/users/${user._id}`}>
             <button>Profile</button>

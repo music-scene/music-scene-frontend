@@ -123,7 +123,7 @@ function EditConcert(props) {
                         <label className="">
                             <p>Artist</p>
                             <Dropdown
-                                placeholder="Venue"
+                                placeholder="Artist"
                                 fluid={false}
                                 selection
                                 onChange={handleArtistSelection}

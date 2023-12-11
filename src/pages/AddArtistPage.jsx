@@ -1,29 +1,19 @@
-import { useState, useEffect, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useNavigate} from "react-router-dom";
+import { defaultImageUrl, setDefaultImageUrl } from "../helperFunctions/helperFunction"
+import { AuthContext } from "../context/auth.context";
 import artistService from '../services/artist.service'
-import {  setDefaultImageUrl } from "../helperFunctions/helperFunction"
 
-function EditArtist(props) {
+function AddArtistPage() {
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
+    const [imageUrl, setImageUrl] = useState(`${defaultImageUrl}`);
     const [errorMessage, setErrorMessage] = useState(undefined)
 
-    const { artistId } = useParams()
+    const { user } = useContext(AuthContext)
 
     const navigate = useNavigate();
-
-    const populateFields = () => {
-        setName(props.artist.name)
-        setDescription(props.artist.description)
-        setImageUrl(props.artist.imageUrl)
-    }
-
-
-    useEffect(() => {
-        populateFields()
-    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,12 +21,13 @@ function EditArtist(props) {
         const requestBody = {
             name: name,
             description: description,
-            imageUrl: setDefaultImageUrl(imageUrl)
+            imageUrl: setDefaultImageUrl(imageUrl),
+            author: user
         };
 
-        artistService.editArtist(artistId, requestBody)
+        artistService.addArtist(requestBody)
             .then((response) => {
-                navigate(0)
+                navigate('/artists')
             })
             .catch((error) => {
                 console.log("An error occurred: ");
@@ -50,7 +41,7 @@ function EditArtist(props) {
         <div>
             <div className="">
                 <div className="">
-                    <h1>EDIT ARTIST</h1>
+                    <h1>ADD ARTIST</h1>
                     <form onSubmit={handleSubmit}>
                         <label className="">
                             <p>Name</p>
@@ -91,9 +82,23 @@ function EditArtist(props) {
                     </form>
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
                 </div>
+                <div>
+                    <div className="ConcertDetailsContainer">
+                        <div className="ConcertDetailsImageDiv">
+                            <img src={imageUrl} />
+                        </div>
+                        <div className="ConcertDetailsInfoDiv">
+                            <h3 className="">NAME</h3>
+                            <p>{name}</p>
+                            <h3 className="">DESCRIPTION</h3>
+                            <p>{description}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
     );
 }
 
-export default EditArtist
+export default AddArtistPage;
