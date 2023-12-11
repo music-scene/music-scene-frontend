@@ -10,8 +10,9 @@ function VenueListPage() {
     const getAllVenues = () => {
         venueService.getAllVenues()
             .then((response) => {
-                setVenues(response.data);
-                setDisplayVenues(response.data);
+                const reversedVenues = response.data.reverse(); 
+                setVenues(reversedVenues);
+                setDisplayVenues(reversedVenues);
             })
             .catch((error) => console.log(error));
     };
@@ -32,7 +33,7 @@ function VenueListPage() {
             });
             setDisplayVenues(result);
         }
-    }, [searchValue]);
+    }, [searchValue, venues]);
 
     return (
         <div>
@@ -58,6 +59,7 @@ function VenueListPage() {
                             {displayVenues.map((venue) => (
                                 <div className="VenueContainer" key={venue._id}>
                                     <Link to={`/venues/${venue._id}`}>
+                                        <img src={venue.imageUrl} alt={venue.name} />
                                         <h2>{venue.name}</h2>
                                     </Link>
                                 </div>
