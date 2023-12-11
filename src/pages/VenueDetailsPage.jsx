@@ -30,7 +30,7 @@ function VenueDetailsPage() {
                             <p><strong>Description:</strong> {venueDetails.description}</p>
                             <p><strong>Capacity:</strong> {venueDetails.capacity}</p>
                             <img src={venueDetails.imageUrl} alt={venueDetails.name} />
-                            {/* Add more details as needed */}
+
                         </div>
                     )}
             </div>
