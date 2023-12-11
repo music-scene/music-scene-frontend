@@ -47,7 +47,7 @@ function ConcertDetailsPage() {
                     : (<ConcertDetailsContainer concert={concertDetails} />
                     )}
             </div>
-            {isLoggedIn && concertDetails !== null && user._id === concertDetails.author._id
+            {isLoggedIn && concertDetails !== null && concertDetails.author !== null && user._id === concertDetails.author._id
                 ? <>
                     <button onClick={showHideEditContainer}>EDIT</button>
                     <div className={`EditContainer ${showEditContainer ? "show" : "hide"}`}>
