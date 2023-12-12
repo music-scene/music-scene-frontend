@@ -1,0 +1,71 @@
+
+.inputContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    gap: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.inputField {
+    height: 40px;
+    width: 320px;
+    border: 2px solid white;
+    background-color: transparent;
+    border-radius: 24px;
+    padding: 12px 15px;
+    color: black;
+    font-weight: 500;
+    outline: none;
+    caret-color: rgb(155, 78, 255);
+    transition-duration: 0.3s;
+   /*  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; */
+}
+
+.inputLabel {
+    position: absolute;
+    top: -25px;
+    left: -15px;
+    color: white;
+    font-weight: 400;
+    /* font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; */
+    overflow: hidden;
+    transition: 0.2s linear;
+    opacity: 0;
+}
+
+.inputField:focus ~ .inputLabel,
+.inputField:hover ~ .inputLabel,
+.inputField:valid ~ .inputLabel {
+    transform: translateX(20px);
+    opacity: 1;
+}
+
+.inputField:focus::placeholder,
+.inputField:hover::placeholder,
+.inputField:valid::placeholder {
+    color: transparent;
+}
+
+.inputField:focus,
+.inputField:valid {
+    background-color: #ddd;
+    transition-duration: 0.3s;
+}
+
+@media (max-width: 480px) {
+
+    .inputField {
+        height: 40px;
+        width: 280px;
+    }
+
+}

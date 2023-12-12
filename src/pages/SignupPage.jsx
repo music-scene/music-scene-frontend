@@ -72,7 +72,9 @@ function SignupPage(props) {
             {errorMessage && <p className="error-message">{errorMessage}</p>}
 
             <p>Already have account?</p>
-            <Link to={"/login"}> Login</Link>
+            <Link to={"/login"}>
+                <button className="ActionButtons">Login</button>
+            </Link>
         </div>
     )
 }

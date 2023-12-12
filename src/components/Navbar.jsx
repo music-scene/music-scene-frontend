@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 
 import "./Navbar.css"
+import '../pages/Buttons.css'
 
 function Navbar() {
 
@@ -19,7 +20,7 @@ function Navbar() {
         <span></span>
         <span></span>
       </div>
-      <ul className={menuOpen ? "open" : ""}>
+      <ul className={menuOpen ? "open" : "closed"}>
         <li>
           <NavLink to="/concerts">
             Concerts
@@ -42,7 +43,7 @@ function Navbar() {
                 Profile
               </NavLink>
             </li>
-            <button onClick={logOutUser} className="ActionButtons">Logout</button>
+            <button onClick={logOutUser} className="button">Logout</button>
           </>
         )}
         {!isLoggedIn && (
@@ -54,7 +55,7 @@ function Navbar() {
             </li> */}
             <li>
               <NavLink to="/login">
-                <button>Login</button>
+                <button className="button">Login</button>
               </NavLink>
             </li>
           </>
