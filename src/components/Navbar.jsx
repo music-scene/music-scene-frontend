@@ -1,49 +1,66 @@
-import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 
+import "./Navbar.css"
+
 function Navbar() {
-  // Subscribe to the AuthContext to gain access to
-  // the values from AuthContext.Provider `value` prop
+
+  const [menuOpen, setMenuOpen] = useState(false);
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext)
 
   return (
-    <nav>
-      <Link to="/">
-        <button>Home</button>
+    <nav className="Navbar">
+      <Link to="/" className="title">
+        LOGO
       </Link>
-      <Link to="/concerts">
-        <button>Concerts</button>
-      </Link>
-      <Link to="/venues">
-        <button>Venues</button>
-      </Link>
-      <Link to="/artists">
-        <button>Artists</button>
-      </Link>
-      {isLoggedIn && (
-        <>
-          <Link to="/concerts/add">
-            <button>Add concert</button>
-          </Link>
-          <Link to="/venues/add">
-            <button>Add Venue</button>
-          </Link>
-          <Link to="/artists/add">
-            <button>Add Artist</button>
-          </Link>
-          <button onClick={logOutUser}>Logout</button>
-          <Link to={`/users/${user._id}`}>
-            <button>Profile</button>
-          </Link>
-        </>
-      )}
-      {!isLoggedIn && (
-        <>
-          <Link to="/signup"><button>Sign Up</button></Link>
-          <Link to="/login"><button>Login</button></Link>
-        </>
-      )}
+      <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul className={menuOpen ? "open" : ""}>
+        <li>
+          <NavLink to="/concerts">
+            Concerts
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/venues">
+            Venues
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/artists">
+            Artists
+          </NavLink>
+        </li>
+        {isLoggedIn && (
+          <>
+            <li>
+              <NavLink to={`/users/${user._id}`}>
+                Profile
+              </NavLink>
+            </li>
+            <button onClick={logOutUser} className="ActionButtons">Logout</button>
+          </>
+        )}
+        {!isLoggedIn && (
+          <>
+            {/* <li>
+              <NavLink to="/signup">
+                Sign Up
+              </NavLink>
+            </li> */}
+            <li>
+              <NavLink to="/login">
+                <button>Login</button>
+              </NavLink>
+            </li>
+          </>
+        )}
+      </ul>
+
     </nav>
   );
 }
