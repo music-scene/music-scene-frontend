@@ -18,12 +18,17 @@
   display: inline-block;
   margin-bottom: 12px;
   margin-top: 12px;
+  color: #fff; 
 }
 
 .inpt_search {
-  padding: 8px;
+  padding: 10px; 
   font-size: 16px;
   width: 300px;
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  background-color: #fff; 
+  color: #555; 
 }
 
 /* Venue container styles */
@@ -60,7 +65,11 @@
 /* Responsive - changes after the breaking points */
 @media (max-width: 768px) {
   .VenueContainer {
-    width: calc(100% - 40px); /* Adjusted width for more margin on both sides */
-    margin: 0 20px 30px 20px; /* Added more margin on both sides */
+    width: calc(100% - 40px);
+    margin: 0 20px 30px 20px;
+  }
+
+  .inpt_search {
+    width: 100%;
   }
 }
