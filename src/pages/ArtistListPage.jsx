@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { sortArtistsAlphabetically } from "../helperFunctions/helperFunction"
+import { AuthContext } from "../context/auth.context";
 import artistService from "../services/artist.service";
 
 function ArtistListPage() {
@@ -8,6 +9,8 @@ function ArtistListPage() {
     const [artists, setArtist] = useState(null)
     const [searchValue, setSearchValue] = useState("");
     const [displayArtists, setDisplayArtists] = useState(null)
+
+    const { isLoggedIn } = useContext(AuthContext)
 
     let sortedArtists = null
 
@@ -53,6 +56,13 @@ function ArtistListPage() {
                     </label>
                 </div>
             </div>
+            {isLoggedIn && (
+                <div className="AddButton">
+                    <Link to="/artists/add">
+                        Add artist
+                    </Link>
+                </div>
+            )}
             <div className="ConcertListPageContainer" >
                 {!displayArtists && <h1>No artists</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
                 {displayArtists === null

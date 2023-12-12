@@ -34,7 +34,7 @@ function AddConcertPage() {
     const getAllVenues = () => {
         venueService.getAllVenues()
             .then((response) => {
-                setVenuesNameList(getNamesForLists(response.data, false))
+                setVenuesNameList(getNamesForLists(response.data))
                 setVenuesList(response.data)
             })
             .catch((error) => console.log(error))
@@ -43,7 +43,7 @@ function AddConcertPage() {
     const getAllArtists = () => {
         artistService.getAllArtists()
             .then((response) => {
-                setArtistsNameList(getNamesForLists(response.data, false))
+                setArtistsNameList(getNamesForLists(response.data))
                 setArtistsList(response.data)
             })
             .catch((error) => console.log(error))

@@ -44,15 +44,13 @@ function sortArtistsAlphabetically(artistsList) {
 }
 
 // function that returns an array of names alphabetically sorted for the dropdown menu
-function getNamesForLists(data, isAll) {
+function getNamesForLists(data) {
     const allNames = data.map((elm) => elm.name);
     const temp = looper(allNames);
 
     if (data.length === 1) return temp;
 
     const names = sortObject(temp);
-
-    if(isAll) names.unshift(allOptions)
 
     return names;
 }

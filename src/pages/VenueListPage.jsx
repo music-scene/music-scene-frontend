@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 import venueService from '../services/venue.service';
 import './ListPages.css';
 
@@ -7,6 +8,8 @@ function VenueListPage() {
   const [venues, setVenues] = useState(null);
   const [displayVenues, setDisplayVenues] = useState(null);
   const [searchValue, setSearchValue] = useState("");
+
+  const { isLoggedIn } = useContext(AuthContext)
 
   const getAllVenues = () => {
     venueService.getAllVenues()
@@ -51,6 +54,13 @@ function VenueListPage() {
           </label>
         </div>
       </div>
+      {isLoggedIn && (
+                <div className="AddButton">
+                    <Link to="/venues/add">
+                        Add venue
+                    </Link>
+                </div>
+            )}
       {!displayVenues && <h1>No venues available</h1>}
       {displayVenues === null
         ? (<h1>Venues list is loading...</h1>)
