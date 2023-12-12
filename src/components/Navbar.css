@@ -1,12 +1,12 @@
 .active{
-    background-color: #242424;
+    background-color: #0A0A0A;
 }
 
 .Navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #242424;
+    background-color: #0A0A0A;
     border-bottom: #fff;
     color: white;
     position: sticky;
