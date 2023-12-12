@@ -1,13 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar"
+import NavbarMVP from "./components/Navbar"
 import HomePage from "./pages/HomePage"
 import ConcertListPage from "./pages/ConcertListPage"
 import ConcertDetailsPage from "./pages/ConcertDetailsPage"
 import AddConcertPage from "./pages/AddConcertPage"
-/*import EditConcertPage from "./pages/EditConcertPage" */
 import VenueListPage from "./pages/VenueListPage"
 import VenuetDetailsPage from "./pages/VenueDetailsPage"
-/*import EditVenuePage from "./pages/EditVenuePage"*/
 import AddVenuePage from "./pages/AddVenuePage"
 import ArtistListPage from "./pages/ArtistListPage"
 import ArtistDetailsPage from "./pages/ArtistDetailsPage"
@@ -25,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <NavbarMVP />
 
       <Routes>
         <Route path="/"
@@ -40,18 +38,12 @@ function App() {
         <Route exact path="/concerts/add"
           element={<IsPrivate> <AddConcertPage /> </IsPrivate>}
         />
-        {/*<Route exact path="/concerts/edit/:concertId"
-          element={<IsPrivate> <EditConcertPage /> </IsPrivate>}
-        />*/}
         <Route exact path="/venues"
           element={<VenueListPage />}
         />
         <Route exact path="/venues/:venueId"
           element={<VenuetDetailsPage />}
         />
-        {/* <Route exact path="/venues / edit /:venueId"
-        element={<IsPrivate> <EditVenuePage /> </IsPrivate>}
-        />*/}
         <Route exact path="/venues/add"
           element={<IsPrivate> <AddVenuePage /> </IsPrivate>}
         />
