@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import venueService from '../services/venue.service';
-import './VenueListPage.css';
+import './ListPages.css';
 
 function VenueListPage() {
   const [venues, setVenues] = useState(null);
