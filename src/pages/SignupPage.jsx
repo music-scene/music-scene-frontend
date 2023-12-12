@@ -4,6 +4,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import authService from "../services/auth.service"
 
+import './Forms.css'
+import './Buttons.css'
+
 function SignupPage(props) {
 
     const [email, setEmail] = useState("")
@@ -36,45 +39,69 @@ function SignupPage(props) {
 
     return (
         <div className="SignupPage">
+            <br />
             <h1>Sign Up</h1>
-
+            <br />
+            <br />
             <form onSubmit={handleSignupSubmit}>
-                <label>Email:</label>
-                <input
-                    type="email"
-                    name="email"
-                    required={true}
-                    value={email}
-                    onChange={handleEmail}
-                />
-
-                <label>Password:</label>
-                <input
-                    type="password"
-                    name="password"
-                    required={true}
-                    value={password}
-                    onChange={handlePassword}
-                />
-
-                <label>Name:</label>
-                <input
-                    type="text"
-                    name="name"
-                    required={true}
-                    value={name}
-                    onChange={handleName}
-                />
-
-                <button type="submit">Sign Up</button>
+                <div className="inputContainer">
+                    <input
+                        type="email"
+                        name="email"
+                        className="inputField"
+                        placeholder="Email"
+                        required={true}
+                        value={email}
+                        onChange={handleEmail}
+                    />
+                    <label
+                        className="inputLabel"
+                        htmlFor="inputField">Email
+                    </label>
+                </div>
+                <div className="inputContainer">
+                    <input
+                        type="password"
+                        name="password"
+                        className="inputField"
+                        placeholder="Password"
+                        required={true}
+                        value={password}
+                        onChange={handlePassword}
+                    />
+                    <label
+                        className="inputLabel"
+                        htmlFor="inputField">Password
+                    </label>
+                </div>
+                <div className="inputContainer">
+                    <input
+                        type="text"
+                        name="name"
+                        className="inputField"
+                        placeholder="Name"
+                        required={true}
+                        value={name}
+                        onChange={handleName}
+                    />
+                    <label
+                        className="inputLabel"
+                        htmlFor="inputField">Name
+                    </label>
+                </div>
+                <button type="submit" className="button">
+                    Sign Up
+                </button>
+                <br />
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
+                <div>
+                    <p>Already have account?</p>
+                    <Link to={"/login"}>
+                        Login
+                    </Link>
+                </div>
             </form>
-
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-            <p>Already have account?</p>
-            <Link to={"/login"}>
-                <button className="ActionButtons">Login</button>
-            </Link>
+            <br />
         </div>
     )
 }

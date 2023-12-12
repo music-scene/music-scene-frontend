@@ -73,6 +73,10 @@
     border-radius: 0.2rem;
 }
 
+hr {
+    display: none;
+}
+
 @media (max-width: 830px) {
     .Navbar .title {
         margin-left: 30px;
@@ -80,6 +84,15 @@
 
     .Navbar ul {
         margin-right: 30px;
+    }
+
+    hr {
+        display: block;
+        background-color: #eee;
+        border: 1px solid white;
+        transform: scaleY(0.005);
+        color: #eee;
+        width: 80%;
     }
 }
 

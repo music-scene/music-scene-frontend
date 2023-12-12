@@ -33,7 +33,8 @@ form {
 .inputLabel {
     position: absolute;
     top: -25px;
-    left: -15px;
+    left: -20px;
+    font-size: 18px;
     color: white;
     font-weight: 400;
     /* font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; */

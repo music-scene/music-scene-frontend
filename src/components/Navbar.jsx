@@ -21,21 +21,25 @@ function Navbar() {
         <span></span>
       </div>
       <ul className={menuOpen ? "open" : "closed"}>
+      <hr></hr>
         <li>
           <NavLink to="/concerts">
             Concerts
           </NavLink>
         </li>
+        <hr></hr>
         <li>
           <NavLink to="/venues">
             Venues
           </NavLink>
         </li>
+        <hr></hr>
         <li>
           <NavLink to="/artists">
             Artists
           </NavLink>
         </li>
+        <hr></hr>
         {isLoggedIn && (
           <>
             <li>
