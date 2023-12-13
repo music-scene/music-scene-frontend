@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import venueService from '../services/venue.service';
-import './ListPages.css';
 
 function VenueListPage() {
   const [venues, setVenues] = useState(null);
@@ -43,7 +42,7 @@ function VenueListPage() {
   return (
     <div className="VenueListPageContainer">
       <div className="RowContainer">
-        <div className="inputContainer">
+        <div className="searchContainer">
           <form>
             <input
               className="inputField"

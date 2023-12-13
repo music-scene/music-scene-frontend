@@ -20,6 +20,7 @@ import "semantic-ui-css/semantic.min.css";
 import './App.css'
 import './pages/Forms.css'
 import './pages/Buttons.css'
+import './pages/ListPages.css'
 
 function App() {
 

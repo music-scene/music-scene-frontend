@@ -6,6 +6,11 @@
     gap: 10px;
 }
 
+.searchContainer {
+    position: relative;
+    display: flex;
+}
+
 form {
     display: flex;
     flex-direction: column;

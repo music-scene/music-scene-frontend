@@ -61,19 +61,33 @@ function ConcertListPage() {
     }, [searchValue, venueFilter])
 
     return (
-        <div>
-            <div className="SearchBarDiv">
-                <div className="cntr-innr">
-                    <label htmlFor="inpt_search" className="search">
-                        SEARCH
+        <div className="VenueListPageContainer">
+            <div className="RowContainer">
+                <div className="searchContainer">
+                    <form>
                         <input
-                            className="inpt_search"
+                            className="inputField"
                             type="text"
                             value={searchValue}
                             onChange={handleSearch}
+                            required
                         />
-                    </label>
+                        <label className="inputLabel">SEARCH</label>
+                    </form>
                 </div>
+                {isLoggedIn && (
+                    <div className="AddButton">
+                        <Link to="/concerts/add">
+                            <div tabIndex="0" className="plusButton">
+                                <svg className="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                                    <g mask="url(#mask0_21_345)">
+                                        <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                                    </g>
+                                </svg>
+                            </div>
+                        </Link>
+                    </div>
+                )}
             </div>
             <div>
                 <label className="">
@@ -95,26 +109,26 @@ function ConcertListPage() {
                     </Link>
                 </div>
             )}
-                < div className="ConcertListPageContainer" >
-            {(displayConcerts !== null && displayConcerts.length === 0) && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
-            {displayConcerts === null
-                ? (<h1>Concerts list is loading...</h1>)
-                : (sortedConcerts = sortConcertsByDate(displayConcerts),
-                    sortedConcerts.map((concert) => {
-                        return (
-                            <div className="ConcertImageContainer" key={concert._id}>
-                                <Link to={`/concerts/${concert._id}`}>
-                                    <div className="ConcertImageDiv" key={concert._id}>
-                                        <img src={concert.imageUrl} />
-                                    </div>
-                                    <h2>{concert.title}</h2>
-                                </Link>
-                            </div>
+            < div className="ConcertListPageContainer" >
+                {(displayConcerts !== null && displayConcerts.length === 0) && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
+                {displayConcerts === null
+                    ? (<h1>Concerts list is loading...</h1>)
+                    : (sortedConcerts = sortConcertsByDate(displayConcerts),
+                        sortedConcerts.map((concert) => {
+                            return (
+                                <div className="ConcertImageContainer" key={concert._id}>
+                                    <Link to={`/concerts/${concert._id}`}>
+                                        <div className="ConcertImageDiv" key={concert._id}>
+                                            <img src={concert.imageUrl} />
+                                        </div>
+                                        <h2>{concert.title}</h2>
+                                    </Link>
+                                </div>
 
-                        );
-                    })
-                )}
-        </div >
+                            );
+                        })
+                    )}
+            </div >
         </div >
     )
 }
