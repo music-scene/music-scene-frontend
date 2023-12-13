@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import venueService from '../services/venue.service';
@@ -41,41 +41,39 @@ function VenueListPage() {
 
   return (
     <div className="VenueListPageContainer">
-      <div className="SearchBarDiv">
-        <div className="cntr-innr">
-          <label htmlFor="inpt_search" className="search">
-            SEARCH
-            <input
-              className="inpt_search"
-              type="text"
-              value={searchValue}
-              onChange={handleSearch}
-            />
-          </label>
-        </div>
+      <div className="inputContainer">
+        <form>
+          <input
+            className="inputField"
+            type="text"
+            value={searchValue}
+            onChange={handleSearch}
+            required
+          />
+          <label className="inputLabel">SEARCH</label>
+        </form>
       </div>
+
       {isLoggedIn && (
-                <div className="AddButton">
-                    <Link to="/venues/add">
-                        Add venue
-                    </Link>
-                </div>
-            )}
+        <div className="AddButton">
+          <Link to="/venues/add">Add venue</Link>
+        </div>
+      )}
       {!displayVenues && <h1>No venues available</h1>}
-      {displayVenues === null
-        ? (<h1>Venues list is loading...</h1>)
-        : (
-          <div>
-            {displayVenues.map((venue) => (
-              <div className="VenueContainer" key={venue._id}>
-                <Link to={`/venues/${venue._id}`}>
-                  <img src={venue.imageUrl} alt={venue.name} />
-                  <h2>{venue.name}</h2>
-                </Link>
-              </div>
-            ))}
-          </div>
-        )}
+      {displayVenues === null ? (
+        <h1>Venues list is loading...</h1>
+      ) : (
+        <div>
+          {displayVenues.map((venue) => (
+            <div className="VenueContainer" key={venue._id}>
+              <Link to={`/venues/${venue._id}`}>
+                <img src={venue.imageUrl} alt={venue.name} />
+                <h2>{venue.name}</h2>
+              </Link>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
