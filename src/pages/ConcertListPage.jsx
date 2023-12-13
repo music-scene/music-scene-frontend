@@ -90,21 +90,23 @@ function ConcertListPage() {
                     </div>
                 )}
             </div>
-            <div className="inputContainer">
-                <Dropdown
-                    className="inputFieldDropdown"
-                    placeholder="Venues"
-                    fluid={false}
-                    clearable
-                    selection
-                    value={venueFilter || ""}
-                    onChange={handleFilter}
-                    options={venuesNamesList}
-                />
-                <label
-                    className="inputLabel"
-                    htmlFor="inputFieldDropdown">Venues
-                </label>
+            <div className="RowContainer">
+                <div className="inputContainer">
+                    <Dropdown
+                        className="inputFieldDropdown"
+                        placeholder="Select a venue"
+                        fluid={false}
+                        clearable
+                        selection
+                        value={venueFilter || ""}
+                        onChange={handleFilter}
+                        options={venuesNamesList}
+                    />
+                    <label
+                        className="inputLabel"
+                        htmlFor="inputFieldDropdown">Venues
+                    </label>
+                </div>
             </div>
             < div className="ConcertListPageContainer" >
                 {(displayConcerts !== null && displayConcerts.length === 0) && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
