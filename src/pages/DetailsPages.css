@@ -1,0 +1,78 @@
+/* DetailsPages.css */
+
+.DetailsPageContainer {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.VenueDetailsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.VenueImageContainer {
+  flex-basis: 100%;
+  max-width: 800px; 
+  height: 600px; 
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.VenueImageContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.VenueInfoContainer {
+  flex-basis: 100%; 
+}
+
+.VenueInfoContainer h1 {
+  text-align: left;
+  text-transform: uppercase;
+  color: rgb(255, 255, 255);
+}
+
+/* Move text to the left in the info container */
+.VenueInfoContainer p {
+  text-align: left;
+}
+
+.EditDeleteContainer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Style for buttons */
+.EditDeleteContainer button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.EditDeleteContainer button:hover {
+  background-color: #333;
+}
+
+.EditContainer {
+  display: inline-block;
+}
+
+/* Responsive styles */
+@media (min-width: 768px) {
+  .VenueImageContainer {
+    flex-basis: 40%;
+    max-width: 1000px;
+    margin-right: 20px;
+  }
+
+  .VenueInfoContainer {
+    flex-basis: calc(60% - 20px);
+  }
+}

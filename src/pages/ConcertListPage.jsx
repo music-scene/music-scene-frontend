@@ -5,6 +5,7 @@ import { getNamesForLists, sortConcertsByDate } from "../helperFunctions/helperF
 import { AuthContext } from "../context/auth.context";
 import concertService from '../services/concert.service'
 import venueService from '../services/venue.service'
+import './ListPages.css';
 
 function ConcertListPage() {
 
