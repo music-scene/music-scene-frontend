@@ -130,10 +130,12 @@ input[type="datetime-local"]:valid::before {
 
 .inputField:focus,
 .inputField:valid,
+.inputField:hover,
 .inputArea:focus,
 .inputArea:valid,
+.inputArea:hover,
 .ui.selection.dropdown.inputFieldDropdown:focus,
-.ui.selection.dropdown.inputFieldDropdown:active,
+.ui.selection.dropdown.inputFieldDropdown:hover,
 .ui.selection.dropdown.inputFieldDropdown:valid {
     background-color: #ddd;
     transition-duration: 0.3s;
