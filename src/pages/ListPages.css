@@ -1,10 +1,13 @@
 /*VenueListPage.css*/
 
+@import url('https://fonts.googleapis.com/css2?family=Afacad:wght@600&display=swap');
+
 /* Container styles */
 .VenueListPageContainer {
   max-width: 1600px;
   margin: 0 auto;
   padding: 20px;
+  font-family: 'Afacad', sans-serif;
 }
 
 /* Search bar styles */
@@ -41,6 +44,7 @@
   position: relative;
   overflow: hidden;
   text-transform: uppercase;
+  font-family: 'Afacad', sans-serif;
 }
 
 /* Images fill in a fixed size */
@@ -64,6 +68,14 @@
   color: rgb(255, 255, 255);
 }
 
+.VenueLocation {
+  font-size: 14px;
+  color: #888;
+  margin-top: 5px;
+  font-family: 'Afacad', sans-serif;
+}
+
+
 /* Responsive - changes after the breaking points */
 @media (max-width: 768px) {
   .VenueContainer {
@@ -81,7 +93,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 24px; /* Add margin to separate from the top */
+  margin-top: 24px;
 }
 
 .plusButton {
@@ -97,8 +109,8 @@
   height: var(--plus_sideLength);
   background-color: #000000;
   overflow: hidden;
-  margin-left: 10px; /* Add margin to separate from inputContainer */
-  border-radius: 50%; /* Make it round */
+  margin-left: 10px;
+  border-radius: 50%;
 }
 
 .plusButton::before {
@@ -112,7 +124,7 @@
   border-style: solid;
   border-color: transparent white transparent transparent;
   transition-timing-function: ease-in-out;
-  transition-duration: 0.2s;
+  transition-duration: 0.4s;
 }
 
 .plusButton:hover {
