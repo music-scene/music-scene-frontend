@@ -1,4 +1,3 @@
-
 .inputContainer {
     position: relative;
     display: flex;
@@ -15,7 +14,23 @@ form {
     font-size: 16px;
 }
 
+input[type="datetime-local"]::before {
+    content: attr(placeholder);
+    color: #ddd;
+    font-weight: 500;
+    transition: 0.2s linear;
+}
+
+input[type="datetime-local"]:focus::before,
+input[type="datetime-local"]:hover::before,
+input[type="datetime-local"]:valid::before {
+    display: none;
+    transition: 0.2s linear;
+    opacity: 0;
+}
+
 .inputField {
+    font-family: 'Afacad', sans-serif;
     height: 40px;
     width: 320px;
     border: 2px solid white;
@@ -25,9 +40,24 @@ form {
     color: black;
     font-weight: 500;
     outline: none;
-    caret-color: rgb(155, 78, 255);
     transition-duration: 0.3s;
-   /*  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; */
+    /*  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; */
+}
+
+.inputArea {
+    font-family: 'Afacad', sans-serif;
+    min-height: 80px;
+    width: 320px;
+    resize: vertical;
+    border: 2px solid white;
+    background-color: transparent;
+    border-radius: 24px;
+    padding: 12px 15px;
+    color: black;
+    font-weight: 500;
+    outline: none;
+    transition-duration: 0.3s;
+    /*  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; */
 }
 
 .inputLabel {
@@ -43,30 +73,73 @@ form {
     opacity: 0;
 }
 
+.ui.selection.dropdown.inputFieldDropdown {
+    font-family: 'Afacad', sans-serif;
+    height: 40px;
+    width: 320px;
+    border: 2px solid white;
+    background-color: transparent;
+    border-radius: 24px;
+    padding: 12px 15px;
+    color: black;
+    font-weight: 500;
+    outline: none;
+    transition-duration: 0.3s;
+    /*  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; */
+}
+
 .inputField:focus ~ .inputLabel,
 .inputField:hover ~ .inputLabel,
-.inputField:valid ~ .inputLabel {
+.inputField:valid ~ .inputLabel,
+.inputArea:focus ~ .inputLabel,
+.inputArea:hover ~ .inputLabel,
+.inputArea:valid ~ .inputLabel,
+.ui.selection.dropdown.inputFieldDropdown:focus ~ .inputLabel,
+.ui.selection.dropdown.inputFieldDropdown:hover ~ .inputLabel,
+.ui.selection.dropdown.inputFieldDropdown:valid ~ .inputLabel {
     transform: translateX(20px);
     opacity: 1;
 }
 
 .inputField:focus::placeholder,
 .inputField:hover::placeholder,
-.inputField:valid::placeholder {
+.inputField:valid::placeholder,
+.inputArea:focus::placeholder,
+.inputArea:hover::placeholder,
+.inputArea:valid::placeholder {
     color: transparent;
+    transition-duration: 0.3s;
+}
+
+.ui.selection.dropdown.inputFieldDropdown > .default.text:focus,
+.ui.selection.dropdown.inputFieldDropdown > .default.text:hover,
+.ui.selection.dropdown.inputFieldDropdown > .default.text:valid {
+    color: transparent;
+    transition-duration: 0.3s;
 }
 
 .inputField:focus,
-.inputField:valid {
+.inputField:valid,
+.inputArea:focus,
+.inputArea:valid,
+.ui.selection.dropdown.inputFieldDropdown:focus,
+.ui.selection.dropdown.inputFieldDropdown:active,
+.ui.selection.dropdown.inputFieldDropdown:valid {
     background-color: #ddd;
     transition-duration: 0.3s;
 }
 
-@media (max-width: 480px) {
+.ui.selection.dropdown:hover {
+    border-color: #ddd !important;
+}
 
+.ui.selection.dropdown.inputFieldDropdown:has(> .text:not(.default.text)) {
+    background-color: #ddd !important;
+}
+
+@media (max-width: 480px) {
     .inputField {
         height: 40px;
         width: 280px;
     }
-
 }

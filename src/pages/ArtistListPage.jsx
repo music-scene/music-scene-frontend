@@ -64,7 +64,7 @@ function ArtistListPage() {
                 </div>
             )}
             <div className="ConcertListPageContainer" >
-                {!displayArtists && <h1>No artists</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
+                {(displayArtists !== null && displayArtists.length === 0) && <h1>No artists to display</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
                 {displayArtists === null
                     ? (<h1>Artists list is loading...</h1>)
                     : (sortedArtists = sortArtistsAlphabetically(displayArtists), sortedArtists.map((artist) => {

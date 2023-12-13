@@ -18,6 +18,8 @@ import IsPrivate from "./components/IsPrivate"
 
 import "semantic-ui-css/semantic.min.css";
 import './App.css'
+import './pages/Forms.css'
+import './pages/Buttons.css'
 
 function App() {
 

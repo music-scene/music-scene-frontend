@@ -15,9 +15,9 @@ function AddConcertPage() {
     const [artistsList, setArtistsList] = useState(null)
     const [artistsNameList, setArtistsNameList] = useState(null)
     const [description, setDescription] = useState("");
-    const [imageUrl, setImageUrl] = useState(`${defaultImageUrl}`);
+    const [imageUrl, setImageUrl] = useState("");
     const [date, setDate] = useState(null)
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState(undefined);
     const [venueId, setVenueId] = useState(null)
     const [venueName, setVenueName] = useState("")
     const [venuesList, setVenuesList] = useState(null)
@@ -39,7 +39,7 @@ function AddConcertPage() {
             })
             .catch((error) => console.log(error))
     }
-    
+
     const getAllArtists = () => {
         artistService.getAllArtists()
             .then((response) => {
@@ -82,12 +82,14 @@ function AddConcertPage() {
     };
 
     const handleVenueSelection = (event, data) => {
+        console.log(data)
 
         const selectedVenueArray = venuesList.find((venue) => {
             setVenueName(data.value)
             return venue.name === data.value
         })
-        setVenueId(selectedVenueArray._id.toString());
+        console.log(selectedVenueArray)
+        if (selectedVenueArray !== undefined) setVenueId(selectedVenueArray._id.toString());
     };
 
     const handleArtistSelection = (event, data) => {
@@ -96,78 +98,106 @@ function AddConcertPage() {
             setArtistsName(data.value)
             return artist.name === data.value
         })
-        setArtistId(selectedArtistArray._id.toString());
+        if (selectedArtistArray !== undefined) setArtistId(selectedArtistArray._id.toString());
     };
 
     return (
         <div>
             <div className="AddConcertPage">
                 <div className="AddConcertContainer">
-
+                    <br />
+                    <h1>ADD CONCERT</h1>
+                    <br />
+                    <br />
                     <form onSubmit={handleSubmit}>
-                        <h1>ADD CONCERT</h1>
-                        <label className="">
-                            <p>Title</p>
+                        <br />
+                        <div className="inputContainer">
                             <input
                                 type="text"
                                 name="title"
+                                className="inputField"
+                                placeholder="Title"
                                 required={true}
                                 value={title}
                                 onChange={(e) => {
                                     setTitle(e.target.value);
                                 }}
                             />
-                        </label>
-                        <label className="">
-                            <p>Artist</p>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputField">Title
+                            </label>
+                        </div>
+                        <div className="inputContainer">
                             <Dropdown
+                                className="inputFieldDropdown"
                                 placeholder="Artist"
                                 fluid={false}
+                                clearable
                                 selection
                                 onChange={handleArtistSelection}
                                 options={artistsNameList}
                             />
-                        </label>
-                        <label className="">
-                            <p>Description</p>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputFieldDropdown">Artist
+                            </label>
+                        </div>
+                        <div className="inputContainer">
                             <textarea
                                 type="text"
                                 name="description"
+                                className="inputArea"
+                                placeholder="Description"
                                 required={true}
                                 value={description}
                                 onChange={(e) => {
                                     setDescription(e.target.value);
                                 }}
                             />
-                        </label>
-                        <label className="">
-                            <p>Venue</p>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputArea">Description
+                            </label>
+                        </div>
+                        <div className="inputContainer">
                             <Dropdown
+                                className="inputFieldDropdown"
                                 placeholder="Venue"
                                 fluid={false}
+                                clearable
                                 selection
                                 onChange={handleVenueSelection}
                                 options={venuesNameList}
                             />
-                        </label>
-                        <label className="">
-                            <p>Date</p>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputFieldDropdown">Venue
+                            </label>
+                        </div>
+                        <div className="inputContainer">
                             <input
                                 type="datetime-local"
                                 name="date"
+                                className="inputField"
+                                placeholder="Date   "
                                 required={true}
                                 value={date}
-
                                 onChange={(e) => {
                                     setDate(e.target.value);
                                 }}
                             />
-                        </label>
-                        <label className="">
-                            <p>Price</p>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputField">Date
+                            </label>
+                        </div>
+                        <div className="inputContainer">
                             <input
                                 type="number"
                                 name="price"
+                                className="inputField"
+                                placeholder="Price"
                                 required={true}
                                 min={0}
                                 step=".01"
@@ -176,27 +206,36 @@ function AddConcertPage() {
                                     setPrice(e.target.value);
                                 }}
                             />
-                        </label>
-
-                        <label className="ImageLabel">
-                            <p>Image URL</p>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputField">Price
+                            </label>
+                        </div>
+                        <div className="inputContainer">
                             <input
                                 type="text"
                                 name="imageUrl"
+                                className="inputField"
+                                placeholder="Image URL"
+                                required={true}
                                 value={imageUrl}
                                 onChange={(e) => {
                                     setImageUrl(e.target.value);
                                 }}
                             />
-                        </label>
-                        <button className="">Add Concert</button>
-                    {errorMessage && <p className="error-message">{errorMessage}</p>}
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputField">Image URL
+                            </label>
+                        </div>
+                        {errorMessage && <p className="error-message">{errorMessage}</p>}
+                        <button type="submit" className="button">Add Concert</button>
                     </form>
                 </div>
                 <div>
                     <div className="ConcertDetailsContainer">
                         <div className="ConcertDetailsImageDiv">
-                            <img src={imageUrl} />
+                            <img src={imageUrl ? imageUrl : defaultImageUrl} alt="" />
                         </div>
                         <div className="ConcertDetailsInfoDiv">
                             <h3 className="">TITLE</h3>
@@ -218,7 +257,7 @@ function AddConcertPage() {
                                 <h3 className="">PRICE</h3>
                                 {price <= 0
                                     ? (<p className="">FREE</p>)
-                                    : (<p className="">{price}€</p>
+                                    : (<p className="">{price ? `${price}€` : ""}</p>
                                     )}
                             </div>
 

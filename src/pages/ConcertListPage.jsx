@@ -95,7 +95,7 @@ function ConcertListPage() {
                 </div>
             )}
                 < div className="ConcertListPageContainer" >
-            {!displayConcerts && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
+            {(displayConcerts !== null && displayConcerts.length === 0) && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
             {displayConcerts === null
                 ? (<h1>Concerts list is loading...</h1>)
                 : (sortedConcerts = sortConcertsByDate(displayConcerts),

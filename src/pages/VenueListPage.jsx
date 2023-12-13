@@ -61,7 +61,7 @@ function VenueListPage() {
                     </Link>
                 </div>
             )}
-      {!displayVenues && <h1>No venues available</h1>}
+      {(displayVenues !== null && displayVenues.length === 0) && <h1>No venues available</h1>}
       {displayVenues === null
         ? (<h1>Venues list is loading...</h1>)
         : (

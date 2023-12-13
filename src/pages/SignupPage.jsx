@@ -4,8 +4,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import authService from "../services/auth.service"
 
-import './Forms.css'
-import './Buttons.css'
 
 function SignupPage(props) {
 

@@ -23,7 +23,8 @@ function EditConcert(props) {
     const [errorMessage, setErrorMessage] = useState(undefined)
 
     const { concertId } = useParams()
-
+    const artistName = props.concert.artist.name
+    const venueName = props.concert.venue.name
     const navigate = useNavigate();
 
     const populateFields = () => {
@@ -31,7 +32,7 @@ function EditConcert(props) {
         setArtistId(props.concert.artist._id)
         setDescription(props.concert.description)
         setImageUrl(props.concert.imageUrl)
-        setDate()
+        setDate(`${props.concert.date.substring(0, 10)} ${props.concert.date.substring(11, 16)}`)
         setPrice(props.concert.price)
         setVenueId(props.concert.venue._id)
     }
@@ -108,67 +109,95 @@ function EditConcert(props) {
                 <div className="">
                     <h1>EDIT CONCERT</h1>
                     <form onSubmit={handleSubmit}>
-                        <label className="">
-                            <p>Title</p>
+                    <div className="inputContainer">
                             <input
                                 type="text"
                                 name="title"
+                                className="inputField"
+                                placeholder="Title"
                                 required={true}
                                 value={title}
                                 onChange={(e) => {
                                     setTitle(e.target.value);
                                 }}
                             />
-                        </label>
-                        <label className="">
-                            <p>Artist</p>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputField">Title
+                            </label>
+                        </div>
+                        <div className="inputContainer">
                             <Dropdown
+                                className="inputFieldDropdown"
                                 placeholder="Artist"
                                 fluid={false}
+                                defaultValue={artistName}
+                                clearable
                                 selection
                                 onChange={handleArtistSelection}
                                 options={artistsNameList}
                             />
-                        </label>
-                        <label className="">
-                            <p>Venue</p>
-                            <Dropdown
-                                placeholder="Venue"
-                                fluid={false}
-                                selection
-                                onChange={handleVenueSelection}
-                                options={venuesNameList}
-                            />
-                        </label>
-                        <label className="">
-                            <p>Description</p>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputFieldDropdown">Artist
+                            </label>
+                        </div>
+                        <div className="inputContainer">
                             <textarea
                                 type="text"
                                 name="description"
+                                className="inputArea"
+                                placeholder="Description"
                                 required={true}
                                 value={description}
                                 onChange={(e) => {
                                     setDescription(e.target.value);
                                 }}
                             />
-                        </label>
-                        <label className="">
-                            <p>Date</p>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputArea">Description
+                            </label>
+                        </div>
+                        <div className="inputContainer">
+                            <Dropdown
+                                className="inputFieldDropdown"
+                                placeholder="Venue"
+                                fluid={false}
+                                defaultValue={venueName}
+                                clearable
+                                selection
+                                onChange={handleVenueSelection}
+                                options={venuesNameList}
+                            />
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputFieldDropdown">Venue
+                            </label>
+                        </div>
+                        <div className="inputContainer">
                             <input
                                 type="datetime-local"
                                 name="date"
+                                className="inputField"
+                                placeholder="Date   "
                                 required={true}
                                 value={date}
                                 onChange={(e) => {
                                     setDate(e.target.value);
                                 }}
                             />
-                        </label>
-                        <label className="">
-                            <p>Price</p>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputField">Date
+                            </label>
+                        </div>
+                        <div className="inputContainer">
                             <input
                                 type="number"
                                 name="price"
+                                className="inputField"
+                                placeholder="Price"
                                 required={true}
                                 min={0}
                                 step=".01"
@@ -177,21 +206,32 @@ function EditConcert(props) {
                                     setPrice(e.target.value);
                                 }}
                             />
-                        </label>
-                        <label className="ImageLabel">
-                            <p>Image URL</p>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputField">Price
+                            </label>
+                        </div>
+                        <div className="inputContainer">
                             <input
                                 type="text"
                                 name="imageUrl"
+                                className="inputField"
+                                placeholder="Image URL"
+                                required={true}
                                 value={imageUrl}
                                 onChange={(e) => {
                                     setImageUrl(e.target.value);
                                 }}
                             />
-                        </label>
-                        <button className="">Submit changes</button>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputField">Image URL
+                            </label>
+                        </div>
+                        {errorMessage && <p className="error-message">{errorMessage}</p>}
+                        <button type="submit" className="button">Submit</button>
                     </form>
-                    {errorMessage && <p className="error-message">{errorMessage}</p>}
+                    
                 </div>
                 {/* <div>
                     <GameDetailsContainer title={title} imageUrl={imageUrl} description={description} rating={rating} price={price} genre={genre} platform={platform} />

@@ -1,15 +1,15 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import venueService from '../services/venue.service';
-import { defaultImageUrl } from "../helperFunctions/helperFunction";
+import { setDefaultImageUrl, defaultImageUrl } from "../helperFunctions/helperFunction";
 import { AuthContext } from "../context/auth.context";
 
 function AddVenuePage() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
-    const [capacity, setCapacity] = useState(0);
-    const [imageUrl, setImageUrl] = useState(`${defaultImageUrl}`);
+    const [capacity, setCapacity] = useState(undefined);
+    const [imageUrl, setImageUrl] = useState("");
     const [errorMessage, setErrorMessage] = useState(undefined)
 
     const { user } = useContext(AuthContext);
@@ -24,7 +24,7 @@ function AddVenuePage() {
             description,
             location,
             capacity,
-            imageUrl,
+            imageUrl: setDefaultImageUrl(imageUrl),
             author: user._id,
         };
 
@@ -45,61 +45,113 @@ function AddVenuePage() {
             <div>
                 <h1>Add Venue</h1>
                 <form onSubmit={handleSubmit}>
-                    <label>
-                        <p>Name</p>
+                    <div className="inputContainer">
                         <input
                             type="text"
                             name="name"
+                            className="inputField"
+                            placeholder="Name"
                             required={true}
                             value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) => {
+                                setName(e.target.value);
+                            }}
                         />
-                    </label>
-                    <label>
-                        <p>Description</p>
+                        <label
+                            className="inputLabel"
+                            htmlFor="inputField">Name
+                        </label>
+                    </div>
+                    <div className="inputContainer">
                         <textarea
                             type="text"
                             name="description"
+                            className="inputArea"
+                            placeholder="Description"
                             required={true}
                             value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            onChange={(e) => {
+                                setDescription(e.target.value);
+                            }}
                         />
-                    </label>
-                    <label>
-                        <p>Location</p>
+                        <label
+                            className="inputLabel"
+                            htmlFor="inputArea">Description
+                        </label>
+                    </div>
+                    <div className="inputContainer">
                         <input
                             type="text"
                             name="location"
-                            value={location}
+                            className="inputField"
+                            placeholder="Location"
                             required={true}
-                            onChange={(e) => setLocation(e.target.value)}
+                            value={location}
+                            onChange={(e) => {
+                                setLocation(e.target.value);
+                            }}
                         />
-                    </label>
-                    <label>
-                        <p>Capacity</p>
+                        <label
+                            className="inputLabel"
+                            htmlFor="inputArea">Location
+                        </label>
+                    </div>
+                    <div className="inputContainer">
                         <input
                             type="number"
                             name="capacity"
+                            className="inputField"
+                            placeholder="Capacity"
                             required={true}
                             min={0}
                             value={capacity}
-                            onChange={(e) => setCapacity(e.target.value)}
+                            onChange={(e) => {
+                                setCapacity(e.target.value);
+                            }}
                         />
-                    </label>
-                    <label>
-                        <p>Image URL</p>
-                        <input
-                            type="text"
-                            name="imageUrl"
-                            value={imageUrl}
-                            onChange={(e) => setImageUrl(e.target.value)}
-                        />
-                    </label>
-
-                    <button>Add Venue</button>
+                        <label
+                            className="inputLabel"
+                            htmlFor="inputField">Capacity
+                        </label>
+                    </div>
+                    <div className="inputContainer">
+                            <input
+                                type="text"
+                                name="imageUrl"
+                                className="inputField"
+                                placeholder="Image URL"
+                                required={true}
+                                value={imageUrl}
+                                onChange={(e) => {
+                                    setImageUrl(e.target.value);
+                                }}
+                            />
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputField">Image URL
+                            </label>
+                        </div>
+                        {errorMessage && <p className="error-message">{errorMessage}</p>}
+                    <button type="submit" className="button">Add Venue</button>
                 </form>
-                {errorMessage && <p className="error-message">{errorMessage}</p>}
             </div>
+            <div>
+                    <div className="ConcertDetailsContainer">
+                        <div className="ConcertDetailsImageDiv">
+                            <img src={imageUrl ? imageUrl : defaultImageUrl} alt="" />
+                        </div>
+                        <div className="ConcertDetailsInfoDiv">
+                            <h3 className="">NAME</h3>
+                            <p className="ConcertPageTitle">{name}</p>
+                            <h3 className="">DESCRIPTION</h3>
+                            <p>{description}</p>
+                            <h3 className="">LOCATION</h3>
+                            <p className="">{location}</p>
+                            <h3 className="">CAPACITY</h3>
+                            <p className="">{capacity}</p>
+                        </div>
+                    </div>
+                </div>
         </div>
     );
 }

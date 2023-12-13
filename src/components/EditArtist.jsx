@@ -1,7 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import artistService from '../services/artist.service'
-import {  setDefaultImageUrl } from "../helperFunctions/helperFunction"
+import { setDefaultImageUrl } from "../helperFunctions/helperFunction"
+
+import '../pages/Forms.css'
+import '../pages/Buttons.css'
 
 function EditArtist(props) {
 
@@ -52,44 +55,60 @@ function EditArtist(props) {
                 <div className="">
                     <h1>EDIT ARTIST</h1>
                     <form onSubmit={handleSubmit}>
-                        <label className="">
-                            <p>Name</p>
+                        <div className="inputContainer">
                             <input
                                 type="text"
                                 name="name"
+                                className="inputField"
+                                placeholder="Name"
                                 required={true}
                                 value={name}
                                 onChange={(e) => {
                                     setName(e.target.value);
                                 }}
                             />
-                        </label>
-                        <label className="">
-                            <p>Description</p>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputField">Name
+                            </label>
+                        </div>
+                        <div className="inputContainer">
                             <textarea
                                 type="text"
                                 name="description"
+                                className="inputArea"
+                                placeholder="Description"
                                 required={true}
                                 value={description}
                                 onChange={(e) => {
                                     setDescription(e.target.value);
                                 }}
                             />
-                        </label>
-                        <label className="ImageLabel">
-                            <p>Image URL</p>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputArea">Description
+                            </label>
+                        </div>
+                        <div className="inputContainer">
                             <input
                                 type="text"
                                 name="imageUrl"
+                                className="inputField"
+                                placeholder="Image URL"
+                                required={true}
                                 value={imageUrl}
                                 onChange={(e) => {
                                     setImageUrl(e.target.value);
                                 }}
                             />
-                        </label>
-                        <button className="">Submit changes</button>
+                            <label
+                                className="inputLabel"
+                                htmlFor="inputField">Image URL
+                            </label>
+                        </div>
+                        {errorMessage && <p className="error-message">{errorMessage}</p>}
+                        <button type="submit" className="">Submit</button>
                     </form>
-                    {errorMessage && <p className="error-message">{errorMessage}</p>}
                 </div>
             </div>
         </div>
