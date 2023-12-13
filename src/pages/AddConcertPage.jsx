@@ -169,7 +169,7 @@ function AddConcertPage() {
                                 className="inputFieldDropdown"
                                 placeholder="Artist"
                                 fluid={true}
-                                clearable
+                                scrolling
                                 selection
                                 multiple
                                 onChange={handleArtistSelections}
