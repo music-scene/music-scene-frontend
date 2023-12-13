@@ -41,24 +41,27 @@ function VenueListPage() {
 
   return (
     <div className="VenueListPageContainer">
-      <div className="inputContainer">
-        <form>
-          <input
-            className="inputField"
-            type="text"
-            value={searchValue}
-            onChange={handleSearch}
-            required
-          />
-          <label className="inputLabel">SEARCH</label>
-        </form>
+      <div className="RowContainer">
+        <div className="inputContainer">
+          <form>
+            <input
+              className="inputField"
+              type="text"
+              value={searchValue}
+              onChange={handleSearch}
+              required
+            />
+            <label className="inputLabel">SEARCH</label>
+          </form>
+        </div>
+
+        {isLoggedIn && (
+          <div className="AddButton">
+            <Link to="/venues/add">Add venue</Link>
+          </div>
+        )}
       </div>
 
-      {isLoggedIn && (
-        <div className="AddButton">
-          <Link to="/venues/add">Add venue</Link>
-        </div>
-      )}
       {!displayVenues && <h1>No venues available</h1>}
       {displayVenues === null ? (
         <h1>Venues list is loading...</h1>
