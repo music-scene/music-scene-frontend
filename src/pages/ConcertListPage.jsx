@@ -13,7 +13,7 @@ function ConcertListPage() {
     const [venuesNamesList, setVenuesNameList] = useState(null)
     const [displayConcerts, setDisplayConcerts] = useState(null)
     const [searchValue, setSearchValue] = useState("");
-    const [venueFilter, setVenueFilter] = useState("All")
+    const [venueFilter, setVenueFilter] = useState("")
 
     const { isLoggedIn } = useContext(AuthContext)
 
@@ -68,6 +68,7 @@ function ConcertListPage() {
                         <input
                             className="inputField"
                             type="text"
+                            placeholder="Search for concert"
                             value={searchValue}
                             onChange={handleSearch}
                             required
@@ -89,26 +90,22 @@ function ConcertListPage() {
                     </div>
                 )}
             </div>
-            <div>
-                <label className="">
-                    <p>Venues</p>
-                    <Dropdown
-                        placeholder="Venue"
-                        fluid={false}
-                        clearable
-                        selection
-                        onChange={handleFilter}
-                        options={venuesNamesList}
-                    />
+            <div className="inputContainer">
+                <Dropdown
+                    className="inputFieldDropdown"
+                    placeholder="Venues"
+                    fluid={false}
+                    clearable
+                    selection
+                    value={venueFilter || ""}
+                    onChange={handleFilter}
+                    options={venuesNamesList}
+                />
+                <label
+                    className="inputLabel"
+                    htmlFor="inputFieldDropdown">Venues
                 </label>
             </div>
-            {isLoggedIn && (
-                <div className="AddButton">
-                    <Link to="/concerts/add">
-                        Add concert
-                    </Link>
-                </div>
-            )}
             < div className="ConcertListPageContainer" >
                 {(displayConcerts !== null && displayConcerts.length === 0) && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
                 {displayConcerts === null

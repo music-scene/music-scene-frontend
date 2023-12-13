@@ -46,6 +46,7 @@ function VenueListPage() {
           <form>
             <input
               className="inputField"
+              placeholder="Search for a venue"
               type="text"
               value={searchValue}
               onChange={handleSearch}

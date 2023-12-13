@@ -79,8 +79,9 @@ input[type="datetime-local"]:valid::before {
 }
 
 .ui.selection.dropdown.inputFieldDropdown {
+    display: flex;
+    align-items: center;
     font-family: 'Afacad', sans-serif;
-    height: 40px;
     width: 320px;
     border: 2px solid white;
     background-color: transparent;
@@ -91,6 +92,10 @@ input[type="datetime-local"]:valid::before {
     outline: none;
     transition-duration: 0.3s;
     /*  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; */
+}
+
+.ui.selection.dropdown.inputFieldDropdown > .default.text {
+    bottom: 10px !important;
 }
 
 .inputField:focus ~ .inputLabel,
@@ -147,4 +152,10 @@ input[type="datetime-local"]:valid::before {
         height: 40px;
         width: 280px;
     }
+}
+
+
+.ui.selection.dropdown {
+    min-height: 0 !important;
+    max-height: 40px !important;
 }

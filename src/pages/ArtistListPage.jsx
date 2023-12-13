@@ -49,6 +49,7 @@ function ArtistListPage() {
                         <input
                             className="inputField"
                             type="text"
+                            placeholder="Search for an artist"
                             value={searchValue}
                             onChange={handleSearch}
                             required
