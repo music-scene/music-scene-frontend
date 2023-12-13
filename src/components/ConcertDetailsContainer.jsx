@@ -19,7 +19,9 @@ function ConcertDetailsContainer(props) {
             </div>
             <div className="ConcertDetailsInfoDiv">
               <h3 className="">ARTIST</h3>
-              <p>{props.concert.artist.name}</p>
+              {(props.concert.artist === null || props.concert.artist.length === 0)
+                ? <p>No artists selected</p>
+                : props.concert.artist.map((artist, index) => <p key={index}>{artist.name}</p>)}
               <h3 className="">DESCRIPTION</h3>
               <p>{props.concert.description}</p>
               <div className="">

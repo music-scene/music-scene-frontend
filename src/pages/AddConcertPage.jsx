@@ -11,7 +11,9 @@ function AddConcertPage() {
 
     const [title, setTitle] = useState("");
     const [artistId, setArtistId] = useState(null);
-    const [artistName, setArtistsName] = useState("")
+    const [artistsIds, setArtistIds] = useState(null)
+    const [artistName, setArtistName] = useState(null)
+    const [artistsNames, setArtistsNames] = useState(null)
     const [artistsList, setArtistsList] = useState(null)
     const [artistsNameList, setArtistsNameList] = useState(null)
     const [description, setDescription] = useState("");
@@ -26,6 +28,8 @@ function AddConcertPage() {
 
     let currentDate = new Date().toISOString()
     currentDate = `${currentDate.substring(0, 10)} ${currentDate.substring(11, 16)}`
+
+    //let artistsNames = []
 
     const { user } = useContext(AuthContext)
 
@@ -60,7 +64,7 @@ function AddConcertPage() {
 
         const requestBody = {
             title: title,
-            artist: artistId,
+            artist: artistsIds,
             venue: venueId,
             description: description,
             date: date,
@@ -68,6 +72,7 @@ function AddConcertPage() {
             imageUrl: setDefaultImageUrl(imageUrl),
             author: user,
         };
+
 
         concertService.addConcert(requestBody)
             .then(() => {
@@ -82,23 +87,54 @@ function AddConcertPage() {
     };
 
     const handleVenueSelection = (event, data) => {
-        console.log(data)
 
         const selectedVenueArray = venuesList.find((venue) => {
             setVenueName(data.value)
+            console.log(data.value)
             return venue.name === data.value
         })
-        console.log(selectedVenueArray)
         if (selectedVenueArray !== undefined) setVenueId(selectedVenueArray._id.toString());
     };
 
     const handleArtistSelection = (event, data) => {
 
+        console.log(artistsList)
         const selectedArtistArray = artistsList.find((artist) => {
-            setArtistsName(data.value)
+            setArtistName(data.value)
             return artist.name === data.value
         })
         if (selectedArtistArray !== undefined) setArtistId(selectedArtistArray._id.toString());
+    };
+
+    const handleArtistSelections = (event, data) => {
+
+        let artistArray = [];
+        let artistsIDsArray = []
+        let artistsNamesArray = []
+
+        artistsList.forEach((artist) => {
+            data.value.forEach((value) => {
+                if (artist.name === value) {
+                    artistArray.push(artist)
+                    artistsIDsArray.push(artist._id)
+                    artistsNamesArray.push(artist.name)
+                    //artistsNames.push(artist.name)
+                    //artistsNames === null ? setArtistsNames(artist.name) : setArtistsNames((artistsNames) => [...artistsNames, artist.name])
+                    setArtistsNames(artistsNamesArray)
+                }
+            })
+        })
+
+        artistsNames !== null ? artistsNames.map(name => console.log(name)) : ""
+
+        if (artistsIDsArray !== null) setArtistIds(artistsIDsArray)
+        /* const selectedArtistArray = artistsList.find((artist) => {
+            let artistArray = null;
+            console.log(artistsList.includes(data.value))
+            setArtistsName(data.value)
+            return artistArray  
+        })
+        if (selectedArtistArray !== undefined) setArtistId(selectedArtistArray._id.toString()); */
     };
 
     return (
@@ -132,10 +168,11 @@ function AddConcertPage() {
                             <Dropdown
                                 className="inputFieldDropdown"
                                 placeholder="Artist"
-                                fluid={false}
+                                fluid={true}
                                 clearable
                                 selection
-                                onChange={handleArtistSelection}
+                                multiple
+                                onChange={handleArtistSelections}
                                 options={artistsNameList}
                             />
                             <label
@@ -241,7 +278,7 @@ function AddConcertPage() {
                             <h3 className="">TITLE</h3>
                             <p className="ConcertPageTitle">{title}</p>
                             <h3 className="">ARTIST</h3>
-                            <p>{artistName}</p>
+                            {artistsNames !== null? artistsNames.map(name =><p>{name}</p>): ""}
                             <h3 className="">DESCRIPTION</h3>
                             <p>{description}</p>
                             <h3 className="">VENUE NAME</h3>
@@ -253,7 +290,6 @@ function AddConcertPage() {
                                         <h3 className="">DATE</h3>
                                         <p className="">{`${date.substring(0, 10)} at ${date.substring(11, 16)}`}</p>
                                     </>)}
-
                                 <h3 className="">PRICE</h3>
                                 {price <= 0
                                     ? (<p className="">FREE</p>)

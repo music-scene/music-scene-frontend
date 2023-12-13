@@ -10,6 +10,14 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext)
 
+  const closeMenu = () => {
+    setMenuOpen(false)
+  }
+
+  const logoutCloseMenu = () => {
+    logOutUser()
+    closeMenu()
+  }
   return (
     <nav className="Navbar">
       <Link to="/" className="title">
@@ -21,21 +29,21 @@ function Navbar() {
         <span></span>
       </div>
       <ul className={menuOpen ? "open" : "closed"}>
-      <hr></hr>
+        <hr></hr>
         <li>
-          <NavLink to="/concerts">
+          <NavLink to="/concerts" onClick={() => closeMenu()}>
             Concerts
           </NavLink>
         </li>
         <hr></hr>
         <li>
-          <NavLink to="/venues">
+          <NavLink to="/venues" onClick={() => closeMenu()}>
             Venues
           </NavLink>
         </li>
         <hr></hr>
         <li>
-          <NavLink to="/artists">
+          <NavLink to="/artists" onClick={() => closeMenu()}>
             Artists
           </NavLink>
         </li>
@@ -43,11 +51,11 @@ function Navbar() {
         {isLoggedIn && (
           <>
             <li>
-              <NavLink to={`/users/${user._id}`}>
+              <NavLink to={`/users/${user._id}`} onClick={() => closeMenu()}>
                 Profile
               </NavLink>
             </li>
-            <button onClick={logOutUser} className="button">Logout</button>
+            <button onClick={() => logoutCloseMenu()} className="button">Logout</button>
           </>
         )}
         {!isLoggedIn && (
@@ -58,7 +66,7 @@ function Navbar() {
               </NavLink>
             </li> */}
             <li>
-              <NavLink to="/login">
+              <NavLink to="/login" onClick={() => closeMenu()}>
                 <button className="button">Login</button>
               </NavLink>
             </li>

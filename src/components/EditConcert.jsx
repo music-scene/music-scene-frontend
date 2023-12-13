@@ -1,17 +1,18 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Dropdown } from "semantic-ui-react";
 import venueService from '../services/venue.service'
 import concertService from '../services/concert.service'
 import artistService from '../services/artist.service'
-import { AuthContext } from "../context/auth.context";
 import { getNamesForLists, setDefaultImageUrl } from "../helperFunctions/helperFunction"
 
 function EditConcert(props) {
 
     const [title, setTitle] = useState("");
     const [artistId, setArtistId] = useState(null);
+    const [artistsIds, setArtistsIds] = useState(null)
     const [artistsList, setArtistsList] = useState(null)
+    const [artistsNames, setArtistsNames] = useState(null)
     const [artistsNameList, setArtistsNameList] = useState(null)
     const [description, setDescription] = useState("");
     const [imageUrl, setImageUrl] = useState("");
@@ -23,18 +24,41 @@ function EditConcert(props) {
     const [errorMessage, setErrorMessage] = useState(undefined)
 
     const { concertId } = useParams()
-    const artistName = props.concert.artist.name
+
     const venueName = props.concert.venue.name
     const navigate = useNavigate();
 
     const populateFields = () => {
         setTitle(props.concert.title)
-        setArtistId(props.concert.artist._id)
+        setArtistsIds(getArtistsIds(props.concert.artist))
+        setArtistsNames(getArtistsNames(props.concert.artist))
         setDescription(props.concert.description)
         setImageUrl(props.concert.imageUrl)
         setDate(`${props.concert.date.substring(0, 10)} ${props.concert.date.substring(11, 16)}`)
         setPrice(props.concert.price)
         setVenueId(props.concert.venue._id)
+    }
+
+    const getArtistsNames = (artists) => {
+        let names = null;
+
+        if (artists !== null) {
+            names = artists.map(artist => {
+                return artist.name
+            })
+        }
+        return names;
+    }
+
+    const getArtistsIds = (artists) => {
+        let artistsIds = null;
+
+        if (artists !== null) {
+            artistsIds = artists.map(artist => {
+                return artist._id
+            })
+        }
+        return artistsIds
     }
 
     const getAllVenues = () => {
@@ -67,7 +91,7 @@ function EditConcert(props) {
 
         const requestBody = {
             title: title,
-            artist: artistId,
+            artist: artistsIds,
             venue: venueId,
             description: description,
             date: date,
@@ -95,12 +119,25 @@ function EditConcert(props) {
         setVenueId(selectedVenueArray._id.toString());
     };
 
-    const handleArtistSelection = (event, data) => {
+    const handleArtistSelections = (event, data) => {
 
-        const selectedArtistArray = artistsList.find((artist) => {
-            return artist.name === data.value
+        let artistArray = [];
+        let artistsIDsArray = []
+        let artistsNamesArray = []
+
+        artistsList.forEach((artist) => {
+            data.value.forEach((value) => {
+                if (artist.name === value) {
+                    artistArray.push(artist)
+                    artistsIDsArray.push(artist._id)
+                    artistsNamesArray.push(artist.name)
+                    setArtistsNames(artistsNamesArray)
+                }
+            })
         })
-        setArtistId(selectedArtistArray._id.toString());
+        if (data.value.length === 0) setArtistsNames(null)
+
+        setArtistsIds(artistsIDsArray)
     };
 
     return (
@@ -109,7 +146,7 @@ function EditConcert(props) {
                 <div className="">
                     <h1>EDIT CONCERT</h1>
                     <form onSubmit={handleSubmit}>
-                    <div className="inputContainer">
+                        <div className="inputContainer">
                             <input
                                 type="text"
                                 name="title"
@@ -130,11 +167,11 @@ function EditConcert(props) {
                             <Dropdown
                                 className="inputFieldDropdown"
                                 placeholder="Artist"
-                                fluid={false}
-                                defaultValue={artistName}
-                                clearable
+                                fluid={true}
+                                value={artistsNames}
                                 selection
-                                onChange={handleArtistSelection}
+                                multiple
+                                onChange={handleArtistSelections}
                                 options={artistsNameList}
                             />
                             <label
@@ -231,7 +268,7 @@ function EditConcert(props) {
                         {errorMessage && <p className="error-message">{errorMessage}</p>}
                         <button type="submit" className="button">Submit</button>
                     </form>
-                    
+
                 </div>
                 {/* <div>
                     <GameDetailsContainer title={title} imageUrl={imageUrl} description={description} rating={rating} price={price} genre={genre} platform={platform} />

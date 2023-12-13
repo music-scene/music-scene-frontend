@@ -94,8 +94,8 @@ input[type="datetime-local"]:valid::before {
     /*  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; */
 }
 
-.ui.selection.dropdown.inputFieldDropdown > .default.text {
-    bottom: 10px !important;
+.ui.selection.dropdown.inputFieldDropdown>.dropdown.icon {
+    top: 0.55em !important
 }
 
 .inputField:focus ~ .inputLabel,
@@ -155,7 +155,6 @@ input[type="datetime-local"]:valid::before {
         width: 280px;
     }
 }
-
 
 .ui.selection.dropdown {
     min-height: 0 !important;
