@@ -85,19 +85,10 @@ hr {
     .Navbar ul {
         margin-right: 30px;
     }
-
-    hr {
-        display: block;
-        background-color: #eee;
-        border: 1px solid white;
-        transform: scaleY(0.005);
-        color: #eee;
-        width: 80%;
-    }
 }
 
 
-@media (max-width: 480px) {
+@media (max-width: 830px) {
     .Navbar .menu {
         display: flex;
     }
@@ -140,5 +131,14 @@ hr {
 
     .ActionButtons {
         margin-right: 0;
+    }
+
+    hr {
+        display: block;
+        background-color: #eee;
+        border: 1px solid white;
+        transform: scaleY(0.005);
+        color: #eee;
+        width: 80%;
     }
 }

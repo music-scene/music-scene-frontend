@@ -1,14 +1,14 @@
 .inputContainer {
-    position: relative;
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
     gap: 10px;
 }
 
-.searchContainer {
-    position: relative;
+.SearchContainer {
     display: flex;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 form {
@@ -98,7 +98,15 @@ input[type="datetime-local"]:valid::before {
 }
 
 .ui.selection.dropdown.inputFieldDropdown>.dropdown.icon {
-    top: 0.55em !important
+    top: 1.3em !important
+}
+
+.ui.selection.dropdown.inputFieldDropdown.filter>.dropdown.icon {
+    top: 0.7em !important
+}
+
+.ui.selection.dropdown.inputFieldDropdown.venue>.dropdown.icon {
+    top: 0.7em !important
 }
 
 .divider.default.text {
@@ -159,6 +167,10 @@ input[type="datetime-local"]:valid::before {
 
 @media (max-width: 480px) {
     .inputField {
+        height: 40px;
+        width: 280px;
+    }
+    .ui.selection.dropdown.inputFieldDropdown {
         height: 40px;
         width: 280px;
     }

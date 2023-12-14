@@ -21,6 +21,7 @@ import './App.css'
 import './pages/Forms.css'
 import './pages/Buttons.css'
 import './pages/ListPages.css'
+import './pages/ProfilePage.css'
 
 function App() {
 
