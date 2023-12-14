@@ -99,3 +99,43 @@ body {
 
 */
 
+/* Home */
+
+.HomePageContainer {
+    margin-top: 50px; 
+}
+
+.HeaderContent {
+    margin-left: 80px;
+    margin-right: 80px;
+    position: relative;
+}
+
+.HeaderContent h1 {
+    font-size: 100px; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    animation: slideText 40s linear infinite;
+    font-family: 'Afacad', sans-serif;
+}
+
+@keyframes slideText {
+    from {
+        transform: translateX(100%); 
+    }
+    to {
+        transform: translateX(-100%); 
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 767px) {
+    .HeaderContent {
+        text-align: center; 
+    }
+
+    .HeaderContent h1 {
+        font-size: 1.5em; 
+        animation: none; 
+    }
+}

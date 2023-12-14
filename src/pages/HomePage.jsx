@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { sortConcertsByDate } from "../helperFunctions/helperFunction"
-import concertService from '../services/concert.service'
+import { sortConcertsByDate } from "../helperFunctions/helperFunction";
+import concertService from '../services/concert.service';
+import "../App.css";
 
 function HomePage() {
-
     const [concerts, setConcerts] = useState(null);
     let sortedConcerts = null;
 
@@ -21,15 +21,16 @@ function HomePage() {
     }, []);
 
     return (
-        <div className="VenueListPageContainer">
-            <div className="RowContainer Homepage">
-                <div className="inputOutContainer">
-                    <h1 className="HomepageTitle">10 UPCOMING CONCERTS</h1>
-                </div>
+        <div className="HomePageContainer">
+            <div className="HeaderContent">
+                <img src="https://spotfestival.dk/wp-content/uploads/2023/12/Coverbillede-2024-3.png" alt="Header" />
+                <h1>Your Guide to Live Music Your Guide to Live Music Your Guide to Live Music</h1>
+                <Link to="/concerts" className="Button">Explore Concerts</Link>
             </div>
 
-            <div className="ConcertListPageContainer" >
-                {(concerts !== null && concerts.length === 0) && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
+
+            <div className="ConcertListPageContainer">
+                {(concerts !== null && concerts.length === 0) && <h1>No upcoming concerts</h1>}
                 {concerts === null
                     ? (<h1>Concerts list is loading...</h1>)
                     : (sortedConcerts = sortConcertsByDate(concerts), sortedConcerts.splice(10),
@@ -38,18 +39,17 @@ function HomePage() {
                                 <div className="ConcertImageContainer" key={concert._id}>
                                     <Link to={`/concerts/${concert._id}`}>
                                         <div className="ConcertImageDiv" key={concert._id}>
-                                            <img src={concert.imageUrl} />
+                                            <img src={concert.imageUrl} alt={concert.title} />
                                         </div>
                                         <h2>{concert.title}</h2>
                                     </Link>
                                 </div>
-
                             );
                         })
                     )}
-            </div >
+            </div>
         </div>
-    )
+    );
 }
 
 export default HomePage;
