@@ -42,24 +42,26 @@ function ConcertDetailsPage() {
 
     return (
         <div className="">
-            <div className="">
-                {concertDetails === null
-                    ? (<h1>Loading concert details...</h1>)
-                    : (<ConcertDetailsContainer concert={concertDetails} />
-                    )}
+          <div className="ConcertDetailsContainer">
+            <div className="ConcertDetailsImageContainer">
+              {concertDetails === null ? (
+                <h1>Loading concert details...</h1>
+              ) : (
+                <ConcertDetailsContainer concert={concertDetails} />
+              )}
             </div>
-            {isLoggedIn && concertDetails !== null && concertDetails.author !== null && user._id === concertDetails.author._id
-                ? <>
-                    <button onClick={showHideEditContainer}>EDIT</button>
-                    <div className={`EditContainer ${showEditContainer ? "show" : "hide"}`}>
-                        {<EditConcert concert={concertDetails}/>}
-                    </div>
-                    <button onClick={deleteConcert}>DELETE</button>
-                </>
-
-                : null}
+          </div>
+          {isLoggedIn && concertDetails !== null && concertDetails.author !== null && user._id === concertDetails.author._id ? (
+            <div className="EditDeleteContainer">
+              <button onClick={showHideEditContainer}>EDIT</button>
+              <div className={`EditContainer ${showEditContainer ? "show" : "hide"}`}>
+                {<EditConcert concert={concertDetails} />}
+              </div>
+              <button onClick={deleteConcert}>DELETE</button>
+            </div>
+          ) : null}
         </div>
-    )
+      );
 }
 
 export default ConcertDetailsPage

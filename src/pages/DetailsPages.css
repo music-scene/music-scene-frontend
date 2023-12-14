@@ -90,3 +90,29 @@
     height: auto;
   }
 }
+
+
+.ConcertDetailsImageContainer {
+  flex-basis: 100%;
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+.ConcertDetailsImageContainer img {
+  width: 100%;
+  height: auto;
+  max-width: 900px;
+  max-height: 700px;
+  object-fit: cover;
+}
+
+
+
+.InfoRow {
+  display: flex;
+  margin-bottom: 10px; 
+}
+
+.InfoRow h3 {
+  margin-right: 10px; 
+}

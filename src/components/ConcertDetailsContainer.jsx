@@ -1,12 +1,10 @@
 /* import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";*/
 import { useState } from "react";
 
-
 function ConcertDetailsContainer(props) {
+  const [showVenueDetails, setShowVenueDetails] = useState(false);
 
-  const [showVenueDetails, setShowVenueDetails] = useState(false)
-
-  const showHideVenueDetails = () => setShowVenueDetails(!showVenueDetails)
+  const showHideVenueDetails = () => setShowVenueDetails(!showVenueDetails);
 
   return (
     <div>
@@ -15,53 +13,63 @@ function ConcertDetailsContainer(props) {
         <div className="ConcertPageContainer">
           <div className="ConcertDetailsContainer">
             <div className="ConcertDetailsImageDiv">
-              <img src={props.concert.imageUrl} />
+              <img src={props.concert.imageUrl} alt={props.concert.title} />
             </div>
             <div className="ConcertDetailsInfoDiv">
-              <h3 className="">ARTIST</h3>
-              {(props.concert.artist === null || props.concert.artist.length === 0)
-                ? <p>No artists selected</p>
-                : props.concert.artist.map((artist, index) => <p key={index}>{artist.name}</p>)}
-              <h3 className="">DESCRIPTION</h3>
-              <p>{props.concert.description}</p>
-              <div className="">
-                <h3 className="">DATE</h3>
+              <div className="InfoRow">
+                <h3 className="">Artist:</h3>
+                {props.concert.artist === null || props.concert.artist.length === 0 ? (
+                  <p>No artists selected</p>
+                ) : (
+                  props.concert.artist.map((artist, index) => <p key={index}>{artist.name}</p>)
+                )}
+              </div>
+              <div className="InfoRow">
+                <h3 className="">Description:</h3>
+                <p>{props.concert.description}</p>
+              </div>
+              <div className="InfoRow">
+                <h3 className="">Date:</h3>
                 <p className="">{`${props.concert.date.substring(0, 10)} at ${props.concert.date.substring(11, 16)}`}</p>
-                <h3 className="">PRICE</h3>
-                {props.concert.price <= 0
-                  ? (<p className="">FREE</p>)
-                  : (<p className="">{props.concert.price}€</p>
-                  )}
+              </div>
+              <div className="InfoRow">
+                <h3 className="">Price</h3>
+                {props.concert.price <= 0 ? (
+                  <p className="">FREE</p>
+                ) : (
+                  <p className="">{props.concert.price}€</p>
+                )}
               </div>
             </div>
           </div>
           <div className="VenueDetailsButtonDiv">
-            <button className="VenueDetailsButton" onClick={showHideVenueDetails}>Display Venue Details</button> {/* maybe a button that expands venue info? add to class hide or show or wtv*/}
+            <button className="VenueDetailsButton" onClick={showHideVenueDetails}>
+              Display Venue Details
+            </button>
           </div>
-          <div className="VenueDetailsContainer">
-            <div className={`VenueDetailsContainer ${showVenueDetails ? "show" : "hide"}`}> {/* or link to venue details page? */}
-              <div className="VenueDetailsImageDiv">
-                <img src={props.concert.venue.imageUrl} />
-              </div>
-              <div>
-                <h3 className="">NAME</h3>
-                <p className="">{props.concert.venue.name}</p>
-                <h3 className="">DESCRIPTION</h3>
-                <p className="">{props.concert.venue.description}</p>
-                <h3 className="">LOCATION</h3>
-                <p className="">{props.concert.venue.location}</p>
-                <h3 className="">CAPACITY</h3>
-                <p className="">{props.concert.venue.capacity}</p>
-              </div>
+          <div className={`VenueDetailsContainer ${showVenueDetails ? "show" : "hide"}`}>
+            <div className="VenueDetailsImageDiv">
+              <img src={props.concert.venue.imageUrl} alt={props.concert.venue.name} />
+            </div>
+            <div>
+              <h3 className="">NAME</h3>
+              <p className="">{props.concert.venue.name}</p>
+              <h3 className="">DESCRIPTION</h3>
+              <p className="">{props.concert.venue.description}</p>
+              <h3 className="">LOCATION</h3>
+              <p className="">{props.concert.venue.location}</p>
+              <h3 className="">CAPACITY</h3>
+              <p className="">{props.concert.venue.capacity}</p>
             </div>
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 
 export default ConcertDetailsContainer;
+
 
 
 /* const [slide, setSlide] = useState(0);
