@@ -50,6 +50,7 @@ body {
 .VenueDetailsContainer {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 /* .VenueDetailsImageDiv img,
@@ -64,6 +65,8 @@ body {
 */
 
 .ConcertDetailsInfoDiv {
+    max-width: 900px;
+    text-align: left;
 }
 
 /*
@@ -93,14 +96,4 @@ body {
     ARTIST PAGE
 
 */
-
-
-
-
-
-
-
-
-
-
 

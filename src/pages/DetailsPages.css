@@ -1,5 +1,3 @@
-/* DetailsPages.css */
-
 .DetailsPageContainer {
   max-width: 1600px;
   margin: 0 auto;
@@ -9,33 +7,37 @@
 .VenueDetailsContainer {
   display: flex;
   flex-direction: column;
+  align-items: center; 
+  text-align: center; 
 }
 
 .VenueImageContainer {
   flex-basis: 100%;
-  max-width: 800px; 
-  height: 600px; 
   margin-bottom: 20px;
   overflow: hidden;
 }
 
+
 .VenueImageContainer img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-width: 900px; 
+  max-height: 700px; 
+  margin-top: 30px;
   object-fit: cover;
 }
 
 .VenueInfoContainer {
-  flex-basis: 100%; 
+  flex-basis: 100%;
+  text-align: left;
 }
 
 .VenueInfoContainer h1 {
-  text-align: left;
+  text-align: center;
   text-transform: uppercase;
   color: rgb(255, 255, 255);
 }
 
-/* Move text to the left in the info container */
 .VenueInfoContainer p {
   text-align: left;
 }
@@ -75,4 +77,68 @@
   .VenueInfoContainer {
     flex-basis: calc(60% - 20px);
   }
+}
+
+/* mobil + */
+@media (max-width: 767px) {
+  .VenueImageContainer {
+    max-width: 100%;
+  }
+
+  .VenueImageContainer img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* ConcertDetails*/
+
+.ConcertDetailsImageContainer {
+  flex-basis: 100%;
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+.ConcertDetailsImageContainer img {
+  width: 100%;
+  height: auto;
+  max-width: 900px;
+  max-height: 700px;
+  object-fit: cover;
+  margin-bottom: 30px;
+}
+
+
+.ConcertDetailsContainer {
+  max-width: 1600px;
+  margin: 0 auto; 
+}
+
+.InfoRow {
+  display: flex;
+  margin-bottom: 10px; 
+}
+
+.InfoRow h3 {
+  margin-right: 10px; 
+}
+
+
+
+.VenueDetailsButtonDiv {
+  margin-top: 20px; 
+}
+
+.VenueDetailsButton {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.VenueDetailsButton:hover {
+  background-color: #333;
 }
