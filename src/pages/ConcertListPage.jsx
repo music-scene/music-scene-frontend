@@ -72,8 +72,6 @@ function ConcertListPage() {
         if (concerts !== null) {
             const result = concerts.filter(({ title, venue, artist }) => {
                 let artistNames = artist.map(artist => artist.name)
-                console.log(artistNames)
-                console.log(artistFilter)
                 return title.toLowerCase().includes(searchValue.toLowerCase()) && (venue.name === venueFilter || venueFilter === "") && (artistNames.includes(artistFilter) || artistFilter === "")
             })
             setDisplayConcerts(result)

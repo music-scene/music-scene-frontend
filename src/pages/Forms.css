@@ -36,7 +36,7 @@ input[type="datetime-local"]:valid::before {
 
 .inputField {
     font-family: 'Afacad', sans-serif;
-    height: 43.2px;
+    height: 44px;
     width: 320px;
     border: 2px solid white;
     background-color: transparent;

@@ -120,7 +120,7 @@ function EditConcert(props) {
     };
 
     const handleArtistSelections = (event, data) => {
-
+        console.log(event)
         let artistArray = [];
         let artistsIDsArray = []
         let artistsNamesArray = []

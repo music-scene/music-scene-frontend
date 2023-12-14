@@ -29,7 +29,7 @@ function HomePage() {
             </div>
 
             <div className="ConcertListPageContainer" >
-                {!concerts && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
+                {(concerts !== null && concerts.length === 0) && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
                 {concerts === null
                     ? (<h1>Concerts list is loading...</h1>)
                     : (sortedConcerts = sortConcertsByDate(concerts), sortedConcerts.splice(10),

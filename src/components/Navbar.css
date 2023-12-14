@@ -78,17 +78,6 @@ hr {
 }
 
 @media (max-width: 830px) {
-    .Navbar .title {
-        margin-left: 30px;
-    }
-
-    .Navbar ul {
-        margin-right: 30px;
-    }
-}
-
-
-@media (max-width: 830px) {
     .Navbar .menu {
         display: flex;
     }
@@ -129,8 +118,20 @@ hr {
         margin: 0.2rem 0.5rem;
     }
 
+    .button {
+        width: 106px;
+    }
+
     .ActionButtons {
         margin-right: 0;
+    }
+
+    .open {
+        align-items: center;
+    }
+
+    .button.logout {
+        margin-bottom: 9px;
     }
 
     hr {

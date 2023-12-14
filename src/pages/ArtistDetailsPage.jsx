@@ -20,7 +20,6 @@ function ArtistDetailsPage() {
 
         artistService.getArtistById(artistId)
             .then((response) => {
-                console.log(response.data)
                 setArtistDetails(response.data)
             })
             .catch((error) => console.log(error));

@@ -101,4 +101,4 @@ function setDefaultProfileImageUrl(imageUrl) {
 }
 
 
-export { sortAlphabetically, sortConcertsByDate, getNamesForLists, setDefaultImageUrl, setDefaultProfileImageUrl, defaultImageUrl, defaultProfileImageUrl };
+export { looper, sortObject, sortAlphabetically, sortConcertsByDate, getNamesForLists, setDefaultImageUrl, setDefaultProfileImageUrl, defaultImageUrl, defaultProfileImageUrl };

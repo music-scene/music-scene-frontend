@@ -56,7 +56,6 @@ function AddConcertPage() {
     useEffect(() => {
         getAllVenues()
         getAllArtists()
-        //setDate(currentDate)
     }, []);
 
     const handleSubmit = (e) => {
@@ -72,7 +71,6 @@ function AddConcertPage() {
             imageUrl: setDefaultImageUrl(imageUrl),
             author: user,
         };
-
 
         concertService.addConcert(requestBody)
             .then(() => {
@@ -90,23 +88,14 @@ function AddConcertPage() {
 
         const selectedVenueArray = venuesList.find((venue) => {
             setVenueName(data.value)
-            console.log(data.value)
             return venue.name === data.value
         })
         if (selectedVenueArray !== undefined) setVenueId(selectedVenueArray._id.toString());
     };
 
-    const handleArtistSelection = (event, data) => {
-
-        console.log(artistsList)
-        const selectedArtistArray = artistsList.find((artist) => {
-            setArtistName(data.value)
-            return artist.name === data.value
-        })
-        if (selectedArtistArray !== undefined) setArtistId(selectedArtistArray._id.toString());
-    };
-
     const handleArtistSelections = (event, data) => {
+
+        if(data.value.length === 0) setArtistsNames(null)
 
         let artistArray = [];
         let artistsIDsArray = []
@@ -118,23 +107,12 @@ function AddConcertPage() {
                     artistArray.push(artist)
                     artistsIDsArray.push(artist._id)
                     artistsNamesArray.push(artist.name)
-                    //artistsNames.push(artist.name)
-                    //artistsNames === null ? setArtistsNames(artist.name) : setArtistsNames((artistsNames) => [...artistsNames, artist.name])
                     setArtistsNames(artistsNamesArray)
                 }
             })
         })
 
-        artistsNames !== null ? artistsNames.map(name => console.log(name)) : ""
-
         if (artistsIDsArray !== null) setArtistIds(artistsIDsArray)
-        /* const selectedArtistArray = artistsList.find((artist) => {
-            let artistArray = null;
-            console.log(artistsList.includes(data.value))
-            setArtistsName(data.value)
-            return artistArray  
-        })
-        if (selectedArtistArray !== undefined) setArtistId(selectedArtistArray._id.toString()); */
     };
 
     return (
@@ -199,7 +177,7 @@ function AddConcertPage() {
                         </div>
                         <div className="inputContainer">
                             <Dropdown
-                                className="inputFieldDropdown venue"
+                                className="inputFieldDropdown"
                                 placeholder="Venue"
                                 fluid={false}
                                 clearable
@@ -278,7 +256,7 @@ function AddConcertPage() {
                             <h3 className="">TITLE</h3>
                             <p className="ConcertPageTitle">{title}</p>
                             <h3 className="">ARTIST</h3>
-                            {artistsNames !== null? artistsNames.map(name =><p>{name}</p>): ""}
+                            {artistsNames !== null? artistsNames.map(name =><p>{name}</p>) : ""}
                             <h3 className="">DESCRIPTION</h3>
                             <p>{description}</p>
                             <h3 className="">VENUE NAME</h3>

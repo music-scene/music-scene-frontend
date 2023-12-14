@@ -19,7 +19,6 @@
 .search {
     font-size: 18px;
     display: inline-block;
-    margin-right: 10px;
 }
 
 /*.inpt_search {
@@ -92,7 +91,7 @@
     height: var(--plus_sideLength);
     background-color: #000000;
     overflow: hidden;
-    margin-left: 10px;
+    margin-left: 20px;
     border-radius: 50%;
 }
 

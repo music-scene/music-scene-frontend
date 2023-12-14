@@ -62,7 +62,7 @@ function VenueListPage() {
             </div>
             {isLoggedIn && (
               <div className="AddButton">
-                <Link to="/artists/add">
+                <Link to="/venues/add">
                   <div tabIndex="0" className="plusButton">
                     <svg
                       className="plusIcon"

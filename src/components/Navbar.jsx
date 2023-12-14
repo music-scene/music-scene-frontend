@@ -55,7 +55,8 @@ function Navbar() {
                 Profile
               </NavLink>
             </li>
-            <button onClick={() => logoutCloseMenu()} className="button">Logout</button>
+            <hr></hr>
+            <button onClick={() => logoutCloseMenu()} className="button logout">Logout</button>
           </>
         )}
         {!isLoggedIn && (
