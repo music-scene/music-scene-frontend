@@ -33,15 +33,6 @@
   margin: 5px 0;
 }
 
-.EditDeleteContainer {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.EditContainer {
-  display: inline-block;
-}
-
 /* change to the other style*/
 .EditDeleteContainer .button {
   cursor: pointer;

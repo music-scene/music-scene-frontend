@@ -166,12 +166,13 @@ input[type="datetime-local"]:valid::before {
 }
 
 @media (max-width: 480px) {
+    .inputArea,
     .inputField {
         height: 40px;
         width: 280px;
     }
     .ui.selection.dropdown.inputFieldDropdown {
-        height: 40px;
+        height: auto;
         width: 280px;
     }
 }

@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import venueService from '../services/venue.service';
 import { AuthContext } from "../context/auth.context";
+import venueService from '../services/venue.service';
 import EditVenue from "../components/EditVenue";
+import VenueDetailsContainer from "../components/VenueDetailsContainer"
 import "./DetailsPages.css";
 
 function VenueDetailsPage() {
@@ -35,31 +36,22 @@ function VenueDetailsPage() {
     }, [venueId]);
 
     return (
-        <div className="DetailsPageContainer">
-            <div className="VenueDetailsContainer">
-                <div className="VenueImageContainer">
-                    {venueDetails !== null && (
-                        <img src={venueDetails.imageUrl} alt={venueDetails.name} />
-                    )}
-                </div>
-                <div className="VenueInfoContainer">
-                    {venueDetails !== null && (
-                        <>
-                            <h1>{venueDetails.name}</h1>
-                            <p><strong>Location:</strong> {venueDetails.location}</p>
-                            <p><strong>Description:</strong> {venueDetails.description}</p>
-                            <p><strong>Capacity:</strong> {venueDetails.capacity}</p>
-                        </>
-                    )}
+        <div className="">
+            <div className="ConcertDetailsContainer">
+                <div className="ConcertDetailsImageContainer">
+                    {venueDetails === null
+                        ? <h1>Loading venue details...</h1>
+                        : <VenueDetailsContainer venue={venueDetails} />
+                    }
                 </div>
             </div>
             {isLoggedIn && venueDetails !== null && venueDetails.author !== null && user._id === venueDetails.author._id && (
                 <div className="EditDeleteContainer">
-                    <button onClick={showHideEditContainer}>EDIT</button>
+                    <button onClick={showHideEditContainer} className="button">Edit</button>
                     <div className={`EditContainer ${showEditContainer ? "show" : "hide"}`}>
                         {<EditVenue venueId={venueId} />}
                     </div>
-                    <button onClick={handleDelete}>DELETE</button>
+                    <button onClick={handleDelete} className="button">Delete</button>
                 </div>
             )}
         </div>
