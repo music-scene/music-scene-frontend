@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import userService from "../services/user.service";
 import EditProfileContainer from "../components/EditProfileContainer";
-import "./profilePage.css"; 
 
 function ProfilePage() {
   const [userInfo, setUserInfo] = useState(null);
