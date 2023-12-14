@@ -66,3 +66,27 @@
   display: inline-block;
 }
 
+/* Responsive styles */
+@media (min-width: 768px) {
+  .VenueImageContainer {
+    flex-basis: 40%;
+    max-width: 1000px;
+    margin-right: 20px;
+  }
+
+  .VenueInfoContainer {
+    flex-basis: calc(60% - 20px);
+  }
+}
+
+/* mobil + */
+@media (max-width: 767px) {
+  .VenueImageContainer {
+    max-width: 100%;
+  }
+
+  .VenueImageContainer img {
+    width: 100%;
+    height: auto;
+  }
+}
