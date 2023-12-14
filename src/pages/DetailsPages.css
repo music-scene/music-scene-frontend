@@ -83,10 +83,28 @@
   margin-bottom: 30px;
 }
 
-
+.EditDeleteContainer,
 .ConcertDetailsContainer {
   max-width: 1600px;
   margin: 0 auto; 
+  margin-bottom: 20px;
+}
+
+.EditDeleteContainer.Add {
+  display: flex;
+  justify-content: center;
+}
+
+.FormAdd {
+  width: 320px
+}
+
+.ConcertDetailsImageDiv.Add img {
+  min-width: 360px;
+  min-height: 360px;
+  max-width: 360px;
+  max-height: 360px;
+  object-fit: cover;
 }
 
 .InfoRow {
@@ -166,7 +184,15 @@ p {
 
   .ConcertDetailsContainer {
     max-width: 100%;
-    margin: 0 auto; 
+    margin: 0 20px;
+    margin-bottom: 20px; 
+  }
+
+  .ConcertDetailsContainer.Add {
+    align-items:  center;
+    max-width: 100%;
+    margin: 0 20px;
+    margin-bottom: 20px; 
   }
 
   .ConcertDetailsImageContainer img {
@@ -176,6 +202,20 @@ p {
     max-height: auto;
     object-fit: cover;
     margin-bottom: 30px;
+  }
+
+  .ConcertDetailsImageContainer.Add {
+    display: flex;
+    justify-content: center ;
+    width: 320px;
+  }
+
+  .ConcertDetailsImageDiv.Add img {
+    min-width: 320px;
+    min-height: auto;
+    max-width: 320px;
+    max-height: auto;
+    object-fit: cover;
   }
 
   .VenueImageContainer {

@@ -115,7 +115,6 @@ function EditArtist(props) {
         <div>
             <div className="">
                 <div className="">
-                    <h1>EDIT ARTIST</h1>
                     <form onSubmit={handleSubmit}>
                         <div className="inputContainer">
                             <input
@@ -185,7 +184,7 @@ function EditArtist(props) {
                             </label>
                         </div>
                         {errorMessage && <p className="error-message">{errorMessage}</p>}
-                        <button type="submit" className="">Submit</button>
+                        <button type="submit" className="button">Submit</button>
                     </form>
                 </div>
             </div>

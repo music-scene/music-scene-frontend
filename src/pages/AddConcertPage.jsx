@@ -95,7 +95,7 @@ function AddConcertPage() {
 
     const handleArtistSelections = (event, data) => {
 
-        if(data.value.length === 0) setArtistsNames(null)
+        if (data.value.length === 0) setArtistsNames(null)
 
         let artistArray = [];
         let artistsIDsArray = []
@@ -117,164 +117,140 @@ function AddConcertPage() {
 
     return (
         <div>
-            <div className="AddConcertPage">
-                <div className="AddConcertContainer">
-                    <br />
-                    <h1>ADD CONCERT</h1>
-                    <br />
-                    <br />
-                    <form onSubmit={handleSubmit}>
-                        <br />
-                        <div className="inputContainer">
-                            <input
-                                type="text"
-                                name="title"
-                                className="inputField"
-                                placeholder="Title"
-                                required={true}
-                                value={title}
-                                onChange={(e) => {
-                                    setTitle(e.target.value);
-                                }}
-                            />
-                            <label
-                                className="inputLabel"
-                                htmlFor="inputField">Title
-                            </label>
-                        </div>
-                        <div className="inputContainer">
-                            <Dropdown
-                                className="inputFieldDropdown"
-                                placeholder="Artist"
-                                fluid={true}
-                                scrolling
-                                selection
-                                multiple
-                                onChange={handleArtistSelections}
-                                options={artistsNameList}
-                            />
-                            <label
-                                className="inputLabel"
-                                htmlFor="inputFieldDropdown">Artist
-                            </label>
-                        </div>
-                        <div className="inputContainer">
-                            <textarea
-                                type="text"
-                                name="description"
-                                className="inputArea"
-                                placeholder="Description"
-                                required={true}
-                                value={description}
-                                onChange={(e) => {
-                                    setDescription(e.target.value);
-                                }}
-                            />
-                            <label
-                                className="inputLabel"
-                                htmlFor="inputArea">Description
-                            </label>
-                        </div>
-                        <div className="inputContainer">
-                            <Dropdown
-                                className="inputFieldDropdown"
-                                placeholder="Venue"
-                                fluid={false}
-                                clearable
-                                selection
-                                onChange={handleVenueSelection}
-                                options={venuesNameList}
-                            />
-                            <label
-                                className="inputLabel"
-                                htmlFor="inputFieldDropdown">Venue
-                            </label>
-                        </div>
-                        <div className="inputContainer">
-                            <input
-                                type="datetime-local"
-                                name="date"
-                                className="inputField"
-                                placeholder="Date   "
-                                required={true}
-                                value={date}
-                                onChange={(e) => {
-                                    setDate(e.target.value);
-                                }}
-                            />
-                            <label
-                                className="inputLabel"
-                                htmlFor="inputField">Date
-                            </label>
-                        </div>
-                        <div className="inputContainer">
-                            <input
-                                type="number"
-                                name="price"
-                                className="inputField"
-                                placeholder="Price"
-                                required={true}
-                                min={0}
-                                step=".01"
-                                value={price}
-                                onChange={(e) => {
-                                    setPrice(e.target.value);
-                                }}
-                            />
-                            <label
-                                className="inputLabel"
-                                htmlFor="inputField">Price
-                            </label>
-                        </div>
-                        <div className="inputContainer">
-                            <input
-                                type="text"
-                                name="imageUrl"
-                                className="inputField"
-                                placeholder="Image URL"
-                                required={true}
-                                value={imageUrl}
-                                onChange={(e) => {
-                                    setImageUrl(e.target.value);
-                                }}
-                            />
-                            <label
-                                className="inputLabel"
-                                htmlFor="inputField">Image URL
-                            </label>
-                        </div>
-                        {errorMessage && <p className="error-message">{errorMessage}</p>}
-                        <button type="submit" className="button">Add Concert</button>
-                    </form>
-                </div>
-                <div>
-                    <div className="ConcertDetailsContainer">
-                        <div className="ConcertDetailsImageDiv">
-                            <img src={imageUrl ? imageUrl : defaultImageUrl} alt="" />
-                        </div>
-                        <div className="ConcertDetailsInfoDiv">
-                            <h3 className="">TITLE</h3>
-                            <p className="ConcertPageTitle">{title}</p>
-                            <h3 className="">ARTIST</h3>
-                            {artistsNames !== null? artistsNames.map(name =><p>{name}</p>) : ""}
-                            <h3 className="">DESCRIPTION</h3>
-                            <p>{description}</p>
-                            <h3 className="">VENUE NAME</h3>
-                            <p className="">{venueName}</p>
-                            <div className="">
-                                {date === null
-                                    ? <></>
-                                    : (<>
-                                        <h3 className="">DATE</h3>
-                                        <p className="">{`${date.substring(0, 10)} at ${date.substring(11, 16)}`}</p>
-                                    </>)}
-                                <h3 className="">PRICE</h3>
-                                {price <= 0
-                                    ? (<p className="">FREE</p>)
-                                    : (<p className="">{price ? `${price}€` : ""}</p>
-                                    )}
+            <div className="ConcertDetailsContainer Add">
+                <div className="ConcertDetailsImageContainer">
+                    <h1>Add Concert</h1>
+                    <div>
+                        <div className="ConcertDetailsContainer">
+                            <div className="ConcertDetailsImageDiv Add">
+                                <img src={imageUrl ? imageUrl : defaultImageUrl} />
                             </div>
-
+                        </div>
+                        <div className="EditDeleteContainer Add">
+                            <div className="FormAdd">
+                                <form onSubmit={handleSubmit}>
+                                    <div className="inputContainer">
+                                        <input
+                                            type="text"
+                                            name="title"
+                                            className="inputField"
+                                            placeholder="Title"
+                                            required={true}
+                                            value={title}
+                                            onChange={(e) => {
+                                                setTitle(e.target.value);
+                                            }}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputField">Title
+                                        </label>
+                                    </div>
+                                    <div className="inputContainer">
+                                        <Dropdown
+                                            className="inputFieldDropdown"
+                                            placeholder="Artist"
+                                            fluid={true}
+                                            scrolling
+                                            selection
+                                            multiple
+                                            onChange={handleArtistSelections}
+                                            options={artistsNameList}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputFieldDropdown">Artist
+                                        </label>
+                                    </div>
+                                    <div className="inputContainer">
+                                        <textarea
+                                            type="text"
+                                            name="description"
+                                            className="inputArea"
+                                            placeholder="Description"
+                                            required={true}
+                                            value={description}
+                                            onChange={(e) => {
+                                                setDescription(e.target.value);
+                                            }}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputArea">Description
+                                        </label>
+                                    </div>
+                                    <div className="inputContainer">
+                                        <Dropdown
+                                            className="inputFieldDropdown"
+                                            placeholder="Venue"
+                                            fluid={false}
+                                            clearable
+                                            selection
+                                            onChange={handleVenueSelection}
+                                            options={venuesNameList}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputFieldDropdown">Venue
+                                        </label>
+                                    </div>
+                                    <div className="inputContainer">
+                                        <input
+                                            type="datetime-local"
+                                            name="date"
+                                            className="inputField"
+                                            placeholder="Date   "
+                                            required={true}
+                                            value={date}
+                                            onChange={(e) => {
+                                                setDate(e.target.value);
+                                            }}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputField">Date
+                                        </label>
+                                    </div>
+                                    <div className="inputContainer">
+                                        <input
+                                            type="number"
+                                            name="price"
+                                            className="inputField"
+                                            placeholder="Price"
+                                            required={true}
+                                            min={0}
+                                            step=".01"
+                                            value={price}
+                                            onChange={(e) => {
+                                                setPrice(e.target.value);
+                                            }}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputField">Price
+                                        </label>
+                                    </div>
+                                    <div className="inputContainer">
+                                        <input
+                                            type="text"
+                                            name="imageUrl"
+                                            className="inputField"
+                                            placeholder="Image URL"
+                                            required={true}
+                                            value={imageUrl}
+                                            onChange={(e) => {
+                                                setImageUrl(e.target.value);
+                                            }}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputField">Image URL
+                                        </label>
+                                    </div>
+                                    {errorMessage && <p className="error-message">{errorMessage}</p>}
+                                    <button type="submit" className="button">Submit</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

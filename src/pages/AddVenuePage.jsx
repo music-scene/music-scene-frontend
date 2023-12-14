@@ -42,116 +42,112 @@ function AddVenuePage() {
 
     return (
         <div>
-            <div>
-                <h1>Add Venue</h1>
-                <form onSubmit={handleSubmit}>
-                    <div className="inputContainer">
-                        <input
-                            type="text"
-                            name="name"
-                            className="inputField"
-                            placeholder="Name"
-                            required={true}
-                            value={name}
-                            onChange={(e) => {
-                                setName(e.target.value);
-                            }}
-                        />
-                        <label
-                            className="inputLabel"
-                            htmlFor="inputField">Name
-                        </label>
-                    </div>
-                    <div className="inputContainer">
-                        <textarea
-                            type="text"
-                            name="description"
-                            className="inputArea"
-                            placeholder="Description"
-                            required={true}
-                            value={description}
-                            onChange={(e) => {
-                                setDescription(e.target.value);
-                            }}
-                        />
-                        <label
-                            className="inputLabel"
-                            htmlFor="inputArea">Description
-                        </label>
-                    </div>
-                    <div className="inputContainer">
-                        <input
-                            type="text"
-                            name="location"
-                            className="inputField"
-                            placeholder="Location"
-                            required={true}
-                            value={location}
-                            onChange={(e) => {
-                                setLocation(e.target.value);
-                            }}
-                        />
-                        <label
-                            className="inputLabel"
-                            htmlFor="inputArea">Location
-                        </label>
-                    </div>
-                    <div className="inputContainer">
-                        <input
-                            type="number"
-                            name="capacity"
-                            className="inputField"
-                            placeholder="Capacity"
-                            required={true}
-                            min={0}
-                            value={capacity}
-                            onChange={(e) => {
-                                setCapacity(e.target.value);
-                            }}
-                        />
-                        <label
-                            className="inputLabel"
-                            htmlFor="inputField">Capacity
-                        </label>
-                    </div>
-                    <div className="inputContainer">
-                            <input
-                                type="text"
-                                name="imageUrl"
-                                className="inputField"
-                                placeholder="Image URL"
-                                required={true}
-                                value={imageUrl}
-                                onChange={(e) => {
-                                    setImageUrl(e.target.value);
-                                }}
-                            />
-                            <label
-                                className="inputLabel"
-                                htmlFor="inputField">Image URL
-                            </label>
+            <div className="ConcertDetailsContainer Add">
+                <div className="ConcertDetailsImageContainer">
+                    <h1>Add Venue</h1>
+                    <div>
+                        <div className="ConcertDetailsContainer">
+                            <div className="ConcertDetailsImageDiv Add">
+                                <img src={imageUrl ? imageUrl : defaultImageUrl} />
+                            </div>
                         </div>
-                        {errorMessage && <p className="error-message">{errorMessage}</p>}
-                    <button type="submit" className="button">Add Venue</button>
-                </form>
-            </div>
-            <div>
-                    <div className="ConcertDetailsContainer">
-                        <div className="ConcertDetailsImageDiv">
-                            <img src={imageUrl ? imageUrl : defaultImageUrl} alt="" />
-                        </div>
-                        <div className="ConcertDetailsInfoDiv">
-                            <h3 className="">NAME</h3>
-                            <p className="ConcertPageTitle">{name}</p>
-                            <h3 className="">DESCRIPTION</h3>
-                            <p>{description}</p>
-                            <h3 className="">LOCATION</h3>
-                            <p className="">{location}</p>
-                            <h3 className="">CAPACITY</h3>
-                            <p className="">{capacity}</p>
+                        <div className="EditDeleteContainer Add">
+                            <div className="FormAdd">
+                                <form onSubmit={handleSubmit}>
+                                    <div className="inputContainer">
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            className="inputField"
+                                            placeholder="Name"
+                                            required={true}
+                                            value={name}
+                                            onChange={(e) => {
+                                                setName(e.target.value);
+                                            }}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputField">Name
+                                        </label>
+                                    </div>
+                                    <div className="inputContainer">
+                                        <textarea
+                                            type="text"
+                                            name="description"
+                                            className="inputArea"
+                                            placeholder="Description"
+                                            required={true}
+                                            value={description}
+                                            onChange={(e) => {
+                                                setDescription(e.target.value);
+                                            }}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputArea">Description
+                                        </label>
+                                    </div>
+                                    <div className="inputContainer">
+                                        <input
+                                            type="text"
+                                            name="location"
+                                            className="inputField"
+                                            placeholder="Location"
+                                            required={true}
+                                            value={location}
+                                            onChange={(e) => {
+                                                setLocation(e.target.value);
+                                            }}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputArea">Location
+                                        </label>
+                                    </div>
+                                    <div className="inputContainer">
+                                        <input
+                                            type="number"
+                                            name="capacity"
+                                            className="inputField"
+                                            placeholder="Capacity"
+                                            required={true}
+                                            min={0}
+                                            value={capacity}
+                                            onChange={(e) => {
+                                                setCapacity(e.target.value);
+                                            }}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputField">Capacity
+                                        </label>
+                                    </div>
+                                    <div className="inputContainer">
+                                        <input
+                                            type="text"
+                                            name="imageUrl"
+                                            className="inputField"
+                                            placeholder="Image URL"
+                                            required={true}
+                                            value={imageUrl}
+                                            onChange={(e) => {
+                                                setImageUrl(e.target.value);
+                                            }}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputField">Image URL
+                                        </label>
+                                    </div>
+                                    {errorMessage && <p className="error-message">{errorMessage}</p>}
+                                    <button type="submit" className="button">Add Venue</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     );
 }
