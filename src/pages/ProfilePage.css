@@ -1,5 +1,3 @@
-/* profilePage.css */
-
 .ProfilePage {
   display: flex;
   flex-direction: column;
@@ -44,6 +42,7 @@
   display: inline-block;
 }
 
+/* change to the other style*/
 .EditDeleteContainer .button {
   cursor: pointer;
   position: relative;
@@ -87,7 +86,7 @@
   scale: 1;
 }
 
-/* Responsive Styles */
+/* Responsive*/
 @media (max-width: 768px) {
   .ProfilePage {
     align-items: center;
