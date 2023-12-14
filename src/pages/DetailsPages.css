@@ -9,33 +9,35 @@
 .VenueDetailsContainer {
   display: flex;
   flex-direction: column;
+  align-items: center; 
+  text-align: center; 
 }
 
 .VenueImageContainer {
   flex-basis: 100%;
-  max-width: 800px; 
-  height: 600px; 
   margin-bottom: 20px;
   overflow: hidden;
 }
 
+
 .VenueImageContainer img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-width: 900px; 
+  max-height: 700px; 
   object-fit: cover;
 }
 
 .VenueInfoContainer {
-  flex-basis: 100%; 
+  flex-basis: 100%;
 }
 
 .VenueInfoContainer h1 {
-  text-align: left;
+  text-align: center;
   text-transform: uppercase;
   color: rgb(255, 255, 255);
 }
 
-/* Move text to the left in the info container */
 .VenueInfoContainer p {
   text-align: left;
 }
@@ -64,15 +66,3 @@
   display: inline-block;
 }
 
-/* Responsive styles */
-@media (min-width: 768px) {
-  .VenueImageContainer {
-    flex-basis: 40%;
-    max-width: 1000px;
-    margin-right: 20px;
-  }
-
-  .VenueInfoContainer {
-    flex-basis: calc(60% - 20px);
-  }
-}
