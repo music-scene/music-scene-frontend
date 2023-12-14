@@ -138,6 +138,7 @@ hr {
         display: block;
         background-color: #eee;
         border: 1px solid white;
+        transform: scaleY(0.5);
         color: #eee;
         width: 80%;
     }
