@@ -256,4 +256,8 @@
         margin: 0;
         max-width: 360px;
     }
+
+    .ConcertImageContainer {
+        margin: 15px auto;
+    }
 }
