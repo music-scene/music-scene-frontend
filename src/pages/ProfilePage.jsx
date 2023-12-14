@@ -42,34 +42,35 @@ function ProfilePage() {
 
   return (
     <div>
-      {userInfo === null ? (
-        <h1>Loading user profile...</h1>
-      ) : (
-        <div className="ProfilePage">
+      {userInfo === null
+        ? <h1>Loading user profile...</h1>
+        : <div className="ProfilePage">
           <div className="ProfileInfo">
             <div className="ProfileImageDiv">
               <img src={userInfo.imageUrl} alt="Profile" />
             </div>
-            <h3>NAME</h3>
-            <p>{userInfo.name}</p>
-            <h3>EMAIL</h3>
-            <p>{userInfo.email}</p>
-            {userInfo._id === user._id ? (
-              <>
-                <div className="EditDeleteContainer">
-                  <button onClick={showHideEditContainer}>EDIT</button>
+            <div className="ConcertDetailsInfoDiv">
+              <div className="InfoRow">
+                <p><span className="DetailsSpans">Name: </span>{userInfo.name}</p>
+              </div>
+              <div className="InfoRow">
+                <p><span className="DetailsSpans">Email: </span>{userInfo.email}</p>
+              </div>
+              {userInfo._id === user._id
+                ? <div className="EditDeleteContainer">
+                  <button onClick={showHideEditContainer} className="button">Edit</button>
                   <div className={`EditContainer ${showEditContainer ? "show" : "hide"}`}>
                     {<EditProfileContainer user={userInfo} />}
                   </div>
-                  <button onClick={deleteUser}>DELETE</button>
+                  <button onClick={deleteUser} className="button">Delete</button>
                 </div>
-              </>
-            ) : null}
+                : null}
+            </div>
           </div>
         </div>
-      )}
+      }
     </div>
-  );
+  )
 }
 
 export default ProfilePage;

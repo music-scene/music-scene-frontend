@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import ArtistDetailsContainer from "../components/ArtistDetailsContainer"
 import artistService from '../services/artist.service'
 import EditArtist from '../components/EditArtist'
 
@@ -40,32 +41,22 @@ function ArtistDetailsPage() {
 
     return (
         <div className="">
-            <div className="">
-                {artistDetails === null
-                    ? (<h1>Loading artist details...</h1>)
-                    : (
-                        <div>
-                            <div className="ConcertImageDiv" key={artistDetails._id}>
-                                <img src={artistDetails.imageUrl} />
-                            </div>
-                            <h1>{artistDetails.name}</h1>
-                            <h2>Description</h2>
-                            <p>{artistDetails.description}</p>
-                            <h3 className="">GENRES</h3>
-                            {artistDetails.genre !== null ? artistDetails.genre.map(genre =><p>{genre.name}</p>): ""}
-                        </div>
-                    )}
+            <div className="ConcertDetailsContainer">
+                <div className="ConcertDetailsImageContainer">
+                    {artistDetails === null
+                        ? <h1>Loading artist details...</h1>
+                        : <ArtistDetailsContainer artist={artistDetails} />}
+                </div>
             </div>
 
             {isLoggedIn && artistDetails !== null && artistDetails.author !== null && user._id === artistDetails.author._id
-                ? <>
-                    <button onClick={showHideEditContainer}>EDIT</button>
+                ? <div className="EditDeleteContainer">
+                    <button onClick={showHideEditContainer} className="button">Edit</button>
                     <div className={`EditContainer ${showEditContainer ? "show" : "hide"}`}>
-                        {<EditArtist artist={artistDetails}/>}
+                        {<EditArtist artist={artistDetails} />}
                     </div>
-                    <button onClick={deleteArtist}>DELETE</button>
-                </>
-
+                    <button onClick={deleteArtist} className="button">Delete</button>
+                </div>
                 : null}
         </div>
     )

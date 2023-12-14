@@ -62,7 +62,7 @@ function AddArtistPage() {
     }
 
     const pushNewId = (newId) => {
-        
+
         setGenresIds(genresIds => [...genresIds, newId])
     }
 
@@ -96,7 +96,7 @@ function AddArtistPage() {
 
     const handleGenreSelection = (event, data) => {
 
-        if(data.value.length === 0) setGenres(null)
+        if (data.value.length === 0) setGenres(null)
 
         let genresIdsArray = []
         let genresNamesArray = []
@@ -110,7 +110,7 @@ function AddArtistPage() {
                     setGenres(genresNamesArray)
                 }
             })
-        })  
+        })
 
         console.log(genresIdsArray)
 
@@ -137,107 +137,99 @@ function AddArtistPage() {
 
     return (
         <div>
-            <div className="">
-                <div className="">
-                    <br />
-                    <h1>ADD ARTIST</h1>
-                    <br />
-                    <br />
-                    <form onSubmit={handleSubmit}>
-                        <div className="inputContainer">
-                            <input
-                                type="text"
-                                name="name"
-                                className="inputField"
-                                placeholder="Name"
-                                required={true}
-                                value={name}
-                                onChange={(e) => {
-                                    setName(e.target.value);
-                                }}
-                            />
-                            <label
-                                className="inputLabel"
-                                htmlFor="inputField">Name
-                            </label>
+            <div className="ConcertDetailsContainer Add">
+                <div className="ConcertDetailsImageContainer">
+                    <h1>Add Artist</h1>
+                    <div>
+                        <div className="ConcertDetailsContainer">
+                            <div className="ConcertDetailsImageDiv Add">
+                                <img src={imageUrl ? imageUrl : defaultImageUrl} />
+                            </div>
                         </div>
-                        <div className="inputContainer">
-                            <textarea
-                                type="text"
-                                name="description"
-                                className="inputArea"
-                                placeholder="Description"
-                                required={true}
-                                value={description}
-                                onChange={(e) => {
-                                    setDescription(e.target.value);
-                                }}
-                            />
-                            <label
-                                className="inputLabel"
-                                htmlFor="inputArea">Description
-                            </label>
-                        </div>
-                        <div className="inputContainer">
-                            <Dropdown
-                                className="inputFieldDropdown"
-                                placeholder="Genre(s)"
-                                fluid={true}
-                                allowAdditions
-                                search
-                                scrolling
-                                selection
-                                multiple
-                                onAddItem={handleAddItem}
-                                onChange={handleGenreSelection}
-                                options={genreNameList}
-                            />
-                            <label
-                                className="inputLabel"
-                                htmlFor="inputFieldDropdown">Genre(s)
-                            </label>
-                        </div>
-                        <div className="inputContainer">
-                            <input
-                                type="text"
-                                name="imageUrl"
-                                className="inputField"
-                                placeholder="Image URL"
-                                required={true}
-                                value={imageUrl}
-                                onChange={(e) => {
-                                    setImageUrl(e.target.value);
-                                }}
-                            />
-                            <label
-                                className="inputLabel"
-                                htmlFor="inputField">Image URL
-                            </label>
-                        </div>
-                        {errorMessage && <p className="error-message">{errorMessage}</p>}
-                        <button type="submit" className="button">
-                            Submit
-                        </button>
-                    </form>
-                </div>
-                <div>
-                    <div className="ConcertDetailsContainer">
-                        <div className="ConcertDetailsImageDiv">
-                            <img src={imageUrl ? imageUrl : defaultImageUrl} />
-                        </div>
-                        <div className="ConcertDetailsInfoDiv">
-                            <h3 className="">NAME</h3>
-                            <p>{name}</p>
-                            <h3 className="">DESCRIPTION</h3>
-                            <p>{description}</p>
-                            <h3 className="">GENRES</h3>
-                            {genres !== null ? genres.map(genre =><p>{genre}</p>): ""}
+                        <div className="EditDeleteContainer Add">
+                            <div className="FormAdd">
+                                <form onSubmit={handleSubmit}>
+                                    <div className="inputContainer">
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            className="inputField"
+                                            placeholder="Name"
+                                            required={true}
+                                            value={name}
+                                            onChange={(e) => {
+                                                setName(e.target.value);
+                                            }}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputField">Name
+                                        </label>
+                                    </div>
+                                    <div className="inputContainer">
+                                        <textarea
+                                            type="text"
+                                            name="description"
+                                            className="inputArea"
+                                            placeholder="Description"
+                                            required={true}
+                                            value={description}
+                                            onChange={(e) => {
+                                                setDescription(e.target.value);
+                                            }}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputArea">Description
+                                        </label>
+                                    </div>
+                                    <div className="inputContainer">
+                                        <Dropdown
+                                            className="inputFieldDropdown"
+                                            placeholder="Genre(s)"
+                                            fluid={true}
+                                            allowAdditions
+                                            search
+                                            scrolling
+                                            selection
+                                            multiple
+                                            onAddItem={handleAddItem}
+                                            onChange={handleGenreSelection}
+                                            options={genreNameList}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputFieldDropdown">Genre(s)
+                                        </label>
+                                    </div>
+                                    <div className="inputContainer">
+                                        <input
+                                            type="text"
+                                            name="imageUrl"
+                                            className="inputField"
+                                            placeholder="Image URL"
+                                            required={true}
+                                            value={imageUrl}
+                                            onChange={(e) => {
+                                                setImageUrl(e.target.value);
+                                            }}
+                                        />
+                                        <label
+                                            className="inputLabel"
+                                            htmlFor="inputField">Image URL
+                                        </label>
+                                    </div>
+                                    {errorMessage && <p className="error-message">{errorMessage}</p>}
+                                    <button type="submit" className="button">
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     );
 }
 

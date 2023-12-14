@@ -78,32 +78,23 @@ function ArtistListPage() {
           </div>
         </div>
       </div >
-      <div className="ConcertListPageContainer">
-        {displayArtists !== null && displayArtists.length === 0 && (
-          <h1>No artists to display</h1>
-        )}
-        {displayArtists === null ? (
-          <h1>Artists list is loading...</h1>
-        ) : (
-          (sortedArtists = sortAlphabetically(displayArtists)),
-          sortedArtists.map((artist) => {
-            return (
-              <div className="ConcertImageContainer" key={artist._id}>
-                <Link to={`/artists/${artist._id}`}>
-                  <div className="ConcertImageDiv" key={artist._id}>
-                    <img src={artist.imageUrl} />
-                    <div className="BgDiv"></div>
-                    {/* <span className="TitleSpan">
-                      <p className="title">{artist.name.toUpperCase()}</p>
-                    </span> */}
-                  </div>
-                  <h2>{artist.name}</h2>
-                </Link>
-              </div>
-            );
-          })
-        )}
-      </div>
+      < div className="ConcertListPageContainer" >
+        {(displayArtists !== null && displayArtists.length === 0) && <h1>No artists to display</h1>}
+        {displayArtists === null
+          ? (<h1>Artists list is loading...</h1>)
+          : (sortedArtists = sortAlphabetically(displayArtists),
+            sortedArtists.map((artist) => {
+              return (
+                <div className="VenueContainer" key={artist._id}>
+                  <Link to={`/artists/${artist._id}`}>
+                    <img src={artist.imageUrl} alt={artist.name} />
+                    <h2>{artist.name}</h2>
+                  </Link>
+                </div>
+              );
+            })
+          )}
+      </div >
     </div>
   );
 }
