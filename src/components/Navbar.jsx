@@ -20,7 +20,7 @@ function Navbar() {
   }
   return (
     <nav className="Navbar">
-      <Link to="/" className="title">
+      <Link to="/" className="title" onClick={() => closeMenu()}>
         LOGO
       </Link>
       <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>

@@ -5,7 +5,7 @@ import concertService from '../services/concert.service'
 
 function HomePage() {
 
-  const [concerts, setConcerts] = useState(null);
+    const [concerts, setConcerts] = useState(null);
     let sortedConcerts = null;
 
     const getAllConcerts = () => {
@@ -21,27 +21,35 @@ function HomePage() {
     }, []);
 
     return (
-        <div className="ConcertListPageContainer" >
-            {!concerts && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
-            {concerts === null 
-                ? (<h1>Concerts list is loading...</h1>)
-                : (sortedConcerts = sortConcertsByDate(concerts), sortedConcerts.splice(4),
-                    sortedConcerts.map((concert) => {
-                        return (
-                            <div className="ConcertImageContainer" key={concert._id}>
-                                <Link to={`/concerts/${concert._id}`}>
-                                    <div className="ConcertImageDiv" key={concert._id}>
-                                        <img src={concert.imageUrl} />
-                                    </div>
-                                    <h2>{concert.title}</h2>
-                                </Link>
-                            </div>
+        <div className="VenueListPageContainer">
+            <div className="RowContainer Homepage">
+                <div className="inputOutContainer">
+                    <h1 className="HomepageTitle">10 UPCOMING CONCERTS</h1>
+                </div>
+            </div>
 
-                        );
-                    })
-                )}
-        </div >
+            <div className="ConcertListPageContainer" >
+                {!concerts && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
+                {concerts === null
+                    ? (<h1>Concerts list is loading...</h1>)
+                    : (sortedConcerts = sortConcertsByDate(concerts), sortedConcerts.splice(10),
+                        sortedConcerts.map((concert) => {
+                            return (
+                                <div className="ConcertImageContainer" key={concert._id}>
+                                    <Link to={`/concerts/${concert._id}`}>
+                                        <div className="ConcertImageDiv" key={concert._id}>
+                                            <img src={concert.imageUrl} />
+                                        </div>
+                                        <h2>{concert.title}</h2>
+                                    </Link>
+                                </div>
+
+                            );
+                        })
+                    )}
+            </div >
+        </div>
     )
-  }
-  
-  export default HomePage;
+}
+
+export default HomePage;
