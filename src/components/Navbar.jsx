@@ -21,7 +21,7 @@ function Navbar() {
   return (
     <nav className="Navbar">
       <Link to="/" className="title" onClick={() => closeMenu()}>
-        LOGO
+        MusicScene
       </Link>
       <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
         <span></span>

@@ -21,11 +21,10 @@ function HomePage() {
     }, []);
 
     return (
-        <div className="HomePageContainer">
+        <div className="VenueListPageContainer">
             <div className="HeaderContent">
                 <img src="https://spotfestival.dk/wp-content/uploads/2023/12/Coverbillede-2024-3.png" alt="Header" />
-                <h1>Your Guide to Live Music Your Guide to Live Music Your Guide to Live Music</h1>
-                <Link to="/concerts" className="Button">Explore Concerts</Link>
+                <h1 style={{fontStyle: "italic"}}>Your Guide to Live Music</h1>
             </div>
 
 

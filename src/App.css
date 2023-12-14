@@ -105,39 +105,34 @@ body {
     margin-top: 50px; 
 }
 
-.HeaderContent {
-    margin-left: 80px;
-    margin-right: 80px;
-    position: relative;
+.HeaderContent img {
+    width: 100%;
+    margin: 24px auto;
 }
 
 .HeaderContent h1 {
     font-size: 100px; 
     white-space: nowrap; 
     overflow: hidden; 
-    animation: slideText 40s linear infinite;
     font-family: 'Afacad', sans-serif;
     color: white;
 }
 
-@keyframes slideText {
-    from {
-        transform: translateX(100%); 
-    }
-    to {
-        transform: translateX(-100%); 
-    }
-}
-
 /* Responsive styles */
 
-@media (max-width: 767px) {
+@media (max-width: 1080px) {
     .HeaderContent {
-        text-align: center; 
+        text-align: center;
+        margin: 20px;
     }
 
     .HeaderContent h1 {
         font-size: 1.5em; 
         animation: none; 
+    }
+
+    .HeaderContent img {
+        margin: 0 auto;
+        width: 100%;
     }
 }
