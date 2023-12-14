@@ -43,37 +43,41 @@ function ArtistListPage() {
   return (
     <div className="VenueListPageContainer">
       <div className="RowContainer">
-        <div className="searchContainer">
-          <form>
-            <input
-              className="inputField"
-              type="text"
-              placeholder="Search for an artist"
-              value={searchValue}
-              onChange={handleSearch}
-              required
-            />
-            <label className="inputLabel">SEARCH</label>
-          </form>
-        </div>
-        {isLoggedIn && (
-          <div className="AddButton">
-            <Link to="/artists/add">
-              <div tabIndex="0" className="plusButton">
-                <svg
-                  className="plusIcon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 30 30"
-                >
-                  <g mask="url(#mask0_21_345)">
-                    <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
-                  </g>
-                </svg>
+        <div className="inputOutContainer">
+          <div className="SearchContainer">
+            <div className="search">
+              <form>
+                <input
+                  className="inputField"
+                  type="text"
+                  placeholder="Search for an artist"
+                  value={searchValue}
+                  onChange={handleSearch}
+                  required
+                />
+                <label className="inputLabel">SEARCH</label>
+              </form>
+            </div>
+            {isLoggedIn && (
+              <div className="AddButton">
+                <Link to="/artists/add">
+                  <div tabIndex="0" className="plusButton">
+                    <svg
+                      className="plusIcon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 30 30"
+                    >
+                      <g mask="url(#mask0_21_345)">
+                        <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                      </g>
+                    </svg>
+                  </div>
+                </Link>
               </div>
-            </Link>
+            )}
           </div>
-        )}
-      </div>
+        </div>
+      </div >
       <div className="ConcertListPageContainer">
         {displayArtists !== null && displayArtists.length === 0 && (
           <h1>No artists to display</h1>
