@@ -117,6 +117,7 @@ body {
     overflow: hidden; 
     animation: slideText 40s linear infinite;
     font-family: 'Afacad', sans-serif;
+    color: white;
 }
 
 @keyframes slideText {
@@ -129,6 +130,7 @@ body {
 }
 
 /* Responsive styles */
+
 @media (max-width: 767px) {
     .HeaderContent {
         text-align: center; 
