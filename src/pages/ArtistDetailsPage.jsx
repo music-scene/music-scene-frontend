@@ -48,8 +48,11 @@ function ArtistDetailsPage() {
                             <div className="ConcertImageDiv" key={artistDetails._id}>
                                 <img src={artistDetails.imageUrl} />
                             </div>
-                            <h2>{artistDetails.name}</h2>
-                            <h2>{artistDetails.description}</h2>
+                            <h1>{artistDetails.name}</h1>
+                            <h2>Description</h2>
+                            <p>{artistDetails.description}</p>
+                            <h3 className="">GENRES</h3>
+                            {artistDetails.genre !== null ? artistDetails.genre.map(genre =><p>{genre.name}</p>): ""}
                         </div>
                     )}
             </div>
