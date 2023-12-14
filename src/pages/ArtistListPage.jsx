@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { sortArtistsAlphabetically } from "../helperFunctions/helperFunction"
+import { sortAlphabetically } from "../helperFunctions/helperFunction"
 import { AuthContext } from "../context/auth.context";
 import artistService from "../services/artist.service";
 
@@ -75,7 +75,7 @@ function ArtistListPage() {
                 {(displayArtists !== null && displayArtists.length === 0) && <h1>No artists to display</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
                 {displayArtists === null
                     ? (<h1>Artists list is loading...</h1>)
-                    : (sortedArtists = sortArtistsAlphabetically(displayArtists), sortedArtists.map((artist) => {
+                    : (sortedArtists = sortAlphabetically(displayArtists), sortedArtists.map((artist) => {
                         return (
                             <div className="ConcertImageContainer" key={artist._id}>
 

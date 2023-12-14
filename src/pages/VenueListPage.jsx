@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import { sortAlphabetically } from "../helperFunctions/helperFunction"
 import venueService from '../services/venue.service';
 
 function VenueListPage() {
@@ -9,6 +10,8 @@ function VenueListPage() {
   const [searchValue, setSearchValue] = useState("");
 
   const { isLoggedIn } = useContext(AuthContext)
+
+  let sortedVenues = null
 
   const getAllVenues = () => {
     venueService.getAllVenues()
@@ -55,7 +58,7 @@ function VenueListPage() {
             <label className="inputLabel">SEARCH</label>
           </form>
         </div>
-  
+
         {isLoggedIn && (
           <div className="AddButton">
             <Link to="/venues/add">
@@ -70,24 +73,22 @@ function VenueListPage() {
           </div>
         )}
       </div>
-  
+
       {(displayVenues !== null && displayVenues.length === 0) && <h1>No venues available</h1>}
       {displayVenues === null ? (
         <h1>Venues list is loading...</h1>
-      ) : (
-        <div>
-          {displayVenues.map((venue) => (
-            <div className="VenueContainer" key={venue._id}>
-              <Link to={`/venues/${venue._id}`}>
-                <img src={venue.imageUrl} alt={venue.name} />
-                <h2>{venue.name}</h2>
-                {/* Add the location with a different class */}
-                <p className="VenueLocation">{venue.location}</p>
-              </Link>
-            </div>
-          ))}
-        </div>
-      )}
+      ) : (sortedVenues = sortAlphabetically(displayVenues), sortedVenues.map((venue) => {
+        return (
+          <div className="VenueContainer" key={venue._id}>
+            <Link to={`/venues/${venue._id}`}>
+              <img src={venue.imageUrl} alt={venue.name} />
+              <h2>{venue.name}</h2>
+              {/* Add the location with a different class */} 
+              <p className="VenueLocation">{venue.location}</p>
+            </Link>
+          </div>
+        )
+      }))}
     </div>
   );
 

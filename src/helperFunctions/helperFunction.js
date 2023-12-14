@@ -30,9 +30,9 @@ function sortConcertsByDate(concertList) {
     return tempObj;
 }
 
-function sortArtistsAlphabetically(artistsList) {
+function sortAlphabetically(objList) {
 
-    let tempObj = structuredClone(artistsList);
+    let tempObj = structuredClone(objList);
     
     if (tempObj.length === 1) return tempObj
 
@@ -101,4 +101,4 @@ function setDefaultProfileImageUrl(imageUrl) {
 }
 
 
-export { sortArtistsAlphabetically, sortConcertsByDate, getNamesForLists, setDefaultImageUrl, setDefaultProfileImageUrl, defaultImageUrl, defaultProfileImageUrl };
+export { sortAlphabetically, sortConcertsByDate, getNamesForLists, setDefaultImageUrl, setDefaultProfileImageUrl, defaultImageUrl, defaultProfileImageUrl };
