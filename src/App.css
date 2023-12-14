@@ -65,6 +65,8 @@ body {
 */
 
 .ConcertDetailsInfoDiv {
+    max-width: 900px;
+    text-align: left;
 }
 
 /*

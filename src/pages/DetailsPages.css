@@ -91,6 +91,7 @@
   }
 }
 
+/* ConcertDetails*/
 
 .ConcertDetailsImageContainer {
   flex-basis: 100%;
@@ -104,9 +105,14 @@
   max-width: 900px;
   max-height: 700px;
   object-fit: cover;
+  margin-bottom: 30px;
 }
 
 
+.ConcertDetailsContainer {
+  max-width: 1600px;
+  margin: 0 auto; 
+}
 
 .InfoRow {
   display: flex;
@@ -115,4 +121,24 @@
 
 .InfoRow h3 {
   margin-right: 10px; 
+}
+
+
+
+.VenueDetailsButtonDiv {
+  margin-top: 20px; 
+}
+
+.VenueDetailsButton {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.VenueDetailsButton:hover {
+  background-color: #333;
 }
