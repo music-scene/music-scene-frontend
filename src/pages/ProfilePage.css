@@ -1,0 +1,112 @@
+/* profilePage.css */
+
+.ProfilePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.ProfileInfo {
+  text-align: center;
+}
+
+.ProfileImageDiv {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.ProfileImageDiv img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ProfileInfo h3 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.ProfileInfo p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.EditDeleteContainer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.EditContainer {
+  display: inline-block;
+}
+
+.EditDeleteContainer .button {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 24px;
+  height: 40px;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 24px;
+  background-color: transparent;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  overflow: hidden;
+}
+
+.EditDeleteContainer .button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: rgb(255, 255, 255);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.EditDeleteContainer .button:hover::before {
+  scale: 3;
+}
+
+.EditDeleteContainer .button:hover {
+  color: #212121;
+  scale: 1.1;
+  box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
+}
+
+.EditDeleteContainer .button:active {
+  scale: 1;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .ProfilePage {
+    align-items: center;
+  }
+
+  .ProfileImageDiv {
+    width: 320px;
+    height: 320px;
+  }
+
+  .ProfileInfo h3 {
+    font-size: 16px;
+  }
+
+  .ProfileInfo p {
+    font-size: 14px;
+  }
+
+  .EditDeleteContainer .button {
+    font-size: 14px;
+  }
+}
