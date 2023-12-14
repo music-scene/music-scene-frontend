@@ -198,7 +198,7 @@ function EditConcert(props) {
                         </div>
                         <div className="inputContainer">
                             <Dropdown
-                                className="inputFieldDropdown"
+                                className="inputFieldDropdown venue"
                                 placeholder="Venue"
                                 fluid={false}
                                 defaultValue={venueName}

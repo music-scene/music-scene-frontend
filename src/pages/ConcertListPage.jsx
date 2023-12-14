@@ -74,7 +74,7 @@ function ConcertListPage() {
                 let artistNames = artist.map(artist => artist.name)
                 console.log(artistNames)
                 console.log(artistFilter)
-                return title.toLowerCase().includes(searchValue.toLowerCase()) && (venue.name === venueFilter || venueFilter === "") && (artistNames.includes(artistFilter) || artistFilter === "") 
+                return title.toLowerCase().includes(searchValue.toLowerCase()) && (venue.name === venueFilter || venueFilter === "") && (artistNames.includes(artistFilter) || artistFilter === "")
             })
             setDisplayConcerts(result)
         }
@@ -83,54 +83,28 @@ function ConcertListPage() {
     return (
         <div className="VenueListPageContainer">
             <div className="RowContainer">
-                <div className="searchContainer">
-                    <form>
-                        <input
-                            className="inputField"
-                            type="text"
-                            placeholder="Search for concert"
-                            value={searchValue}
-                            onChange={handleSearch}
-                            required
-                        />
-                        <label className="inputLabel">SEARCH</label>
-                    </form>
-                </div>
-                {isLoggedIn && (
-                    <div className="AddButton">
-                        <Link to="/concerts/add">
-                            <div tabIndex="0" className="plusButton">
-                                <svg className="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                                    <g mask="url(#mask0_21_345)">
-                                        <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
-                                    </g>
-                                </svg>
-                            </div>
-                        </Link>
-                    </div>
-                )}
-            </div>
-            <div className="RowContainer">
-                <div className="inputContainer">
-                    <Dropdown
-                        className="inputFieldDropdown"
-                        placeholder="Select a venue"
-                        fluid={false}
-                        clearable
-                        selection
-                        value={venueFilter || ""}
-                        onChange={handleVenueFilter}
-                        options={venuesNamesList}
-                    />
-                    <label
-                        className="inputLabel"
-                        htmlFor="inputFieldDropdown">Venues
-                    </label>
-                </div>
-                <div className="RowContainer">
+                <div className="inputOutContainer">
                     <div className="inputContainer">
                         <Dropdown
-                            className="inputFieldDropdown"
+                            className="inputFieldDropdown filter"
+                            placeholder="Select a venue"
+                            fluid={false}
+                            clearable
+                            selection
+                            value={venueFilter || ""}
+                            onChange={handleVenueFilter}
+                            options={venuesNamesList}
+                        />
+                        <label
+                            className="inputLabel"
+                            htmlFor="inputFieldDropdown">Venues
+                        </label>
+                    </div>
+                </div>
+                <div className="inputOutContainer">
+                    <div className="inputContainer">
+                        <Dropdown
+                            className="inputFieldDropdown filter"
                             placeholder="Select a artist"
                             fluid={false}
                             clearable
@@ -145,28 +119,58 @@ function ConcertListPage() {
                         </label>
                     </div>
                 </div>
-                < div className="ConcertListPageContainer" >
-                    {(displayConcerts !== null && displayConcerts.length === 0) && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
-                    {displayConcerts === null
-                        ? (<h1>Concerts list is loading...</h1>)
-                        : (sortedConcerts = sortConcertsByDate(displayConcerts),
-                            sortedConcerts.map((concert) => {
-                                return (
-                                    <div className="ConcertImageContainer" key={concert._id}>
-                                        <Link to={`/concerts/${concert._id}`}>
-                                            <div className="ConcertImageDiv" key={concert._id}>
-                                                <img src={concert.imageUrl} />
-                                            </div>
-                                            <h2>{concert.title}</h2>
-                                        </Link>
+                <div className="inputOutContainer">
+                    <div className="SearchContainer">
+                        <div className="search">
+                            <form>
+                                <input
+                                    className="inputField"
+                                    type="text"
+                                    placeholder="Search for concert"
+                                    value={searchValue}
+                                    onChange={handleSearch}
+                                    required
+                                />
+                                <label className="inputLabel">SEARCH</label>
+                            </form>
+                        </div>
+                        {isLoggedIn && (
+                            <div className="AddButton">
+                                <Link to="/concerts/add">
+                                    <div tabIndex="0" className="plusButton">
+                                        <svg className="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                                            <g mask="url(#mask0_21_345)">
+                                                <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                                            </g>
+                                        </svg>
                                     </div>
-
-                                );
-                            })
+                                </Link>
+                            </div>
                         )}
-                </div >
+                    </div>
+                </div>
+            </div>
+            < div className="ConcertListPageContainer" >
+                {(displayConcerts !== null && displayConcerts.length === 0) && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
+                {displayConcerts === null
+                    ? (<h1>Concerts list is loading...</h1>)
+                    : (sortedConcerts = sortConcertsByDate(displayConcerts),
+                        sortedConcerts.map((concert) => {
+                            return (
+                                <div className="ConcertImageContainer" key={concert._id}>
+                                    <Link to={`/concerts/${concert._id}`}>
+                                        <div className="ConcertImageDiv" key={concert._id}>
+                                            <img src={concert.imageUrl} />
+                                        </div>
+                                        <h2>{concert.title}</h2>
+                                    </Link>
+                                </div>
+
+                            );
+                        })
+                    )}
             </div >
-        </div>
+        </div >
     )
 }
 

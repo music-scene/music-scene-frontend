@@ -19,9 +19,7 @@
 .search {
   font-size: 18px;
   display: inline-block;
-  margin-bottom: 12px;
-  margin-top: 12px;
-  color: #fff; 
+  margin-right: 10px;
 }
 
 /*.inpt_search {
@@ -76,17 +74,7 @@
 }
 
 
-/* Responsive - changes after the breaking points */
-@media (max-width: 768px) {
-  .VenueContainer {
-    width: calc(100% - 40px);
-    margin: 0 20px 30px 20px;
-  }
 
-  .inpt_search {
-    width: 100%;
-  }
-}
 
 .RowContainer {
   display: flex;
@@ -160,10 +148,6 @@
 }
 
 
-
-
-
-
 /* ConcertListPage.css */
 
 /* Container styles */
@@ -173,13 +157,8 @@
   padding: 20px;
 }
 
-
-.search {
-  font-size: 18px;
-  display: inline-block;
-  margin-bottom: 12px;
-  margin-top: 12px;
-  color: #fff;
+.inputOutContainer {
+  margin: 0 10px;
 }
 
 .inpt_search {
@@ -225,8 +204,8 @@
 }
 
 /* Responsive - changes after the breaking points */
-@media (max-width: 768px) {
-  .ConcertImageContainer {
+@media screen and (max-width: 830px) {
+  .VenueContainer {
     width: calc(100% - 40px);
     margin: 0 20px 30px 20px;
   }
@@ -234,5 +213,47 @@
   .inpt_search {
     width: 100%;
   }
+
+  .RowContainer {
+    flex-direction: column;
+  }
+
+  .inputContainer {
+    margin-bottom: 15px !important;
+  }
+
+  .SearchContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0px !important;
+  }
+
+  .search {
+    margin: 0;
+    margin-bottom: 15px;
+  }
+
+  .plusButton {
+    margin: 0;
+  }
+
+  .VenueListPageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ConcertListPageContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    max-width: 360px;
+  }
+
+  .ConcertImageContainer {
+    margin: 0;
+  }
 }
+
 
