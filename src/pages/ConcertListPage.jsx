@@ -155,12 +155,12 @@ function ConcertListPage() {
                     : (sortedConcerts = sortConcertsByDate(displayConcerts),
                         sortedConcerts.map((concert) => {
                             return (
-                                <div className="ConcertImageContainer" key={concert._id}>
+                                <div className="VenueContainer" key={concert._id}>
                                     <Link to={`/concerts/${concert._id}`}>
-                                        <div className="ConcertImageDiv" key={concert._id}>
-                                            <img src={concert.imageUrl} />
-                                        </div>
+                                        <img src={concert.imageUrl} alt={concert.title} />
                                         <h2>{concert.title}</h2>
+                                        {/* Add the location with a different class */}
+                                        <p className="VenueLocation">{concert.venue.location}</p>
                                     </Link>
                                 </div>
 

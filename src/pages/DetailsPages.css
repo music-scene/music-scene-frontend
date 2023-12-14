@@ -132,7 +132,7 @@ p {
 }
 
 /* Responsive styles */
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
 
   .ConcertDetailsContainer {
     max-width: 100%;
@@ -159,7 +159,7 @@ p {
   }
 
   
-}
+} */
 
 /* mobil + */
 @media (max-width: 767px) {
