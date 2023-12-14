@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { sortConcertsByDate } from "../helperFunctions/helperFunction";
 import concertService from '../services/concert.service';
-import "../App.css";
+
 
 function HomePage() {
     const [concerts, setConcerts] = useState(null);
