@@ -4,6 +4,7 @@ import { AuthContext } from "../context/auth.context";
 import concertService from '../services/concert.service'
 import ConcertDetailsContainer from "../components/ConcertDetailsContainer"
 import EditConcert from "../components/EditConcert"
+import "./DetailsPages.css";
 
 function ConcertDetailsPage() {
 
