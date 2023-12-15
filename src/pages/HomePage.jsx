@@ -32,7 +32,7 @@ function HomePage() {
                 {(concerts !== null && concerts.length === 0) && <h1>No upcoming concerts</h1>}
                 {concerts === null
                     ? (<h1>Concerts list is loading...</h1>)
-                    : (sortedConcerts = sortConcertsByDate(concerts), sortedConcerts.splice(10),
+                    : (sortedConcerts = sortConcertsByDate(concerts), sortedConcerts.splice(8),
                         sortedConcerts.map((concert) => {
                             return (
                                 <div className="ConcertImageContainer" key={concert._id}>
