@@ -21,16 +21,6 @@
     display: inline-block;
 }
 
-/*.inpt_search {
-  padding: 10px; 
-  font-size: 16px;
-  width: 300px;
-  border: 1px solid #ccc; 
-  border-radius: 5px; 
-  background-color: #fff; 
-  color: #555; 
-}*/
-
 /* Venue container styles */
 .VenueContainer {
     width: 340px;
@@ -41,7 +31,7 @@
     position: relative;
     overflow: hidden;
     text-transform: uppercase;
-    font-family: "Afacad", sans-serif;
+    font-family: "Afacad", sans-serif !important;
 }
 
 /* Images fill in a fixed size */
@@ -68,7 +58,7 @@
     font-size: 14px;
     color: #888;
     margin-top: 5px;
-    font-family: "Afacad", sans-serif;
+    font-family: "Afacad", sans-serif !important;
 }
 
 .RowContainer {
