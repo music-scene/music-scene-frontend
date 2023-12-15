@@ -1,46 +1,39 @@
-# MERN Web Application
+# MusicScene
 
-## PAGES
+## Description
 
-### Homepage:
+Welcome to **MusicScene**, your guide to live music!
 
-  - Navbar (displayed across all pages)
+For our third project, we have created a **Full-stack SPA** using the **MERN stack** (MongoDB, Express, React and Node.JS). 
 
-  - Display X upcoming concerts ordered by date;
+This is the Frontend repo. You can find the Backend repo [here](https://github.com/music-scene/music-scene-backend)
 
-  - Footer (displayed across all pages)
+## Instructions
 
+To be able to run this on your computer, first clone the repo:
 
-### Concerts Page
-  
-  - Display X upcoming concerts ordered by date;
+```
+git clone <repo url>
+```
 
-  - Filter by venue, price (bonus: artists, genre)
+Create a .env file in your project folder and add the following:
+```
+VITE_API_URL=http://localhost:5005
+```
 
+Then run the following command to install all the required dependencies:
 
-### Venues Page
+```
+npm install
+```
+To run and test the application, the command is:
 
-  - Display X venues ordered by name;
+```
+npm run dev
+```
 
-  - Filter by location, capacity
+## Demo
 
+Go ahead and give it a try!
 
-## COMPONENTS
-
-### Navbar:
-
-  - Logo to the left
-
-  - Search bar* (+ with suggestions) in the middle; //limit search to current page e.g - only concerts in concerts page
-
-  - Links (Homepage/Signup/Login/Logout + Profile) to the right 
-
-### Footer:
-
-  - Social media links (maybe just images) to the left
-
-  - Contact and impressum to right
-
-  - Some links in the middle (we'll figure it out later)
-
-  *component or just part of the navbar?
+[MusicScene](https://music-scene.netlify.app/)
