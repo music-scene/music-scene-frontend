@@ -13,7 +13,7 @@ function VenueListPage() {
 
   const { isLoggedIn } = useContext(AuthContext)
 
-  const venuesPerPage = 3
+  const venuesPerPage = 12
 
   const getAllVenues = () => {
     venueService.getAllVenues()
