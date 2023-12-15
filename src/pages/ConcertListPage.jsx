@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Dropdown } from "semantic-ui-react";
+import { Dropdown, Pagination } from "semantic-ui-react";
 import { getNamesForLists, sortConcertsByDate } from "../helperFunctions/helperFunction"
 import { AuthContext } from "../context/auth.context";
 import concertService from '../services/concert.service'
@@ -16,9 +16,11 @@ function ConcertListPage() {
     const [searchValue, setSearchValue] = useState("");
     const [venueFilter, setVenueFilter] = useState("")
     const [artistFilter, setArtistFilter] = useState("")
+    const [activePage, setActivePage] = useState(1);
 
     const { isLoggedIn } = useContext(AuthContext)
 
+    const concertsPerPage = 12;
 
     let sortedConcerts = null;
 
@@ -59,6 +61,17 @@ function ConcertListPage() {
     const handleArtistFilter = (event, data) => {
         setArtistFilter(data.value)
     }
+
+    const handlePaginationChange = (e, { activePage }) =>
+        setActivePage(activePage);
+
+    const concertsOnPage =
+        displayConcerts === null
+            ? null
+            : displayConcerts.slice(
+                (activePage - 1) * concertsPerPage,
+                activePage * concertsPerPage
+            );
 
     useEffect(() => {
         getAllConcerts()
@@ -147,10 +160,10 @@ function ConcertListPage() {
                 </div>
             </div>
             < div className="ConcertListPageContainer" >
-                {(displayConcerts !== null && displayConcerts.length === 0) && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
-                {displayConcerts === null
+                {(concertsOnPage !== null && concertsOnPage.length === 0) && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
+                {concertsOnPage === null
                     ? (<h1>Concerts list is loading...</h1>)
-                    : (sortedConcerts = sortConcertsByDate(displayConcerts),
+                    : (sortedConcerts = sortConcertsByDate(concertsOnPage),
                         sortedConcerts.map((concert) => {
                             return (
                                 <div className="VenueContainer" key={concert._id}>
@@ -166,6 +179,21 @@ function ConcertListPage() {
                         })
                     )}
             </div >
+            {(displayConcerts === null || displayConcerts.length === 0)
+                ? <></>
+                : (
+                    <div className="PaginationDiv">
+                        {concertsOnPage === null ? (
+                            ""
+                        ) : (
+                            <Pagination
+                                defaultActivePage={activePage}
+                                totalPages={Math.ceil(displayConcerts.length / concertsPerPage)}
+                                onPageChange={handlePaginationChange}
+                            />
+                        )}
+                    </div>
+                )}
         </div >
     )
 }

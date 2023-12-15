@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { Pagination } from "semantic-ui-react";
 import { AuthContext } from "../context/auth.context";
 import { sortAlphabetically } from "../helperFunctions/helperFunction"
 import venueService from '../services/venue.service';
@@ -8,8 +9,11 @@ function VenueListPage() {
   const [venues, setVenues] = useState(null);
   const [displayVenues, setDisplayVenues] = useState(null);
   const [searchValue, setSearchValue] = useState("");
+  const [activePage, setActivePage] = useState(1);
 
   const { isLoggedIn } = useContext(AuthContext)
+
+  const venuesPerPage = 12
 
   let sortedVenues = null
 
@@ -27,6 +31,17 @@ function VenueListPage() {
     e.preventDefault();
     setSearchValue(e.target.value);
   };
+
+  const handlePaginationChange = (e, { activePage }) =>
+    setActivePage(activePage);
+
+  const venuesOnPage =
+    displayVenues === null
+      ? null
+      : displayVenues.slice(
+        (activePage - 1) * venuesPerPage,
+        activePage * venuesPerPage
+      );
 
   useEffect(() => {
     getAllVenues();
@@ -81,10 +96,10 @@ function VenueListPage() {
         </div>
       </div >
       < div className="ConcertListPageContainer" >
-        {(displayVenues !== null && displayVenues.length === 0) && <h1>No venues available</h1>}
-        {displayVenues === null ? (
+        {(venuesOnPage !== null && venuesOnPage.length === 0) && <h1>No venues available</h1>}
+        {venuesOnPage === null ? (
           <h1>Venues list is loading...</h1>
-        ) : (sortedVenues = sortAlphabetically(displayVenues), sortedVenues.map((venue) => {
+        ) : (sortedVenues = sortAlphabetically(venuesOnPage), sortedVenues.map((venue) => {
           return (
             <div className="VenueContainer" key={venue._id}>
               <Link to={`/venues/${venue._id}`}>
@@ -97,6 +112,20 @@ function VenueListPage() {
           )
         }))}
       </div>
+      {(displayVenues === null || displayVenues.length === 0)
+        ? <></>
+        : (<div className="PaginationDiv">
+          {venuesOnPage === null ? (
+            ""
+          ) : (
+            <Pagination
+              defaultActivePage={activePage}
+              totalPages={Math.ceil(displayVenues.length / venuesPerPage)}
+              onPageChange={handlePaginationChange}
+            />
+          )}
+        </div>
+        )}
     </div>
   );
 

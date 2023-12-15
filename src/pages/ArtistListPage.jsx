@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { Pagination } from "semantic-ui-react";
 import { sortAlphabetically } from "../helperFunctions/helperFunction";
 import { AuthContext } from "../context/auth.context";
 import artistService from "../services/artist.service";
@@ -8,8 +9,11 @@ function ArtistListPage() {
   const [artists, setArtist] = useState(null);
   const [searchValue, setSearchValue] = useState("");
   const [displayArtists, setDisplayArtists] = useState(null);
+  const [activePage, setActivePage] = useState(1);
 
   const { isLoggedIn } = useContext(AuthContext);
+
+  const artistsPerPage = 12
 
   let sortedArtists = null;
 
@@ -26,6 +30,17 @@ function ArtistListPage() {
     e.preventDefault();
     setSearchValue(e.target.value);
   };
+
+  const handlePaginationChange = (e, { activePage }) =>
+    setActivePage(activePage);
+
+  const artistsOnPage =
+    displayArtists === null
+      ? null
+      : displayArtists.slice(
+        (activePage - 1) * artistsPerPage,
+        activePage * artistsPerPage
+      );
 
   useEffect(() => {
     getAllArtists();
@@ -79,10 +94,10 @@ function ArtistListPage() {
         </div>
       </div >
       < div className="ConcertListPageContainer" >
-        {(displayArtists !== null && displayArtists.length === 0) && <h1>No artists to display</h1>}
-        {displayArtists === null
+        {(artistsOnPage !== null && artistsOnPage.length === 0) && <h1>No artists to display</h1>}
+        {artistsOnPage === null
           ? (<h1>Artists list is loading...</h1>)
-          : (sortedArtists = sortAlphabetically(displayArtists),
+          : (sortedArtists = sortAlphabetically(artistsOnPage),
             sortedArtists.map((artist) => {
               return (
                 <div className="VenueContainer" key={artist._id}>
@@ -95,6 +110,22 @@ function ArtistListPage() {
             })
           )}
       </div >
+      {(displayArtists === null || displayArtists.length === 0)
+        ? <></>
+        : (
+          <div className="PaginationDiv">
+            {artistsOnPage === null ? (
+              ""
+            ) : (
+              <Pagination
+                defaultActivePage={activePage}
+                onPageChange={handlePaginationChange}
+                totalPages={Math.ceil(displayArtists.length / artistsPerPage)}
+              />
+            )}
+
+          </div>
+        )}
     </div>
   );
 }

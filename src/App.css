@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Afacad:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Afacad:wght@600&display=swap");
 
 #root {
     max-width: 100%;
@@ -10,7 +10,7 @@
 body {
     text-align: center;
     background-color: #0a0a0a;
-    font-family: 'Afacad', sans-serif !important;
+    font-family: "Afacad", sans-serif !important;
     color: rgb(255, 255, 255);
     font-size: 18px;
     margin: 0;
@@ -75,8 +75,6 @@ body {
 
 */
 
-
-
 .VenueDetailsButton {
     width: 100px;
 }
@@ -102,7 +100,7 @@ body {
 /* Home */
 
 .HomePageContainer {
-    margin-top: 50px; 
+    margin-top: 50px;
 }
 
 .VenueListPageContainer img {
@@ -111,7 +109,6 @@ body {
     height: 400px;
     object-fit: cover;
 }
-
 
 .HeaderContent {
     position: relative;
@@ -132,9 +129,29 @@ body {
     font-size: 100px;
     white-space: nowrap;
     overflow: hidden;
-    font-family: 'Afacad', sans-serif !important;
+    font-family: "Afacad", sans-serif !important;
     color: white;
     text-align: center;
+}
+
+.ui.pagination.menu {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.ui.pagination.menu a.active.item {
+    border-top: 1px solid white;
+    background-color: #000000;
+    color: white;
+}
+
+.ui.pagination.menu .item {
+    color: white;
+    border: 1px solid white;
+}
+
+.ui.pagination.menu .item:hover {
+    color: #3a4f91;
+    text-shadow: 0 0 30px #351a79, 0 0 40px #351a79, 0 0 60px #351a79;
 }
 
 /* Responsive styles */
@@ -147,8 +164,8 @@ body {
     }
 
     .HeaderContent h1 {
-        font-size: 1.5em; 
-        animation: none; 
+        font-size: 1.5em;
+        animation: none;
     }
 
     .HeaderContent img {
