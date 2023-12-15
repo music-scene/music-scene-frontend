@@ -1,4 +1,4 @@
-# MusicScene
+# MusicScene Client
 
 ## Description
 
