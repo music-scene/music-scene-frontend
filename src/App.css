@@ -105,17 +105,36 @@ body {
     margin-top: 50px; 
 }
 
+.VenueListPageContainer img {
+    width: 100%;
+    margin: 24px auto;
+    height: 400px;
+    object-fit: cover;
+}
+
+
+.HeaderContent {
+    position: relative;
+}
+
 .HeaderContent img {
     width: 100%;
     margin: 24px auto;
+    height: 300px;
+    object-fit: cover;
 }
 
 .HeaderContent h1 {
-    font-size: 100px; 
-    white-space: nowrap; 
-    overflow: hidden; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
+    white-space: nowrap;
+    overflow: hidden;
     font-family: 'Afacad', sans-serif !important;
     color: white;
+    text-align: center;
 }
 
 /* Responsive styles */
