@@ -14,15 +14,13 @@ function ArtistListPage() {
   const { isLoggedIn } = useContext(AuthContext);
 
   const artistsPerPage = 12
-
-  let sortedArtists = null;
-
+  
   const getAllArtists = () => {
     artistService
       .getAllArtists()
       .then((response) => {
         setArtist(response.data);
-        setDisplayArtists(response.data);
+        setDisplayArtists(sortAlphabetically(response.data));
       });
   };
 
@@ -97,8 +95,7 @@ function ArtistListPage() {
         {(artistsOnPage !== null && artistsOnPage.length === 0) && <h1>No artists to display</h1>}
         {artistsOnPage === null
           ? (<h1>Artists list is loading...</h1>)
-          : (sortedArtists = sortAlphabetically(displayArtists),
-            sortedArtists.map((artist) => {
+          : (artistsOnPage.map((artist) => {
               return (
                 <div className="VenueContainer" key={artist._id}>
                   <Link to={`/artists/${artist._id}`}>

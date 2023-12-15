@@ -22,13 +22,11 @@ function ConcertListPage() {
 
     const concertsPerPage = 12;
 
-    let sortedConcerts = null;
-
     const getAllConcerts = () => {
         concertService.getAllConcerts()
             .then((response) => {
                 setConcerts(response.data)
-                setDisplayConcerts(response.data)
+                setDisplayConcerts(sortConcertsByDate(response.data))
             })
             .catch((error) => console.log(error));
     };
@@ -163,8 +161,7 @@ function ConcertListPage() {
                 {(concertsOnPage !== null && concertsOnPage.length === 0) && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
                 {concertsOnPage === null
                     ? (<h1>Concerts list is loading...</h1>)
-                    : (sortedConcerts = sortConcertsByDate(displayConcerts),
-                        sortedConcerts.map((concert) => {
+                    : (concertsOnPage.map((concert) => {
                             return (
                                 <div className="VenueContainer" key={concert._id}>
                                     <Link to={`/concerts/${concert._id}`}>
