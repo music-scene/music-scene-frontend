@@ -97,7 +97,7 @@ function ArtistListPage() {
         {(artistsOnPage !== null && artistsOnPage.length === 0) && <h1>No artists to display</h1>}
         {artistsOnPage === null
           ? (<h1>Artists list is loading...</h1>)
-          : (sortedArtists = sortAlphabetically(artistsOnPage),
+          : (sortedArtists = sortAlphabetically(displayArtists),
             sortedArtists.map((artist) => {
               return (
                 <div className="VenueContainer" key={artist._id}>

@@ -99,7 +99,7 @@ function VenueListPage() {
         {(venuesOnPage !== null && venuesOnPage.length === 0) && <h1>No venues available</h1>}
         {venuesOnPage === null ? (
           <h1>Venues list is loading...</h1>
-        ) : (sortedVenues = sortAlphabetically(venuesOnPage), sortedVenues.map((venue) => {
+        ) : (sortedVenues = sortAlphabetically(displayVenues), sortedVenues.map((venue) => {
           return (
             <div className="VenueContainer" key={venue._id}>
               <Link to={`/venues/${venue._id}`}>

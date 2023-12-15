@@ -163,7 +163,7 @@ function ConcertListPage() {
                 {(concertsOnPage !== null && concertsOnPage.length === 0) && <h1>No upcoming concerts</h1>}  {/* FIND A WAY TO MAKE THIS WORK PLEASE */}
                 {concertsOnPage === null
                     ? (<h1>Concerts list is loading...</h1>)
-                    : (sortedConcerts = sortConcertsByDate(concertsOnPage),
+                    : (sortedConcerts = sortConcertsByDate(displayConcerts),
                         sortedConcerts.map((concert) => {
                             return (
                                 <div className="VenueContainer" key={concert._id}>
