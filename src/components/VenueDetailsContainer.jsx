@@ -1,6 +1,5 @@
 function VenueDetailsContainer(props) {
 
-
     return (
         <div>
             <div>
@@ -29,21 +28,3 @@ function VenueDetailsContainer(props) {
 }
 
 export default VenueDetailsContainer;
-
-/* const [slide, setSlide] = useState(0);
-
- const nextSlide = () => {
-   setSlide(slide === props.game.images.length - 1 ? 0 : slide + 1);
- };
-
- const prevSlide = () => {
-   setSlide(slide === 0 ? props.game.images.length - 1 : slide - 1);
- };
-
- function fixedUrl(url) {
-   if (url.length === 0) return "";
-   const fixedUrl = url.replace("watch?v=", "embed/");
-
-   return fixedUrl;
- } */
-/*   console.log(props.concert.venue.name) */

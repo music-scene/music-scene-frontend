@@ -180,7 +180,7 @@ p {
 } */
 
 /* mobil + */
-@media (max-width: 767px) {
+@media (max-width: 830px) {
 
   .ConcertDetailsContainer {
     max-width: 100%;

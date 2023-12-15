@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Dropdown } from "semantic-ui-react";
+import { getNamesForLists, setDefaultImageUrl } from "../helperFunctions/helperFunction"
 import venueService from '../services/venue.service'
 import concertService from '../services/concert.service'
 import artistService from '../services/artist.service'
-import { getNamesForLists, setDefaultImageUrl } from "../helperFunctions/helperFunction"
 
 function EditConcert(props) {
 
     const [title, setTitle] = useState("");
-    const [artistId, setArtistId] = useState(null);
     const [artistsIds, setArtistsIds] = useState(null)
     const [artistsList, setArtistsList] = useState(null)
     const [artistsNames, setArtistsNames] = useState(null)
@@ -113,6 +112,8 @@ function EditConcert(props) {
 
     const handleVenueSelection = (event, data) => {
 
+        if (data.value.length === 0) setVenueId(null)
+
         const selectedVenueArray = venuesList.find((venue) => {
             return venue.name === data.value
         })
@@ -120,7 +121,12 @@ function EditConcert(props) {
     };
 
     const handleArtistSelections = (event, data) => {
-        console.log(event)
+
+        if (data.value.length === 0) {
+            setArtistsIds(null)
+            setArtistsNames(null)
+        }
+
         let artistArray = [];
         let artistsIDsArray = []
         let artistsNamesArray = []
@@ -144,7 +150,6 @@ function EditConcert(props) {
         <div>
             <div className="">
                 <div className="">
-                    <h1>EDIT CONCERT</h1>
                     <form onSubmit={handleSubmit}>
                         <div className="inputContainer">
                             <input
@@ -268,11 +273,7 @@ function EditConcert(props) {
                         {errorMessage && <p className="error-message">{errorMessage}</p>}
                         <button type="submit" className="button">Submit</button>
                     </form>
-
                 </div>
-                {/* <div>
-                    <GameDetailsContainer title={title} imageUrl={imageUrl} description={description} rating={rating} price={price} genre={genre} platform={platform} />
-                </div> */}
             </div>
         </div>
     );

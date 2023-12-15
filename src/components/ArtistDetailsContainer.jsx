@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 function ArtistDetailsContainer(props) {
 
     return (
@@ -13,7 +11,7 @@ function ArtistDetailsContainer(props) {
                         </div>
                         <div className="ConcertDetailsInfoDiv">
                             <div className="InfoRow">
-                                {props.artist.genre === null || props.artist.genre === 0
+                                {props.artist.genre === null || props.artist.genre.length === 0
                                     ? ""
                                     : <p className="ArtistsP"><span className="DetailsSpans">Genres: </span>
                                         {props.artist.genre.map((genre, index) => props.artist.genre.length === 1

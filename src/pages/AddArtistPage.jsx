@@ -22,13 +22,13 @@ function AddArtistPage() {
     const { user } = useContext(AuthContext)
 
     const navigate = useNavigate();
+
     let newId = ""
+
     const getAllGenres = () => {
 
-        //setIsAdded(false)
         genreService.getAllGenres()
             .then((response) => {
-                console.log("forst")
                 setGenreNameList(getNamesForLists(response.data))
                 setGenreList(response.data)
                 setGenresNames(getNames(response.data))
@@ -48,12 +48,10 @@ function AddArtistPage() {
             name: genre
         }
 
-
         genreService.addGenre(requestBody)
             .then(response => {
                 newId = response.data._id
                 pushNewId(newId)
-                console.log(response)
             })
             .catch((error) => console.log(error))
 
@@ -62,7 +60,6 @@ function AddArtistPage() {
     }
 
     const pushNewId = (newId) => {
-
         setGenresIds(genresIds => [...genresIds, newId])
     }
 
@@ -96,7 +93,10 @@ function AddArtistPage() {
 
     const handleGenreSelection = (event, data) => {
 
-        if (data.value.length === 0) setGenres(null)
+        if (data.value.length === 0) {
+            setGenresIds(null)
+            setGenres(null)
+        }
 
         let genresIdsArray = []
         let genresNamesArray = []
@@ -106,13 +106,10 @@ function AddArtistPage() {
                 if (genre.name === value) {
                     genresIdsArray.push(genre._id)
                     genresNamesArray.push(genre.name)
-                    console.log(genresNamesArray)
                     setGenres(genresNamesArray)
                 }
             })
         })
-
-        console.log(genresIdsArray)
 
         if (genresIdsArray !== null) setGenresIds(genresIdsArray)
     }

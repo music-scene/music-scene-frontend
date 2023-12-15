@@ -1,8 +1,7 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { AuthContext } from "../context/auth.context"
-import userService from "../services/user.service"
 import { setDefaultProfileImageUrl } from "../helperFunctions/helperFunction"
+import userService from "../services/user.service"
 
 function EditProfileContainer(props) {
 
@@ -12,7 +11,6 @@ function EditProfileContainer(props) {
     const [errorMessage, setErrorMessage] = useState(undefined)
 
     const { userId } = useParams()
-    const { user } = useContext(AuthContext)
 
     const navigate = useNavigate()
 
@@ -51,7 +49,6 @@ function EditProfileContainer(props) {
         <div>
             <div className="">
                 <div className="">
-                    <h1>EDIT PROFILE</h1>
                     <form onSubmit={handleSubmit}>
                     <div className="inputContainer">
                             <input

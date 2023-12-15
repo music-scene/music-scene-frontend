@@ -44,5 +44,10 @@
   .button.venue:hover::before {
     scale: 3;
   }
-  .button.venue {
+  
+  @media (max-width: 830px) {
+    
+    .button.Signup {
+      width: 113px;
+    }
   }

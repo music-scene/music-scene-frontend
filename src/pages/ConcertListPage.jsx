@@ -6,7 +6,6 @@ import { AuthContext } from "../context/auth.context";
 import concertService from '../services/concert.service'
 import venueService from '../services/venue.service'
 import artistService from '../services/artist.service'
-import './ListPages.css';
 
 function ConcertListPage() {
 
@@ -58,7 +57,6 @@ function ConcertListPage() {
     }
 
     const handleArtistFilter = (event, data) => {
-        console.log(data.value)
         setArtistFilter(data.value)
     }
 

@@ -1,18 +1,16 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Dropdown } from "semantic-ui-react";
+import { AuthContext } from "../context/auth.context";
+import { getNamesForLists, defaultImageUrl, setDefaultImageUrl } from "../helperFunctions/helperFunction"
 import venueService from '../services/venue.service'
 import concertService from '../services/concert.service'
 import artistService from '../services/artist.service'
-import { AuthContext } from "../context/auth.context";
-import { getNamesForLists, defaultImageUrl, setDefaultImageUrl } from "../helperFunctions/helperFunction"
 
 function AddConcertPage() {
 
     const [title, setTitle] = useState("");
-    const [artistId, setArtistId] = useState(null);
     const [artistsIds, setArtistIds] = useState(null)
-    const [artistName, setArtistName] = useState(null)
     const [artistsNames, setArtistsNames] = useState(null)
     const [artistsList, setArtistsList] = useState(null)
     const [artistsNameList, setArtistsNameList] = useState(null)
@@ -28,8 +26,6 @@ function AddConcertPage() {
 
     let currentDate = new Date().toISOString()
     currentDate = `${currentDate.substring(0, 10)} ${currentDate.substring(11, 16)}`
-
-    //let artistsNames = []
 
     const { user } = useContext(AuthContext)
 
@@ -86,6 +82,8 @@ function AddConcertPage() {
 
     const handleVenueSelection = (event, data) => {
 
+        if (data.value.length === 0 || data.value === "") setVenueId(null)
+
         const selectedVenueArray = venuesList.find((venue) => {
             setVenueName(data.value)
             return venue.name === data.value
@@ -95,7 +93,10 @@ function AddConcertPage() {
 
     const handleArtistSelections = (event, data) => {
 
-        if (data.value.length === 0) setArtistsNames(null)
+        if (data.value.length === 0) {
+            setArtistIds(null)
+            setArtistsNames(null)
+        }
 
         let artistArray = [];
         let artistsIDsArray = []

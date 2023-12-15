@@ -20,11 +20,8 @@ function LoginPage(props) {
 
     const requestBody = { email, password }
 
-    // axios.post(`${API_URL}/auth/login`, requestBody)
-
     authService.login(requestBody)
       .then((response) => {
-        //console.log('JWT token', response.data.authToken)
 
         storeToken(response.data.authToken)
 

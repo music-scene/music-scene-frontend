@@ -91,8 +91,12 @@ function EditArtist(props) {
     };
 
     const handleGenreSelection = (event, data) => {
-        console.log(event)
-        console.log(data.value)
+
+        if (data.value.length === 0) {
+            setGenresIds(null)
+            setGenresNames(null) 
+        }
+
         let genresIdsArray = []
         let genresNamesArray = []
 

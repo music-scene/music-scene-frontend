@@ -1,5 +1,3 @@
-// src/pages/SignupPage.jsx
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import authService from "../services/auth.service"
@@ -21,10 +19,8 @@ function SignupPage(props) {
     const handleSignupSubmit = (e) => {
         e.preventDefault()
 
-        // Create an object representing the request body
         const requestBody = { email, password, name }
 
-        // axios.post(`${API_URL}/auth/signup`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
         authService.signup(requestBody)
             .then((response) => {
                 navigate('/login')
@@ -87,7 +83,7 @@ function SignupPage(props) {
                         htmlFor="inputField">Name
                     </label>
                 </div>
-                <button type="submit" className="button">
+                <button type="submit" className="button Signup">
                     Sign Up
                 </button>
                 <br />

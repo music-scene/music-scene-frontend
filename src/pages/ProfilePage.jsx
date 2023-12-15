@@ -28,7 +28,6 @@ function ProfilePage() {
     userService
       .deleteUser(userId)
       .then((response) => {
-        console.log(response);
         logOutUser();
       })
       .catch((error) => {
@@ -56,6 +55,7 @@ function ProfilePage() {
               <div className="InfoRow">
                 <p><span className="DetailsSpans">Email: </span>{userInfo.email}</p>
               </div>
+              <br />
               {userInfo._id === user._id
                 ? <div className="EditDeleteContainer">
                   <button onClick={showHideEditContainer} className="button">Edit</button>
